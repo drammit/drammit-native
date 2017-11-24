@@ -1,0 +1,23 @@
+{
+  "name": "drammit-native",
+  "version": "1.0.0",
+  "description": "React Native implementation of Drammit",
+  "main": "index.js",
+  "dependencies": {
+    "react-native-cli": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drammit/drammit-native.git"
+  },
+  "author": "Gaya Kessler",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/drammit/drammit-native/issues"
+  },
+  "homepage": "https://github.com/drammit/drammit-native#readme"
+}
