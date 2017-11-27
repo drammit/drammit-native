@@ -6,6 +6,7 @@ import { Text, View } from 'react-native';
 import { Link } from 'react-router-native';
 
 import ImageContainer from '../../components/Layout/ImageContainer';
+import Logo from '../../components/Logo/Logo';
 
 import Schotland from './Scotland.jpg';
 
@@ -17,7 +18,12 @@ function Welcome(): Element<any> {
       source={Schotland}
     >
       <View style={styles.container}>
-        <Text>Keep track of and rate the whiskies you drink</Text>
+        <Logo />
+        <View style={styles.intro}>
+          <Text style={styles.introDash}>——</Text>
+          <Text style={styles.introText}>Keep track of and rate the whiskies you drink</Text>
+          <Text style={styles.introDash}>——</Text>
+        </View>
       </View>
     </ImageContainer>
   );

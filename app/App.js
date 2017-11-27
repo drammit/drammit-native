@@ -7,8 +7,6 @@ import { createStore, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import devTools from 'remote-redux-devtools';
 
-import Container from './components/Layout/Container';
-
 import Welcome from './pages/Welcome';
 
 import styles from './App.styles';
@@ -26,8 +24,6 @@ const store = createStore(
   ),
 );
 
-console.log(window);
-
 const App = () => (
   <Provider store={store}>
     <NativeRouter>
@@ -35,5 +31,8 @@ const App = () => (
     </NativeRouter>
   </Provider>
 );
+
+// ignore Remote Debugger warnings
+console.ignoredYellowBox = ['Remote debugger'];
 
 export default App;
