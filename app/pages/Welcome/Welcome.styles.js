@@ -2,6 +2,10 @@ import { StyleSheet } from 'react-native';
 
 import { colors, sizes } from '../../Config.styles';
 
+const button = {
+  marginTop: sizes.base,
+};
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -29,4 +33,10 @@ export default StyleSheet.create({
     width: '20%',
     textAlign: 'center',
   },
+  buttons: {
+    marginTop: sizes.base,
+    marginBottom: sizes.base,
+  },
+  facebookButton: Object.assign({}, button, { backgroundColor: colors.facebook }),
+  emailButton: Object.assign({}, button, { backgroundColor: colors.lightGreen }),
 });
