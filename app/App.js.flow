@@ -1,5 +1,7 @@
 // @flow
 
+// React children
+
 // React Router Annotations
 declare var matchType: {
   path: string,

@@ -1,11 +1,13 @@
 // @flow
 
 import React from 'react';
-import { View, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import { NativeRouter, Route } from 'react-router-native';
 import { createStore, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import devTools from 'remote-redux-devtools';
+
+import Container from './components/Layout/Container';
 
 import Welcome from './pages/Welcome';
 
@@ -26,12 +28,12 @@ const store = createStore(
 
 console.log(window);
 
-export default () => (
+const App = () => (
   <Provider store={store}>
     <NativeRouter>
-      <View style={styles.container}>
-        <Route path="/" component={Welcome} />
-      </View>
+      <Route style={styles.container} path="/" component={Welcome} />
     </NativeRouter>
   </Provider>
 );
+
+export default App;
