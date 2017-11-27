@@ -7,10 +7,9 @@ import { createStore, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import devTools from 'remote-redux-devtools';
 
-import Welcome from './Welcome';
-import About from './About';
+import Welcome from './pages/Welcome';
 
-import styles from './Styles';
+import styles from './App.styles';
 
 const store = createStore(
   combineReducers({
@@ -31,8 +30,7 @@ export default () => (
   <Provider store={store}>
     <NativeRouter>
       <View style={styles.container}>
-        <Route exact path="/" component={Welcome} />
-        <Route path="/about" component={About} />
+        <Route path="/" component={Welcome} />
       </View>
     </NativeRouter>
   </Provider>

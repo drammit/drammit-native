@@ -17,10 +17,12 @@
 .*/Libraries/polyfills/.*
 
 [include]
+app/
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
 node_modules/react-native/flow/
+app/
 
 [options]
 emoji=true
@@ -45,4 +47,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 unsafe.enable_getters_and_setters=true
 
 [version]
-^0.56.0
+^0.59.0

@@ -5,6 +5,7 @@
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver",
+		"flow": "flow",
 		"test": "jest"
 	},
 	"dependencies": {
@@ -25,6 +26,7 @@
 		"eslint-plugin-import": "^2.8.0",
 		"eslint-plugin-jsx-a11y": "^6.0.2",
 		"eslint-plugin-react": "^7.5.1",
+		"flow-bin": "^0.59.0",
 		"jest": "21.2.1",
 		"react-test-renderer": "16.0.0",
 		"remotedev-rn-debugger": "^0.8.3"

@@ -1,0 +1,9 @@
+// @flow
+
+// React Router Annotations
+declare var matchType: {
+  path: string,
+  url: string,
+  isExact: boolean,
+  params: {},
+};
