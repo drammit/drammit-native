@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import type { Element } from 'react';
 import { connect } from 'react-redux';
-import { Animated, Text, View, Button } from 'react-native';
+import { Animated, Text, View, Button, StatusBar } from 'react-native';
 
 import ImageContainer from '../../components/Layout/ImageContainer';
 import Logo from '../../components/Logo/Logo';
@@ -78,6 +78,7 @@ class Welcome extends Component<WelcomeType> {
       <ImageContainer
         source={Scotland}
       >
+        <StatusBar hidden />
         <View style={styles.container}>
           <Animated.View
             style={{
