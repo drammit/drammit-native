@@ -39,4 +39,5 @@ export default StyleSheet.create({
   },
   facebookButton: Object.assign({}, button, { backgroundColor: colors.facebook }),
   emailButton: Object.assign({}, button, { backgroundColor: colors.lightGreen }),
+  signupButton: Object.assign({}, button, { borderColor: colors.white, borderWidth: 1 }),
 });

@@ -35,9 +35,9 @@ function Welcome(): Element<any> {
           <View style={styles.emailButton}>
             <Button color={colors.white} title="Continue with email" />
           </View>
-          <View style={Object.assign({}, styles.button, { borderColor: colors.white, borderWidth: 1 })}>
+          <Link to="/sign-up" style={styles.signupButton}>
             <Button color={colors.white} title="New here? Sign up!" />
-          </View>
+          </Link>
         </View>
       </View>
     </ImageContainer>
