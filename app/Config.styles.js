@@ -1,7 +1,7 @@
 // @flow
 
 function fontSize(scale: number): number {
-  return 15 * scale;
+  return 16 * scale;
 }
 
 const config = {

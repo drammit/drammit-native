@@ -42,18 +42,18 @@ export const style = {
     lineHeight: sizes.head * 1.6,
     fontWeight: '600',
     color: colors.green,
-    flexGrow: 1,
-    width: '50%',
+    flexGrow: 0,
+    width: 220,
   },
   introDash: {
-    width: '25%',
+    flexGrow: 1,
     textAlign: 'center',
   },
   buttons,
   login: {
     ...buttons,
     bottom: 'auto',
-    top: 230,
+    top: 210,
     width: '100%',
   },
   facebookButton: Object.assign({}, button, {

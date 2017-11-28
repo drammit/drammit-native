@@ -21,13 +21,14 @@ type WelcomeType = {
   signUp: Function,
 };
 
-const openLogin = true;
+const openLogin = false;
 
 class Welcome extends Component<WelcomeType> {
   constructor(props) {
     super(props);
 
     this.onOpenEmailLogin = this.openEmailLogin.bind(this);
+    this.onCloseEmailLogin = this.closeEmailLogin.bind(this);
   }
 
   state = {
@@ -93,6 +94,22 @@ class Welcome extends Component<WelcomeType> {
     this.setState({
       renderLogin: true,
     });
+  }
+
+  closeEmailLogin() {
+    Animated.timing(
+      this.state.buttonsSlide,
+      {
+        toValue: 0,
+        duration: 500,
+      },
+    ).start();
+
+    setTimeout(() => {
+      this.setState({
+        renderLogin: false,
+      });
+    }, 600);
   }
 
   render(): Element {
@@ -210,7 +227,7 @@ class Welcome extends Component<WelcomeType> {
               }],
             }}
           >
-            {renderLogin && <Login />}
+            {renderLogin && <Login onBack={this.onCloseEmailLogin} />}
           </Animated.View>
         </View>
       </ImageContainer>
