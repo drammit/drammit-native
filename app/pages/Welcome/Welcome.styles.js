@@ -8,6 +8,14 @@ const button = {
   borderBottomWidth: 3,
 };
 
+const buttons = {
+  marginTop: sizes.base,
+  marginBottom: sizes.base,
+  width: '80%',
+  position: 'absolute',
+  bottom: 60,
+};
+
 export const style = {
   container: {
     flex: 1,
@@ -19,7 +27,7 @@ export const style = {
     alignItems: 'center',
     width: '100%',
     position: 'absolute',
-    top: 180,
+    top: 150,
   },
   intro: {
     flexDirection: 'row',
@@ -35,18 +43,18 @@ export const style = {
     fontWeight: '600',
     color: colors.green,
     flexGrow: 1,
-    width: '60%',
+    width: '50%',
   },
   introDash: {
-    width: '20%',
+    width: '25%',
     textAlign: 'center',
   },
-  buttons: {
-    marginTop: sizes.base,
-    marginBottom: sizes.base,
-    width: '80%',
-    position: 'absolute',
-    bottom: 60,
+  buttons,
+  login: {
+    ...buttons,
+    bottom: 'auto',
+    top: 230,
+    width: '100%',
   },
   facebookButton: Object.assign({}, button, {
     backgroundColor: colors.facebook,

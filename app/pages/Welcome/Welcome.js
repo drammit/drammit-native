@@ -10,22 +10,33 @@ import Logo from '../../components/Logo/Logo';
 
 import { colors } from '../../Config.styles';
 
+import Login from './Login';
+
 import Scotland from './Scotland.jpg';
 
 import { styles, style } from './Welcome.styles';
 
 type WelcomeType = {
   continueWithFacebook: Function,
-  continueWithEmail: Function,
   signUp: Function,
 };
 
+const openLogin = true;
+
 class Welcome extends Component<WelcomeType> {
+  constructor(props) {
+    super(props);
+
+    this.onOpenEmailLogin = this.openEmailLogin.bind(this);
+  }
+
   state = {
     fadeHeader: new Animated.Value(0),
     fadeFacebook: new Animated.Value(0),
     fadeEmail: new Animated.Value(0),
     fadeSignup: new Animated.Value(0),
+    buttonsSlide: new Animated.Value(openLogin ? 1 : 0),
+    renderLogin: openLogin,
   };
 
   componentDidMount() {
@@ -70,9 +81,25 @@ class Welcome extends Component<WelcomeType> {
     }, 1500);
   }
 
+  openEmailLogin() {
+    Animated.timing(
+      this.state.buttonsSlide,
+      {
+        toValue: 1,
+        duration: 500,
+      },
+    ).start();
+
+    this.setState({
+      renderLogin: true,
+    });
+  }
+
   render(): Element {
-    const { continueWithFacebook, continueWithEmail, signUp } = this.props;
-    const { fadeHeader, fadeFacebook, fadeEmail, fadeSignup } = this.state;
+    const { continueWithFacebook, signUp } = this.props;
+    const {
+      fadeHeader, fadeFacebook, fadeEmail, fadeSignup, buttonsSlide, renderLogin,
+    } = this.state;
 
     return (
       <ImageContainer
@@ -85,9 +112,9 @@ class Welcome extends Component<WelcomeType> {
               ...style.header,
               opacity: fadeHeader,
               transform: [{
-                translateY: fadeHeader.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [20, 0],
+                translateY: Animated.add(fadeHeader, buttonsSlide).interpolate({
+                  inputRange: [0, 1, 2],
+                  outputRange: [20, 0, -120],
                 }),
               }],
             }}
@@ -100,7 +127,21 @@ class Welcome extends Component<WelcomeType> {
             </View>
           </Animated.View>
 
-          <View style={styles.buttons}>
+          <Animated.View
+            style={{
+              ...style.buttons,
+              opacity: buttonsSlide.interpolate({
+                inputRange: [0, 1],
+                outputRange: [1, 0],
+              }),
+              transform: [{
+                translateY: buttonsSlide.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 300],
+                }),
+              }],
+            }}
+          >
             <Animated.View
               style={{
                 ...style.facebookButton,
@@ -132,7 +173,7 @@ class Welcome extends Component<WelcomeType> {
               }}
             >
               <Button
-                onPress={continueWithEmail}
+                onPress={this.onOpenEmailLogin}
                 color={colors.white}
                 title="Continue with email"
               />
@@ -155,7 +196,22 @@ class Welcome extends Component<WelcomeType> {
                 title="New here? Sign up!"
               />
             </Animated.View>
-          </View>
+          </Animated.View>
+
+          <Animated.View
+            style={{
+              ...style.login,
+              opacity: buttonsSlide,
+              transform: [{
+                translateY: buttonsSlide.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [120, 0],
+                }),
+              }],
+            }}
+          >
+            {renderLogin && <Login />}
+          </Animated.View>
         </View>
       </ImageContainer>
     );
@@ -166,10 +222,6 @@ function mapDispatchToProps(dispatch) {
   return {
     continueWithFacebook() {
       console.log('Facebook');
-    },
-
-    continueWithEmail() {
-      console.log('Email');
     },
 
     signUp() {
