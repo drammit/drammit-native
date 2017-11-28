@@ -2,41 +2,60 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View } from 'react-native';
+import { reduxForm } from 'redux-form';
+
+import TextInput from '../../components/Form/TextInput';
 
 class Login extends Component {
-  componentDidMount() {
-    this.username.focus();
+  constructor(props) {
+    super(props);
+
+    this.setPasswordRef = (ref) => {
+      this.passwordInput = ref;
+    };
+
+    this.focusPassword = () => this.passwordInput.focus();
+
+    this.onSubmit = props.handleSubmit((values) => {
+      console.log(values);
+    });
   }
 
-  render() {
+  state = {
+    focus: 'username',
+  };
+
+  render(): Element {
+    const { handleSubmit } = this.props;
+    const { focus } = this.state;
+
     return (
       <View>
         <TextInput
-          ref={(ref) => this.username = ref}
+          name="username"
           placeholder="Username / Email address"
-          style={{
-            backgroundColor: 'white',
-            padding: 10,
-            fontSize: 15,
-            borderBottomWidth: 1,
-            borderBottomColor: '#ddd',
-          }}
-          returnKeyLabel="done"
+          returnKeyType="next"
+          keyboardType="email-address"
+          autofocus
+          autoCorrect={false}
+          blurOnSubmit={false}
+          onSubmitEditing={this.focusPassword}
         />
         <TextInput
+          name="password"
           placeholder="Password"
-          style={{
-            backgroundColor: 'white',
-            padding: 10,
-            fontSize: 15,
-          }}
+          returnKeyType="go"
           secureTextEntry
-          returnKeyLabel="done"
+          onRef={this.setPasswordRef}
+          blurOnSubmit={false}
+          onSubmitEditing={this.onSubmit}
         />
       </View>
     );
   }
 }
 
-export default Login;
+export default reduxForm({
+  form: 'login',
+})(Login);

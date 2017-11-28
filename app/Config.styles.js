@@ -38,6 +38,7 @@ const config = {
     smallish: fontSize(0.92),
     small: fontSize(0.84),
     mini: fontSize(0.7),
+    padding: 12,
   },
 };
 
