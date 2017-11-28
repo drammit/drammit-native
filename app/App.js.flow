@@ -9,3 +9,8 @@ declare var matchType: {
   isExact: boolean,
   params: {},
 };
+
+// Redux form
+declare var ReduxFormType: {
+  handleSubmit: Function,
+};

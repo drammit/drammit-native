@@ -7,7 +7,11 @@ import { reduxForm } from 'redux-form';
 
 import TextInput from '../../components/Form/TextInput';
 
-class Login extends Component {
+type LoginType = {
+  ...ReduxFormType,
+};
+
+class Login extends Component<LoginType> {
   constructor(props) {
     super(props);
 
@@ -22,14 +26,7 @@ class Login extends Component {
     });
   }
 
-  state = {
-    focus: 'username',
-  };
-
   render(): Element {
-    const { handleSubmit } = this.props;
-    const { focus } = this.state;
-
     return (
       <View>
         <TextInput
@@ -51,6 +48,9 @@ class Login extends Component {
           blurOnSubmit={false}
           onSubmitEditing={this.onSubmit}
         />
+        <View>
+
+        </View>
       </View>
     );
   }
