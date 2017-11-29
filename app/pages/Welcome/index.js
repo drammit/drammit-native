@@ -4,7 +4,6 @@ import React from 'react';
 import type { Element } from 'react';
 import { Route, Switch } from 'react-router-native';
 
-import Container from '../../components/Layout/Container';
 import AnimatedRoutes from '../../components/Router/AnimatedRoutes';
 
 import Welcome from './Welcome';

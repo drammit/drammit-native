@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { Animated, View } from 'react-native';
+import { Animated, Easing } from 'react-native';
 import { withRouter } from 'react-router';
 
 type AnimatedChildRoutesType = ReactRouterType & {
@@ -39,6 +39,7 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
             toValue: 1,
             duration: 200,
             useNativeDriver: true,
+            easing: Easing.in(Easing.ease),
           },
         ),
         {

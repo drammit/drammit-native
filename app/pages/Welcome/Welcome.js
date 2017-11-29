@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import type { Element } from 'react';
 import { connect } from 'react-redux';
-import { Animated, Text, View, Button, StatusBar } from 'react-native';
+import { Animated, Text, View, Button, StatusBar, Easing } from 'react-native';
 
 import ImageContainer from '../../components/Layout/ImageContainer';
 import Logo from '../../components/Logo/Logo';
@@ -21,7 +21,7 @@ type WelcomeType = {
   signUp: Function,
 };
 
-const openLogin = true;
+const openLogin = false;
 
 class Welcome extends Component<WelcomeType> {
   constructor(props) {
@@ -41,45 +41,46 @@ class Welcome extends Component<WelcomeType> {
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      Animated.timing(
-        this.state.fadeHeader,
-        {
-          toValue: 1,
-          duration: 1500,
-        },
-      ).start();
-    }, 500);
+    Animated.timing(
+      this.state.fadeHeader,
+      {
+        toValue: 1,
+        duration: 1500,
+        delay: 500,
+        easing: Easing.out(Easing.ease),
+      },
+    ).start();
 
-    setTimeout(() => {
-      Animated.timing(
-        this.state.fadeFacebook,
-        {
-          toValue: 1,
-          duration: 500,
-        },
-      ).start();
-    }, 2000);
 
-    setTimeout(() => {
-      Animated.timing(
-        this.state.fadeEmail,
-        {
-          toValue: 1,
-          duration: 500,
-        },
-      ).start();
-    }, 1750);
+    Animated.timing(
+      this.state.fadeFacebook,
+      {
+        toValue: 1,
+        duration: 500,
+        delay: 2000,
+        easing: Easing.out(Easing.ease),
+      },
+    ).start();
 
-    setTimeout(() => {
-      Animated.timing(
-        this.state.fadeSignup,
-        {
-          toValue: 1,
-          duration: 500,
-        },
-      ).start();
-    }, 1500);
+    Animated.timing(
+      this.state.fadeEmail,
+      {
+        toValue: 1,
+        duration: 500,
+        delay: 1750,
+        easing: Easing.out(Easing.ease),
+      },
+    ).start();
+
+    Animated.timing(
+      this.state.fadeSignup,
+      {
+        toValue: 1,
+        duration: 500,
+        delay: 1500,
+        easing: Easing.out(Easing.ease),
+      },
+    ).start();
   }
 
   openEmailLogin() {
@@ -88,6 +89,8 @@ class Welcome extends Component<WelcomeType> {
       {
         toValue: 1,
         duration: 300,
+        easing: Easing.in(Easing.linear),
+        useNativeDriver: true,
       },
     ).start();
 
@@ -103,6 +106,8 @@ class Welcome extends Component<WelcomeType> {
         {
           toValue: 0,
           duration: 300,
+          easing: Easing.in(Easing.linear),
+          useNativeDriver: true,
         },
       ),
       {
@@ -130,7 +135,10 @@ class Welcome extends Component<WelcomeType> {
           <Animated.View
             style={{
               ...style.header,
-              opacity: fadeHeader,
+              opacity: fadeHeader.interpolate({
+                inputRange: [0, 0.75],
+                outputRange: [0, 1],
+              }),
               transform: [{
                 translateY: Animated.add(fadeHeader, buttonsSlide).interpolate({
                   inputRange: [0, 1, 2],
@@ -157,7 +165,7 @@ class Welcome extends Component<WelcomeType> {
               transform: [{
                 translateY: buttonsSlide.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [0, 300],
+                  outputRange: [0, 120],
                 }),
               }],
             }}
