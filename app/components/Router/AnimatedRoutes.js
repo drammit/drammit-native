@@ -37,17 +37,26 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
           this.state.slideAnimation,
           {
             toValue: 1,
-            duration: 400,
+            duration: 200,
+            useNativeDriver: true,
           },
         ),
         {
-          start: () => {
+          start: (next) => {
             this.setState({
               previousChildren: null,
-              slideAnimation: new Animated.Value(0),
             });
+            next({ finished: true });
           },
         },
+        Animated.timing(
+          this.state.slideAnimation,
+          {
+            toValue: 0,
+            duration: 300,
+            useNativeDriver: true,
+          },
+        ),
       ]).start();
     }
   }
@@ -58,60 +67,30 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
 
     const navigateToParent = match.isExact;
 
-    const prev = (
-      <Animated.View
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          transform: [{
-            translateX: slideAnimation.interpolate({
-              inputRange: [0, 1],
-              outputRange: [0, navigateToParent ? 100 : -100],
-            }),
-          }],
-          opacity: slideAnimation.interpolate({
-            inputRange: [0, 1],
-            outputRange: [1, 0],
-          }),
-          width: '100%',
-          height: '100%',
-        }}
-      >
-        { previousChildren }
-      </Animated.View>
-    );
-    const next = (
-      <Animated.View
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          opacity: slideAnimation.interpolate({
-            inputRange: [0, 1],
-            outputRange: [1, 1],
-          }),
-        }}
-      >
-        { children }
-      </Animated.View>
-    );
-
     return (
-      <View
+      <Animated.View
         style={{
           position: 'absolute',
           left: 0,
           right: 0,
           width: '100%',
           height: '100%',
+          transform: [{
+            translateX: previousChildren ? (
+              slideAnimation.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, navigateToParent ? 100 : -100],
+              })
+            ) : 0,
+          }],
+          opacity: slideAnimation.interpolate({
+            inputRange: [0, 1],
+            outputRange: [1, 0],
+          }),
         }}
       >
-        {next}
-        {previousChildren && prev}
-      </View>
+        {previousChildren || children}
+      </Animated.View>
     );
   }
 }
