@@ -17,6 +17,7 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
       previousChildren: null,
       currentPath: props.location.pathname,
       slideAnimation: new Animated.Value(0),
+      navUp: false,
     };
   }
 
@@ -30,6 +31,7 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
       this.setState({
         previousChildren: children,
         currentPath: newPath,
+        navUp: currentPath.indexOf(newPath) === 0,
       });
 
       Animated.sequence([
@@ -63,10 +65,8 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
   }
 
   render(): Element<any> {
-    const { children, match } = this.props;
-    const { previousChildren, slideAnimation } = this.state;
-
-    const navigateToParent = match.isExact;
+    const { children } = this.props;
+    const { previousChildren, slideAnimation, navUp } = this.state;
 
     return (
       <Animated.View
@@ -80,7 +80,7 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
             translateX: previousChildren ? (
               slideAnimation.interpolate({
                 inputRange: [0, 1],
-                outputRange: [0, navigateToParent ? 100 : -100],
+                outputRange: [0, navUp ? 100 : -100],
               })
             ) : 0,
           }],
