@@ -13,7 +13,7 @@ const buttons = {
   marginBottom: sizes.base,
   width: '80%',
   position: 'absolute',
-  bottom: 60,
+  bottom: '8%',
 };
 
 export const style = {
@@ -27,7 +27,7 @@ export const style = {
     alignItems: 'center',
     width: '100%',
     position: 'absolute',
-    top: 150,
+    top: '21%',
   },
   intro: {
     flexDirection: 'row',
@@ -53,7 +53,7 @@ export const style = {
   login: {
     ...buttons,
     bottom: 'auto',
-    top: 210,
+    top: '30%',
     width: '100%',
   },
   facebookButton: Object.assign({}, button, {

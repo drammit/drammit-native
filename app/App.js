@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { Platform } from 'react-native';
-import { NativeRouter, Route } from 'react-router-native';
-import { createStore, combineReducers, compose } from 'redux';
+import { Route, NativeRouter } from 'react-router-native';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer as formReducer } from 'redux-form';
 import devTools from 'remote-redux-devtools';

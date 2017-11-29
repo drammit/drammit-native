@@ -2,8 +2,11 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { View, Button } from 'react-native';
+import { compose } from 'redux';
+import { View, Button, Text } from 'react-native';
 import { reduxForm } from 'redux-form';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-native';
 
 import TextInput from '../../components/Form/TextInput';
 
@@ -13,6 +16,7 @@ import styles from './Login.styles';
 type LoginType = {
   ...ReduxFormType,
   onBack: Function,
+  goToForgotPassword: Function,
 };
 
 class Login extends Component<LoginType> {
@@ -39,6 +43,13 @@ class Login extends Component<LoginType> {
         props.onBack();
       }
     };
+    this.onGoToForgotPassword = this.goToForgotPassword.bind(this);
+  }
+
+  goToForgotPassword() {
+    const { history } = this.props;
+
+    history.push('/forgot-password');
   }
 
   render(): Element {
@@ -72,15 +83,26 @@ class Login extends Component<LoginType> {
           />
 
           <Button
-            onPress={() => {}}
+            onPress={this.onSubmit}
             title="Login →"
           />
+        </View>
+        <View style={styles.buttonsContainer}>
+          <Button
+            onPress={this.onGoToForgotPassword}
+            color={colors.grey2}
+            title="Forgot password?"
+          />
+          <Link to="/forgot-password"><Text>Hallo</Text></Link>
         </View>
       </View>
     );
   }
 }
 
-export default reduxForm({
-  form: 'login',
-})(Login);
+export default compose(
+  withRouter,
+  reduxForm({
+    form: 'login',
+  }),
+)(Login);
