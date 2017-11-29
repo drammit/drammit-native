@@ -21,7 +21,7 @@ type WelcomeType = {
   signUp: Function,
 };
 
-const openLogin = false;
+const openLogin = true;
 
 class Welcome extends Component<WelcomeType> {
   constructor(props) {

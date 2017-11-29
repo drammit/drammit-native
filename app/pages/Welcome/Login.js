@@ -3,10 +3,9 @@
 import React, { Component } from 'react';
 import type { Element } from 'react';
 import { compose } from 'redux';
-import { View, Button, Text } from 'react-native';
+import { View, Button } from 'react-native';
 import { reduxForm } from 'redux-form';
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-native';
 
 import TextInput from '../../components/Form/TextInput';
 
@@ -93,7 +92,6 @@ class Login extends Component<LoginType> {
             color={colors.grey2}
             title="Forgot password?"
           />
-          <Link to="/forgot-password"><Text>Hallo</Text></Link>
         </View>
       </View>
     );
