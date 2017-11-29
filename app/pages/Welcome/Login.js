@@ -73,8 +73,7 @@ class Login extends Component<LoginType> {
 
           <Button
             onPress={() => {}}
-            title="Login"
-            color={colors.deepOrange}
+            title="Login →"
           />
         </View>
       </View>

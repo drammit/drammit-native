@@ -9,5 +9,6 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 4,
     paddingRight: 4,
+    marginTop: 10,
   },
 });

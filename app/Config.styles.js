@@ -26,6 +26,7 @@ const config = {
     yellow: '#f4d980',
     lightOrange: '#fde3be',
     lightYellow: '#f5f5f0',
+    blue: '#174886',
     red: '#e30117',
     lightRed: '#ffc8c8',
     facebook: '#3B5998',
