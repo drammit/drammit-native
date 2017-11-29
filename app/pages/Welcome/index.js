@@ -2,21 +2,22 @@
 
 import React from 'react';
 import type { Element } from 'react';
-import { Route } from 'react-router-native';
+import { Route, Switch } from 'react-router-native';
 
 import Container from '../../components/Layout/Container';
+import AnimatedRoutes from '../../components/Router/AnimatedRoutes';
 
 import Welcome from './Welcome';
 import Forgot from './Forgot';
 
-function Routes({ match }: { match: matchType }): Element<any> {
-  console.log(match);
-
+function Routes({ match, location }: ReactRouterType): Element<any> {
   return (
-    <Container>
-      <Route exact path={`${match.path}`} component={Welcome} />
-      <Route path={`${match.path}forgot-password`} component={Forgot} />
-    </Container>
+    <AnimatedRoutes>
+      <Switch location={location}>
+        <Route exact path={`${match.path}`} component={Welcome} />
+        <Route path={`${match.path}forgot-password`} component={Forgot} />
+      </Switch>
+    </AnimatedRoutes>
   );
 }
 
