@@ -40,7 +40,6 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
           {
             toValue: 1,
             duration: 200,
-            useNativeDriver: true,
             easing: Easing.in(Easing.ease),
           },
         ),
@@ -48,8 +47,7 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
           start: (next) => {
             this.setState({
               previousChildren: null,
-            });
-            next({ finished: true });
+            }, () => next({ finished: true }));
           },
         },
         Animated.timing(
@@ -57,7 +55,6 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
           {
             toValue: 0,
             duration: 300,
-            useNativeDriver: true,
           },
         ),
       ]).start();
@@ -85,7 +82,7 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
             ) : 0,
           }],
           opacity: slideAnimation.interpolate({
-            inputRange: [0, 1],
+            inputRange: [0, 0.9],
             outputRange: [1, 0],
           }),
         }}
