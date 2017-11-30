@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import type { Element } from 'react';
 import { connect } from 'react-redux';
-import { View, StatusBar, Animated } from 'react-native';
+import {View, StatusBar, Animated, Easing} from 'react-native';
 
 import { style, styles } from './App.styles';
 
@@ -19,6 +19,24 @@ class App extends Component<AppType> {
     this.state = {
       statusBarPosition: new Animated.Value(props.statusBar ? 1 : 0),
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      (!this.props.statusBar && nextProps.statusBar) ||
+      (this.props.statusBar && !nextProps.statusBar)
+    ) {
+      const toValue = nextProps.statusBar ? 1 : 0;
+
+      Animated.timing(
+        this.state.statusBarPosition,
+        {
+          toValue,
+          duration: 300,
+          easing: Easing.in(Easing.linear),
+        },
+      ).start();
+    }
   }
 
   render(): Element<any> {
