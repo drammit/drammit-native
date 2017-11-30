@@ -3,14 +3,14 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { Route, NativeRouter } from 'react-router-native';
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import { createStore, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer as formReducer } from 'redux-form';
 import devTools from 'remote-redux-devtools';
 
-import Welcome from './pages/Welcome';
+import AppComponent from './components/Layout/App';
 
-import styles from './App.styles';
+import Welcome from './pages/Welcome';
 
 const store = createStore(
   combineReducers({
@@ -28,9 +28,11 @@ const store = createStore(
 
 const App = () => (
   <Provider store={store}>
-    <NativeRouter>
-      <Route style={styles.container} path="/" component={Welcome} />
-    </NativeRouter>
+    <AppComponent>
+      <NativeRouter>
+        <Route path="/" component={Welcome} />
+      </NativeRouter>
+    </AppComponent>
   </Provider>
 );
 

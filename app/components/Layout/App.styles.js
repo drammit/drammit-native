@@ -3,11 +3,15 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../Config.styles';
 
 export default StyleSheet.create({
-  pageContainer: {
+  container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    backgroundColor: colors.grey5,
+  },
+  statusBar: {
+    flexGrow: 0,
+    flexShrink: 0,
+    backgroundColor: colors.green,
+    height: 20,
     width: '100%',
-    backgroundColor: colors.light,
   },
 });
