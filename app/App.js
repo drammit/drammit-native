@@ -30,11 +30,11 @@ const store = createStore(
 
 const App = () => (
   <Provider store={store}>
-    <AppComponent>
-      <NativeRouter>
+    <NativeRouter>
+      <AppComponent>
         <Route path="/" component={Welcome} />
-      </NativeRouter>
-    </AppComponent>
+      </AppComponent>
+    </NativeRouter>
   </Provider>
 );
 
