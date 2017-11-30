@@ -11,6 +11,11 @@ export const style = {
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
+  error: {
+    color: colors.red,
+    fontSize: sizes.base,
+    marginTop: 6,
+  },
 };
 
 export const styles = StyleSheet.create(style);

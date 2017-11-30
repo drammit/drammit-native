@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
 import Page from '../../components/Layout/Page';
@@ -59,6 +61,20 @@ class Forgot extends Component<ForgotType> {
   }
 }
 
-export default reduxForm({
-  form: 'forgot',
-})(Forgot);
+function validate(values) {
+  const errors = {};
+
+  if (!values.username) {
+    errors.username = 'Enter username or email address';
+  }
+
+  return errors;
+}
+
+export default compose(
+  connect(),
+  reduxForm({
+    form: 'forgot',
+    validate,
+  }),
+)(Forgot);

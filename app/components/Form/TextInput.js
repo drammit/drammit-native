@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { TextInput } from 'react-native';
+import { TextInput, View, Text } from 'react-native';
 import { Field } from 'redux-form';
 
 import { style as rawStyle, styles } from './TextInput.styles';
@@ -15,6 +15,10 @@ type TextInputType = {
   returnKeyLabel?: string,
   keyboardType?: string,
   input: any,
+  meta: {
+    touched: boolean,
+    error?: string,
+  },
   onRef: Function,
   style: {},
 }
@@ -41,19 +45,25 @@ class FormTextInput extends Component<TextInputType> {
   }
 
   render(): Element {
-    const { input, style } = this.props;
+    const { input, style, meta } = this.props;
+    const { touched, error } = meta;
 
     return (
-      <TextInput
-        {...input}
-        {...this.props}
-        ref={this.setRef}
-        style={{
-          ...rawStyle.input,
-          ...style,
-        }}
-        underlineColorAndroid="transparent"
-      />
+      <View>
+        <TextInput
+          {...input}
+          {...this.props}
+          ref={this.setRef}
+          style={{
+            ...rawStyle.input,
+            ...style,
+          }}
+          underlineColorAndroid="transparent"
+        />
+        {touched && error && (
+          <Text style={styles.error}>{error}</Text>
+        )}
+      </View>
     );
   }
 }
