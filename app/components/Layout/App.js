@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import type { Element } from 'react';
 import { connect } from 'react-redux';
-import {View, StatusBar, Animated, Easing} from 'react-native';
+import { View, StatusBar, Animated, Easing } from 'react-native';
 
 import { style, styles } from './App.styles';
 

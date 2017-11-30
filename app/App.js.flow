@@ -1,6 +1,10 @@
 // @flow
 
-// React children
+// Drammit
+declare var headerType: {
+  back?: boolean,
+  title: string,
+};
 
 // React Router Annotations
 declare var matchType: {

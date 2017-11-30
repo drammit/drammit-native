@@ -5,7 +5,8 @@ import type { Element } from 'react';
 import { connect } from 'react-redux';
 import { Animated, Text, View, Button, Easing } from 'react-native';
 
-import { hideStatusBar as hideStatusBarAction } from '../../actions/App';
+import { hideStatusBar as hideStatusBarAction, updateHeader as updateHeaderAction }
+  from '../../actions/App';
 
 import ImageContainer from '../../components/Layout/ImageContainer';
 import Logo from '../../components/Logo/Logo';
@@ -22,6 +23,7 @@ type WelcomeType = {
   continueWithFacebook: Function,
   signUp: Function,
   hideStatusBar: Function,
+  updateHeader: Function,
 };
 
 const openLogin = true;
@@ -44,9 +46,7 @@ class Welcome extends Component<WelcomeType> {
   };
 
   componentDidMount() {
-    const { hideStatusBar } = this.props;
-
-    hideStatusBar();
+    this.updateAppLayout();
 
     Animated.timing(
       this.state.fadeHeader,
@@ -88,6 +88,13 @@ class Welcome extends Component<WelcomeType> {
         easing: Easing.out(Easing.ease),
       },
     ).start();
+  }
+
+  updateAppLayout() {
+    const { hideStatusBar, updateHeader } = this.props;
+
+    hideStatusBar();
+    updateHeader();
   }
 
   openEmailLogin() {
@@ -264,6 +271,10 @@ function mapDispatchToProps(dispatch) {
 
     hideStatusBar() {
       dispatch(hideStatusBarAction());
+    },
+
+    updateHeader() {
+      dispatch(updateHeaderAction({}));
     },
   };
 }

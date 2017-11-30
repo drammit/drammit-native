@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import type { Element } from 'react';
 import { View } from 'react-native';
 
-import { showStatusBar, hideStatusBar } from '../../actions/App';
+import { showStatusBar, hideStatusBar, updateHeader } from '../../actions/App';
 
 import styles from './Page.styles';
 
 type PageType = {
   statusBar?: boolean,
+  header?: headerType,
   currentStatusBar: boolean,
   children: Children,
   dispatch: Function,
@@ -18,7 +19,9 @@ type PageType = {
 
 class Page extends Component<PageType> {
   componentDidMount() {
-    const { currentStatusBar, statusBar, dispatch } = this.props;
+    const {
+      currentStatusBar, statusBar, header, dispatch,
+    } = this.props;
 
     if (!currentStatusBar && statusBar) {
       dispatch(showStatusBar());
@@ -27,6 +30,8 @@ class Page extends Component<PageType> {
     if (currentStatusBar && !statusBar) {
       dispatch(hideStatusBar());
     }
+
+    dispatch(updateHeader(header || {}));
   }
 
   render(): Element<any> {
