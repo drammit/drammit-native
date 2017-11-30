@@ -5,6 +5,8 @@ import type { Element } from 'react';
 import { connect } from 'react-redux';
 import { Animated, Text, View, Button, Easing } from 'react-native';
 
+import { hideStatusBar as hideStatusBarAction } from '../../actions/App';
+
 import ImageContainer from '../../components/Layout/ImageContainer';
 import Logo from '../../components/Logo/Logo';
 
@@ -19,9 +21,10 @@ import { styles, style } from './Welcome.styles';
 type WelcomeType = {
   continueWithFacebook: Function,
   signUp: Function,
+  hideStatusBar: Function,
 };
 
-const openLogin = false;
+const openLogin = true;
 
 class Welcome extends Component<WelcomeType> {
   constructor(props) {
@@ -41,6 +44,10 @@ class Welcome extends Component<WelcomeType> {
   };
 
   componentDidMount() {
+    const { hideStatusBar } = this.props;
+
+    hideStatusBar();
+
     Animated.timing(
       this.state.fadeHeader,
       {
@@ -253,6 +260,10 @@ function mapDispatchToProps(dispatch) {
 
     signUp() {
       console.log('Sign Up');
+    },
+
+    hideStatusBar() {
+      dispatch(hideStatusBarAction());
     },
   };
 }

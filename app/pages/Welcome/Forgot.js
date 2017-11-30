@@ -9,7 +9,7 @@ import Page from '../../components/Layout/Page';
 
 function Forgot(): Element<any> {
   return (
-    <Page>
+    <Page statusBar>
       <Text style={{ fontSize: 15 }}>Dit is een Pagina.</Text>
       <Link to="/"><Text>TERUG BITCH</Text></Link>
       <Link to="/forgot-password/dieper"><Text>DIEPER BITCH</Text></Link>
@@ -19,7 +19,7 @@ function Forgot(): Element<any> {
 
 function Dieper(): Element<any> {
   return (
-    <Page>
+    <Page statusBar>
       <Text style={{ fontSize: 15 }}>ZO DIEP.</Text>
       <Link to="/forgot-password"><Text>TERUG BITCH</Text></Link>
     </Page>

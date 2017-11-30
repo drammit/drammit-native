@@ -8,13 +8,15 @@ import { Provider } from 'react-redux';
 import { reducer as formReducer } from 'redux-form';
 import devTools from 'remote-redux-devtools';
 
+import reducers from './reducers';
+
 import AppComponent from './components/Layout/App';
 
 import Welcome from './pages/Welcome';
 
 const store = createStore(
   combineReducers({
-    test: () => true,
+    ...reducers,
     form: formReducer,
   }),
   compose(
