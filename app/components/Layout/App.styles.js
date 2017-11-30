@@ -5,7 +5,7 @@ import { colors } from '../../Config.styles';
 export const style = {
   container: {
     flex: 1,
-    backgroundColor: colors.grey5,
+    backgroundColor: colors.light,
   },
   statusBar: {
     flexGrow: 0,
