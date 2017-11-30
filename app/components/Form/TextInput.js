@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 import { Field } from 'redux-form';
 
-import styles from './TextInput.styles';
+import { style as rawStyle, styles } from './TextInput.styles';
 
 type TextInputType = {
   autofocus?: boolean,
@@ -16,6 +16,7 @@ type TextInputType = {
   keyboardType?: string,
   input: any,
   onRef: Function,
+  style: {},
 }
 
 class FormTextInput extends Component<TextInputType> {
@@ -40,14 +41,17 @@ class FormTextInput extends Component<TextInputType> {
   }
 
   render(): Element {
-    const { input } = this.props;
+    const { input, style } = this.props;
 
     return (
       <TextInput
         {...input}
         {...this.props}
         ref={this.setRef}
-        style={styles.input}
+        style={{
+          ...rawStyle.input,
+          ...style,
+        }}
         underlineColorAndroid="transparent"
       />
     );

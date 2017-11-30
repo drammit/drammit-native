@@ -55,6 +55,9 @@ class Login extends Component<LoginType> {
     return (
       <View>
         <TextInput
+          style={{
+            paddingLeft: 6,
+          }}
           name="username"
           placeholder="Username / Email address"
           returnKeyType="next"
@@ -66,6 +69,9 @@ class Login extends Component<LoginType> {
           onSubmitEditing={this.focusPassword}
         />
         <TextInput
+          style={{
+            paddingLeft: 6,
+          }}
           name="password"
           placeholder="Password"
           returnKeyType="go"

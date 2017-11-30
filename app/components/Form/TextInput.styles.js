@@ -2,15 +2,15 @@ import { StyleSheet } from 'react-native';
 
 import { colors, sizes } from '../../Config.styles';
 
-export default StyleSheet.create({
+export const style = {
   input: {
     backgroundColor: colors.light,
-    padding: sizes.padding,
+    paddingTop: sizes.padding * 2,
+    paddingBottom: sizes.padding * 2,
     fontSize: sizes.base,
-    borderTopWidth: 1,
-    borderTopColor: '#ddd',
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
-    marginBottom: -1,
   },
-});
+};
+
+export const styles = StyleSheet.create(style);

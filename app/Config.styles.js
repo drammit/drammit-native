@@ -33,13 +33,14 @@ const config = {
   },
   sizes: {
     base: fontSize(1),
+    lineHeight: fontSize(1.5),
     hugeHead: fontSize(2),
     bigHead: fontSize(1.23),
     head: fontSize(1.15),
     smallish: fontSize(0.92),
     small: fontSize(0.84),
     mini: fontSize(0.7),
-    padding: 12,
+    padding: 6,
   },
 };
 
