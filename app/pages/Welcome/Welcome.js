@@ -2,8 +2,10 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Animated, Text, View, Button, Easing } from 'react-native';
+import { withRouter } from 'react-router';
 
 import { hideStatusBar as hideStatusBarAction, updateHeader as updateHeaderAction }
   from '../../actions/App';
@@ -104,7 +106,6 @@ class Welcome extends Component<WelcomeType> {
         toValue: 1,
         duration: 300,
         easing: Easing.in(Easing.linear),
-        useNativeDriver: true,
       },
     ).start();
 
@@ -121,7 +122,6 @@ class Welcome extends Component<WelcomeType> {
           toValue: 0,
           duration: 300,
           easing: Easing.in(Easing.linear),
-          useNativeDriver: true,
         },
       ),
       {
@@ -259,14 +259,16 @@ class Welcome extends Component<WelcomeType> {
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, props) {
   return {
     continueWithFacebook() {
       console.log('Facebook');
     },
 
     signUp() {
-      console.log('Sign Up');
+      const { history } = props;
+
+      history.push('/sign-up');
     },
 
     hideStatusBar() {
@@ -279,4 +281,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(Welcome);
+export default compose(
+  connect(null, mapDispatchToProps),
+  withRouter,
+)(Welcome);

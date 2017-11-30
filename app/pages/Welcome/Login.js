@@ -43,6 +43,13 @@ class Login extends Component<LoginType> {
       }
     };
     this.onGoToForgotPassword = this.goToForgotPassword.bind(this);
+    this.onGoToSignup = this.goToSignUp.bind(this);
+  }
+
+  goToSignUp() {
+    const { history } = this.props;
+
+    history.push('/sign-up');
   }
 
   goToForgotPassword() {
@@ -97,6 +104,12 @@ class Login extends Component<LoginType> {
             onPress={this.onGoToForgotPassword}
             color={colors.grey2}
             title="Forgot password?"
+          />
+
+          <Button
+            onPress={this.onGoToSignup}
+            color={colors.grey2}
+            title="New here? Sign up"
           />
         </View>
       </View>
