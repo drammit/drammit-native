@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { reduxForm } from 'redux-form';
 
+import { signupStep1 } from '../../actions/SignUp';
+
 import Page from '../../components/Layout/Page';
 import Text from '../../components/Page/Text';
 import Container from '../../components/Page/Container';
@@ -31,14 +33,10 @@ class Forgot extends Component<SignUpType> {
     };
 
     this.focusPassword = () => this.passwordInput.focus();
-
-    this.state = {
-      requestSent: false,
-    };
   }
 
   handleSubmit(values) {
-    console.log(values);
+    this.props.onSubmitForm(values.email, values.password);
   }
 
   render(): Element<any> {
@@ -104,7 +102,11 @@ function validate(values) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    onSubmitForm(email, password) {
+      dispatch(signupStep1(email, password));
+    },
+  };
 }
 
 export default compose(
