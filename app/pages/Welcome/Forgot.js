@@ -55,7 +55,7 @@ class Forgot extends Component<ForgotType> {
       >
         {requestSent ? (
           <Container>
-            <Text>An email has been send to your inbox.</Text>
+            <Text>An email has been sent to your inbox.</Text>
             <Text>Please follow the instructions in the mail to reset your password.</Text>
             <Submit
               title="Back to home screen"
