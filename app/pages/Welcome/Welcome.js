@@ -161,11 +161,19 @@ class Welcome extends Component<WelcomeType> {
             }}
           >
             <Logo />
-            <View style={style.intro}>
+            <Animated.View
+              style={{
+                ...style.intro,
+                opacity: buttonsSlide.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [1, 0],
+                }),
+              }}
+            >
               <Text style={styles.introDash}>——</Text>
               <Text style={styles.introText}>Keep track of and rate the whiskies you drink</Text>
               <Text style={styles.introDash}>——</Text>
-            </View>
+            </Animated.View>
           </Animated.View>
 
           <Animated.View

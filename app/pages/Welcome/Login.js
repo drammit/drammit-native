@@ -101,15 +101,15 @@ class Login extends Component<LoginType> {
         </View>
         <View style={styles.buttonsContainer}>
           <Button
-            onPress={this.onGoToForgotPassword}
+            onPress={this.onGoToSignup}
             color={colors.grey2}
-            title="Forgot password?"
+            title="Sign up"
           />
 
           <Button
-            onPress={this.onGoToSignup}
+            onPress={this.onGoToForgotPassword}
             color={colors.grey2}
-            title="New here? Sign up"
+            title="Forgot password?"
           />
         </View>
       </View>

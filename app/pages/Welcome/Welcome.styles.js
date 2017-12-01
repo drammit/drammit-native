@@ -53,7 +53,7 @@ export const style = {
   login: {
     ...buttons,
     bottom: 'auto',
-    top: '30%',
+    top: '20%',
     width: '100%',
   },
   facebookButton: Object.assign({}, button, {
