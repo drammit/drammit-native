@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Platform } from 'react-native';
-import { Route, NativeRouter } from 'react-router-native';
+import { Route, NativeRouter, Redirect } from 'react-router-native';
 import { createStore, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer as formReducer } from 'redux-form';
