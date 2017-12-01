@@ -5,3 +5,16 @@ export function signupStep1(email, password) {
     password,
   };
 }
+
+export function signupStep1Success() {
+  return {
+    type: 'SIGNUP_STEP_1_SUCCESS',
+  };
+}
+
+export function signupStep1Failed(message) {
+  return {
+    type: 'SIGNUP_STEP_1_FAILED',
+    message,
+  };
+}
