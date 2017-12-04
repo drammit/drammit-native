@@ -7,9 +7,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { reduxForm } from 'redux-form';
 
-import { signupStep1 } from '../../actions/SignUp';
-
-import validateEmail from '../../core/validate-email';
+import { signupStep2 } from '../../actions/SignUp';
 
 import Page from '../../components/Layout/Page';
 import Text from '../../components/Page/Text';
@@ -31,18 +29,15 @@ class Forgot extends Component<SignUpType> {
 
     this.onSubmit = props.handleSubmit(this.handleSubmit.bind(this));
 
-    this.setPasswordRef = (ref) => {
-      this.passwordInput = ref;
-    };
-    this.setEmailRef = (ref) => {
-      this.emailInput = ref;
+    this.setNameRef = (ref) => {
+      this.nameInput = ref;
     };
 
-    this.focusPassword = () => this.passwordInput.focus();
+    this.focusName = () => this.nameInput.focus();
   }
 
   handleSubmit(values) {
-    this.props.onSubmitForm(values.email, values.password);
+    this.props.onSubmitForm(values.username, values.fullName);
   }
 
   render(): Element<any> {
@@ -59,38 +54,39 @@ class Forgot extends Component<SignUpType> {
         <KeyboardScrollView>
           <Container>
             <Text>
-              First, provide your email address and a desired password.
+              Almost done! Tell us a bit about yourself.
             </Text>
 
             {errorMessage !== '' && <Error message={errorMessage} />}
 
-            <Label>Email address</Label>
+            <Label>Username</Label>
             <TextInput
-              name="email"
-              placeholder="Enter your email address"
+              name="username"
+              placeholder="Pick a username"
               returnKeyType="next"
-              keyboardType="email-address"
+              keyboardType="default"
               autofocus
-              onRef={this.setEmailRef}
               autoCorrect={false}
               blurOnSubmit={false}
-              onSubmitEditing={this.focusPassword}
+              onSubmitEditing={this.focusName}
             />
-            <Label>Choose a password</Label>
+            <Label>Full name</Label>
             <TextInput
-              name="password"
-              placeholder="Choose a password"
+              name="fullName"
+              placeholder="Your full name (optional)"
               returnKeyType="go"
               secureTextEntry
-              onRef={this.setPasswordRef}
+              onRef={this.setNameRef}
               blurOnSubmit={false}
               onSubmitEditing={this.onSubmit}
             />
             <Submit
-              title={loading ? 'Signing Up' : 'Sign Up'}
+              title={loading ? 'Completing Sign Up' : 'Complete Sign Up'}
               onPress={this.onSubmit}
               disabled={loading}
             />
+
+            <Text>By signing up, you agree to the Terms of Service of Drammit.</Text>
           </Container>
         </KeyboardScrollView>
       </Page>
@@ -101,32 +97,26 @@ class Forgot extends Component<SignUpType> {
 function validate(values) {
   const errors = {};
 
-  if (!values.email) {
-    errors.email = 'Enter email address';
-  } else if (values.email && !validateEmail(values.email)) {
-    errors.email = 'Enter a valid email address';
-  }
-
-  if (!values.password) {
-    errors.password = 'Enter a desired password';
+  if (!values.username) {
+    errors.username = 'Pick a username';
   }
 
   return errors;
 }
 
 function mapStateToProps(state) {
-  const { step1Loading, step1Error } = state.signup;
+  const { step2Loading, step2Error } = state.signup;
 
   return {
-    loading: step1Loading,
-    errorMessage: step1Error,
+    loading: step2Loading,
+    errorMessage: step2Error,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm(email, password) {
-      dispatch(signupStep1(email, password));
+    onSubmitForm(username, fullName) {
+      dispatch(signupStep2(username, fullName));
     },
   };
 }
@@ -135,7 +125,7 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withRouter,
   reduxForm({
-    form: 'sign-up-1',
+    form: 'sign-up-2',
     validate,
   }),
 )(Forgot);

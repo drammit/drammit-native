@@ -6,17 +6,17 @@ import { Route, Switch, Redirect } from 'react-router-native';
 
 import AnimatedRoutes from '../../components/Router/AnimatedRoutes';
 
-import Welcome from './Welcome';
-import Forgot from './Forgot';
+import Step1 from './Step1';
+import Step2 from './Step2';
 
 function Routes({ match, location }: ReactRouterType): Element<any> {
   return (
     <AnimatedRoutes>
       <Switch location={location}>
-        <Route exact path={`${match.path}`} component={Welcome} />
-        <Route path={`${match.path}forgot-password`} component={Forgot} />
+        <Route path={`${match.path}/step-1`} component={Step1} />
+        <Route path={`${match.path}/step-2`} component={Step2} />
 
-        {/*<Redirect from={`${match.path}`} to={`${match.path}sign-up`} />*/}
+        <Redirect from={`${match.path}`} to={`${match.path}/step-1`} />
       </Switch>
     </AnimatedRoutes>
   );

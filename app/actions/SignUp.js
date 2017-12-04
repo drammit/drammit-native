@@ -18,3 +18,11 @@ export function signupStep1Failed(message) {
     message,
   };
 }
+
+export function signupStep2(username, fullName) {
+  return {
+    type: 'SIGNUP_STEP_2',
+    username,
+    fullName,
+  };
+}
