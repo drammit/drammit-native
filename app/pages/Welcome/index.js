@@ -13,10 +13,10 @@ function Routes({ match, location }: ReactRouterType): Element<any> {
   return (
     <AnimatedRoutes>
       <Switch location={location}>
-        <Route exact path={`${match.path}`} component={Welcome} />
+        {/*<Route exact path={`${match.path}`} component={Welcome} />*/}
         <Route path={`${match.path}forgot-password`} component={Forgot} />
 
-        {/*<Redirect from={`${match.path}`} to={`${match.path}sign-up`} />*/}
+        <Redirect from={`${match.path}`} to={`${match.path}sign-up/step-2`} />
       </Switch>
     </AnimatedRoutes>
   );

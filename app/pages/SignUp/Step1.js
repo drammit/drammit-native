@@ -27,7 +27,7 @@ type SignUpType = ReduxFormType & ReactRouterType & {
   nextStep: boolean,
 };
 
-class Forgot extends Component<SignUpType> {
+class Step1 extends Component<SignUpType> {
   constructor(props) {
     super(props);
 
@@ -146,4 +146,4 @@ export default compose(
     validate,
     enableReinitialize: true,
   }),
-)(Forgot);
+)(Step1);

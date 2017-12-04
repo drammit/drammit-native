@@ -6,6 +6,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { reduxForm } from 'redux-form';
+import { View, Text as NativeText, TouchableWithoutFeedback, Button } from 'react-native';
 
 import { signupStep2 } from '../../actions/SignUp';
 
@@ -18,12 +19,14 @@ import TextInput from '../../components/Form/TextInput';
 import Submit from '../../components/Form/Submit';
 import Error from '../../components/Form/Error';
 
+import Terms from './Terms';
+
 type SignUpType = ReduxFormType & ReactRouterType & {
   loading: boolean,
   error: string,
 };
 
-class Forgot extends Component<SignUpType> {
+class Step2 extends Component<SignUpType> {
   constructor(props) {
     super(props);
 
@@ -34,6 +37,19 @@ class Forgot extends Component<SignUpType> {
     };
 
     this.focusName = () => this.nameInput.focus();
+
+    this.showTerms = () => { this.toggleTerms(true); };
+    this.hideTerms = () => { this.toggleTerms(false); };
+
+    this.state = {
+      showTerms: false,
+    };
+  }
+
+  toggleTerms(showTerms) {
+    this.setState({
+      showTerms,
+    });
   }
 
   handleSubmit(values) {
@@ -42,6 +58,7 @@ class Forgot extends Component<SignUpType> {
 
   render(): Element<any> {
     const { loading, errorMessage } = this.props;
+    const { showTerms } = this.state;
 
     return (
       <Page
@@ -51,44 +68,75 @@ class Forgot extends Component<SignUpType> {
           title: 'Sign up',
         }}
       >
-        <KeyboardScrollView>
-          <Container>
-            <Text>
-              Almost done! Tell us a bit about yourself.
-            </Text>
+        {showTerms ? (
+          <View>
+            <KeyboardScrollView>
+              <Container>
+                <Terms />
+              </Container>
+            </KeyboardScrollView>
+            <Button title="Close Terms of Service" onPress={this.hideTerms} />
+          </View>
+        ) : (
+          <KeyboardScrollView>
+            <Container>
+              <Text>
+                Almost done! Tell us a bit about yourself.
+              </Text>
 
-            {errorMessage !== '' && <Error message={errorMessage} />}
+              {errorMessage !== '' && <Error message={errorMessage} />}
 
-            <Label>Username</Label>
-            <TextInput
-              name="username"
-              placeholder="Pick a username"
-              returnKeyType="next"
-              keyboardType="default"
-              autofocus
-              autoCorrect={false}
-              blurOnSubmit={false}
-              onSubmitEditing={this.focusName}
-            />
-            <Label>Full name</Label>
-            <TextInput
-              name="fullName"
-              placeholder="Your full name (optional)"
-              returnKeyType="go"
-              secureTextEntry
-              onRef={this.setNameRef}
-              blurOnSubmit={false}
-              onSubmitEditing={this.onSubmit}
-            />
-            <Submit
-              title={loading ? 'Completing Sign Up' : 'Complete Sign Up'}
-              onPress={this.onSubmit}
-              disabled={loading}
-            />
+              <Label>Username</Label>
+              <TextInput
+                name="username"
+                placeholder="Pick a username"
+                returnKeyType="next"
+                keyboardType="default"
+                autofocus
+                autoCorrect={false}
+                blurOnSubmit={false}
+                onSubmitEditing={this.focusName}
+              />
+              <Label>Full name</Label>
+              <TextInput
+                name="fullName"
+                placeholder="Your full name (optional)"
+                returnKeyType="go"
+                secureTextEntry
+                onRef={this.setNameRef}
+                blurOnSubmit={false}
+                onSubmitEditing={this.onSubmit}
+              />
+              <Submit
+                title={loading ? 'Completing Sign Up' : 'Complete Sign Up'}
+                onPress={this.onSubmit}
+                disabled={loading}
+              />
 
-            <Text>By signing up, you agree to the Terms of Service of Drammit.</Text>
-          </Container>
-        </KeyboardScrollView>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  flexWrap: 'wrap',
+                  padding: 12,
+                }}
+              >
+                <NativeText>By signing up, you agree to the </NativeText>
+                <TouchableWithoutFeedback onPress={this.showTerms}>
+                  <View>
+                    <NativeText
+                      style={{
+                        color: 'blue',
+                      }}
+                    >
+                      Terms of Service
+                    </NativeText>
+                  </View>
+                </TouchableWithoutFeedback>
+                <NativeText>of Drammit.</NativeText>
+              </View>
+            </Container>
+          </KeyboardScrollView>
+        )}
       </Page>
     );
   }
@@ -128,4 +176,4 @@ export default compose(
     form: 'sign-up-2',
     validate,
   }),
-)(Forgot);
+)(Step2);
