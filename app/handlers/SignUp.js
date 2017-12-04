@@ -1,12 +1,18 @@
 // @flow
 
+import { emailExists } from '../api/SignUp';
+
 import { signupStep1Success, signupStep1Failed } from '../actions/SignUp';
 
 async function handleSignUp(dispatch, action) {
   try {
-    const result = await something(action.email);
+    const exists = await emailExists(action.email);
 
-    dispatch(signupStep1Success());
+    if (exists) {
+      dispatch(signupStep1Failed(`${action.email} is already in use`));
+    } else {
+      dispatch(signupStep1Success());
+    }
   } catch (e) {
     dispatch(signupStep1Failed(e.message));
   }

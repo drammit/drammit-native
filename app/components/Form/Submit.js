@@ -19,13 +19,19 @@ const styles = StyleSheet.create({
 
 type SubmitType = {
   title: string,
+  disabled: boolean,
   onPress: Function,
 };
 
-function Submit({ title, onPress }: SubmitType): Element<any> {
+function Submit({ title, onPress, disabled = false }: SubmitType): Element<any> {
   return (
     <View style={styles.container}>
-      <Button color={colors.light} title={title} onPress={onPress} />
+      <Button
+        color={colors.light}
+        title={title}
+        disabled={disabled}
+        onPress={onPress}
+      />
     </View>
   );
 }

@@ -18,7 +18,7 @@ function Routes({ match, location }: ReactRouterType): Element<any> {
         <Route path={`${match.path}forgot-password`} component={Forgot} />
         <Route path={`${match.path}sign-up`} component={SignUp} />
 
-        <Redirect to="/sign-up" />
+        <Redirect from={`${match.path}`} to={`${match.path}sign-up`} />
       </Switch>
     </AnimatedRoutes>
   );

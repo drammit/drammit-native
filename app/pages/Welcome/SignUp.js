@@ -9,6 +9,8 @@ import { reduxForm } from 'redux-form';
 
 import { signupStep1 } from '../../actions/SignUp';
 
+import validateEmail from '../../core/validate-email';
+
 import Page from '../../components/Layout/Page';
 import Text from '../../components/Page/Text';
 import Container from '../../components/Page/Container';
@@ -16,8 +18,12 @@ import KeyboardScrollView from '../../components/Page/KeyboardScrollView';
 import Label from '../../components/Form/Label';
 import TextInput from '../../components/Form/TextInput';
 import Submit from '../../components/Form/Submit';
+import Error from '../../components/Form/Error';
 
-type SignUpType = ReduxFormType & ReactRouterType;
+type SignUpType = ReduxFormType & ReactRouterType & {
+  loading: boolean,
+  error: string,
+};
 
 class Forgot extends Component<SignUpType> {
   constructor(props) {
@@ -40,6 +46,8 @@ class Forgot extends Component<SignUpType> {
   }
 
   render(): Element<any> {
+    const { loading, errorMessage } = this.props;
+
     return (
       <Page
         statusBar
@@ -53,6 +61,8 @@ class Forgot extends Component<SignUpType> {
             <Text>
               First, provide your email address and a desired password.
             </Text>
+
+            {errorMessage !== '' && <Error message={errorMessage} />}
 
             <Label>Email address</Label>
             <TextInput
@@ -77,8 +87,9 @@ class Forgot extends Component<SignUpType> {
               onSubmitEditing={this.onSubmit}
             />
             <Submit
-              title="Sign Up"
+              title={loading ? 'Signing Up' : 'Sign Up'}
               onPress={this.onSubmit}
+              disabled={loading}
             />
           </Container>
         </KeyboardScrollView>
@@ -92,6 +103,8 @@ function validate(values) {
 
   if (!values.email) {
     errors.email = 'Enter email address';
+  } else if (values.email && !validateEmail(values.email)) {
+    errors.email = 'Enter a valid email address';
   }
 
   if (!values.password) {
@@ -99,6 +112,15 @@ function validate(values) {
   }
 
   return errors;
+}
+
+function mapStateToProps(state) {
+  const { step1Loading, step1Error } = state.signup;
+
+  return {
+    loading: step1Loading,
+    errorMessage: step1Error,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -110,7 +132,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default compose(
-  connect(null, mapDispatchToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   withRouter,
   reduxForm({
     form: 'sign-up-1',
