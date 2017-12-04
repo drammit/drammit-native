@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, NativeModules } from 'react-native';
 import { Route, NativeRouter } from 'react-router-native';
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -47,5 +47,6 @@ const App = () => (
 
 // ignore Remote Debugger warnings
 console.ignoredYellowBox = ['Remote debugger'];
+NativeModules.ExceptionsManager = null;
 
 export default App;
