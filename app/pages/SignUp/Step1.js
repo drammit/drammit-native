@@ -10,7 +10,7 @@ import { reduxForm } from 'redux-form';
 
 import { signupStep1 } from '../../actions/SignUp';
 
-import validateEmail from '../../core/validate-email';
+import { validateEmail } from '../../core/validate';
 
 import Page from '../../components/Layout/Page';
 import Text from '../../components/Page/Text';

@@ -6,9 +6,13 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { reduxForm } from 'redux-form';
-import { View, Text as NativeText, TouchableWithoutFeedback, Button } from 'react-native';
+import {
+  View, Text as NativeText, TouchableWithoutFeedback, Button, ImageStore, ImageEditor
+} from 'react-native';
 
 import { signupStep2 } from '../../actions/SignUp';
+
+import { validateUsername } from '../../core/validate';
 
 import Page from '../../components/Layout/Page';
 import Text from '../../components/Page/Text';
@@ -56,7 +60,7 @@ class Step2 extends Component<SignUpType> {
   }
 
   handleSubmit(values) {
-    this.props.onSubmitForm(values.username, values.fullName);
+    this.props.onSubmitForm(values.username, values.fullName, values.avatar);
   }
 
   render(): Element<any> {
@@ -155,6 +159,10 @@ function validate(values) {
     errors.username = 'Pick a username';
   }
 
+  if (values.username && !validateUsername(values.username)) {
+    errors.username = 'Username can only contain alphanumeric characters';
+  }
+
   return errors;
 }
 
@@ -169,8 +177,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm(username, fullName) {
-      dispatch(signupStep2(username, fullName));
+    onSubmitForm(username, fullName, avatar) {
+      dispatch(signupStep2(username, fullName, avatar));
     },
   };
 }
