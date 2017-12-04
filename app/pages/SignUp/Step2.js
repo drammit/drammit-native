@@ -16,10 +16,13 @@ import Container from '../../components/Page/Container';
 import KeyboardScrollView from '../../components/Page/KeyboardScrollView';
 import Label from '../../components/Form/Label';
 import TextInput from '../../components/Form/TextInput';
+import Image from '../../components/Form/Image';
 import Submit from '../../components/Form/Submit';
 import Error from '../../components/Form/Error';
 
 import Terms from './Terms';
+
+import styles from './Step2.styles';
 
 type SignUpType = ReduxFormType & ReactRouterType & {
   loading: boolean,
@@ -86,48 +89,51 @@ class Step2 extends Component<SignUpType> {
 
               {errorMessage !== '' && <Error message={errorMessage} />}
 
-              <Label>Username</Label>
-              <TextInput
-                name="username"
-                placeholder="Pick a username"
-                returnKeyType="next"
-                keyboardType="default"
-                autofocus
-                autoCorrect={false}
-                blurOnSubmit={false}
-                onSubmitEditing={this.focusName}
-              />
-              <Label>Full name</Label>
-              <TextInput
-                name="fullName"
-                placeholder="Your full name (optional)"
-                returnKeyType="go"
-                secureTextEntry
-                onRef={this.setNameRef}
-                blurOnSubmit={false}
-                onSubmitEditing={this.onSubmit}
-              />
+              <View style={styles.infoContainer}>
+                <View
+                  style={styles.imageContainer}
+                >
+                  <Label>Profile picture</Label>
+                  <Image
+                    name="avatar"
+                    text="Add an image"
+                    replaceText="Replace image"
+                  />
+                </View>
+                <View style={styles.namesContainer}>
+                  <Label>Your name</Label>
+                  <TextInput
+                    name="username"
+                    placeholder="Pick a username"
+                    returnKeyType="next"
+                    keyboardType="default"
+                    autofocus
+                    autoCorrect={false}
+                    blurOnSubmit={false}
+                    onSubmitEditing={this.focusName}
+                  />
+                  <TextInput
+                    name="fullName"
+                    placeholder="Your full name (optional)"
+                    returnKeyType="go"
+                    onRef={this.setNameRef}
+                    blurOnSubmit={false}
+                    onSubmitEditing={this.onSubmit}
+                  />
+                </View>
+              </View>
+
               <Submit
                 title={loading ? 'Completing Sign Up' : 'Complete Sign Up'}
                 onPress={this.onSubmit}
                 disabled={loading}
               />
 
-              <View
-                style={{
-                  flexDirection: 'row',
-                  flexWrap: 'wrap',
-                  padding: 12,
-                }}
-              >
+              <View style={styles.linkContainer}>
                 <NativeText>By signing up, you agree to the </NativeText>
                 <TouchableWithoutFeedback onPress={this.showTerms}>
                   <View>
-                    <NativeText
-                      style={{
-                        color: 'blue',
-                      }}
-                    >
+                    <NativeText style={styles.link}>
                       Terms of Service
                     </NativeText>
                   </View>
@@ -175,5 +181,6 @@ export default compose(
   reduxForm({
     form: 'sign-up-2',
     validate,
+    touchOnBlur: false,
   }),
 )(Step2);

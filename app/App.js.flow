@@ -31,3 +31,10 @@ declare var ReactRouterType: {
 declare var ReduxFormType: {
   handleSubmit: Function,
 };
+
+declare var ReduxFormFieldType: {
+  input: {
+    name: string,
+    onChange: Function,
+  },
+};

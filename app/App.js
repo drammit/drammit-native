@@ -48,7 +48,7 @@ const App = () => (
 );
 
 // ignore Remote Debugger warnings
-console.ignoredYellowBox = ['Remote debugger'];
+console.disableYellowBox = true;
 NativeModules.ExceptionsManager = null;
 
 export default App;
