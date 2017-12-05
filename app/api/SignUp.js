@@ -1,4 +1,5 @@
 import RNFetchBlob from 'react-native-fetch-blob';
+import Config from 'react-native-config';
 
 export function emailExists(email) {
   return Promise.resolve(false);
@@ -10,11 +11,29 @@ export function userExists(username) {
 
 export function registerUser(username, fullName, avatar) {
   RNFetchBlob
-    .fetch('POST', 'http://localhost:3030', {}, RNFetchBlob.wrap(avatar.uri))
+    .fetch(
+      'POST',
+      `${Config.API_URL}/user/register`,
+      {},
+      [
+        {
+          name: 'username',
+          data: username,
+        },
+        {
+          name: 'fullName',
+          data: fullName,
+        },
+        {
+          name: 'avatar',
+          filename: avatar.filename,
+          data: RNFetchBlob.wrap(avatar.uri),
+        },
+      ],
+    )
     .uploadProgress((written, total) => {
       console.log('uploaded', written / total);
     })
-    // listen to download progress event
     .progress((received, total) => {
       console.log('progress', received / total);
     })
