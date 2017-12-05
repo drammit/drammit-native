@@ -35,6 +35,7 @@ async function handleSignUpStep2(dispatch, action) {
     const user = await registerUser(action.username, action.fullName, action.avatar);
     dispatch(signupStep2Success(user));
   } catch (e) {
+    console.error(e);
     dispatch(signupStep2Failed(e.message));
   }
 }
