@@ -7,7 +7,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer as formReducer } from 'redux-form';
 import devTools from 'remote-redux-devtools';
-import { createMiddleware } from 'redux-action-middleware';
+import { createMiddleware } from 'redux-listeners';
 
 import reducers from './reducers';
 import handlers from './handlers';

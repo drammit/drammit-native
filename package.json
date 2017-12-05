@@ -18,8 +18,8 @@
 		"react-router": "^4.2.0",
 		"react-router-native": "^4.2.0",
 		"redux": "^3.7.2",
-		"redux-action-middleware": "https://github.com/Gaya/redux-action-middleware",
 		"redux-form": "^7.2.0",
+		"redux-listeners": "^0.2.0",
 		"remote-redux-devtools": "^0.5.12"
 	},
 	"devDependencies": {
