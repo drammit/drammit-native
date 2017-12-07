@@ -16,6 +16,7 @@ const config = {
     light: '#fffdfa',
     white: '#ffffff',
 
+    brightGreen: '#55d96e',
     lightGreen: '#6fa664',
     green: '#365131',
     darkGreen: '#373a36',

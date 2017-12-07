@@ -6,9 +6,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { reduxForm } from 'redux-form';
-import {
-  View, Text as NativeText, TouchableWithoutFeedback, Button, ImageStore, ImageEditor
-} from 'react-native';
+import { View, Text as NativeText, TouchableWithoutFeedback, Button } from 'react-native';
 
 import { signupStep2 } from '../../actions/SignUp';
 
@@ -23,6 +21,7 @@ import TextInput from '../../components/Form/TextInput';
 import Image from '../../components/Form/Image';
 import Submit from '../../components/Form/Submit';
 import Error from '../../components/Form/Error';
+import UploadIndicator from '../../components/Indicators/Upload';
 
 import Terms from './Terms';
 
@@ -86,6 +85,7 @@ class Step2 extends Component<SignUpType> {
           </View>
         ) : (
           <KeyboardScrollView>
+            <UploadIndicator show={loading} />
             <Container>
               <Text>
                 Almost done! Tell us a bit about yourself.

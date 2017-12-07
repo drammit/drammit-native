@@ -3,6 +3,14 @@
 import RNFetchBlob from 'react-native-fetch-blob';
 import Config from 'react-native-config';
 
+import { uploadProgress } from '../actions/App';
+
+let store = { dispatch() {} };
+
+export function setStore(newStore) {
+  store = newStore;
+}
+
 function createUrl(url) {
   return `${Config.API_URL}${url}`;
 }
@@ -12,6 +20,8 @@ function containsFile(data) {
 }
 
 function sendFormData(url, data) {
+  store.dispatch(uploadProgress(0));
+
   return RNFetchBlob
     .fetch(
       'POST',
@@ -39,10 +49,10 @@ function sendFormData(url, data) {
       }).filter(value => value !== null),
     )
     .uploadProgress((written, total) => {
-      console.log('uploaded', written / total);
+      store.dispatch(uploadProgress(written / total));
     })
     .progress((received, total) => {
-      console.log('progress', received / total);
+      store.dispatch(uploadProgress(received / total));
     });
 }
 

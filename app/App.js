@@ -9,6 +9,8 @@ import { reducer as formReducer } from 'redux-form';
 import devTools from 'remote-redux-devtools';
 import { createMiddleware } from 'redux-listeners';
 
+import { setStore } from './core/fetch';
+
 import reducers from './reducers';
 import handlers from './handlers';
 
@@ -34,6 +36,7 @@ const store = createStore(
   ),
 );
 
+setStore(store);
 handlers(actionMiddleware);
 
 const App = () => (

@@ -8,6 +8,7 @@ import {
   signupStep2Success,
   signupStep2Failed,
 } from '../actions/SignUp';
+import { uploadProgress } from '../actions/App';
 
 async function handleSignUpStep1(dispatch, action) {
   try {

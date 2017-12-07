@@ -13,6 +13,15 @@ function statusBar(state: boolean = false, action): boolean {
   }
 }
 
+function uploadProgress(state: number = 0, action): number {
+  switch (action.type) {
+    case 'UPLOAD_PROGRESS':
+      return Math.round(action.progress * 100);
+    default:
+      return state;
+  }
+}
+
 function back(state: boolean = false, action): boolean {
   switch (action.type) {
     case 'UPDATE_HEADER':
@@ -49,4 +58,5 @@ const header = combineReducers({
 export default combineReducers({
   statusBar,
   header,
+  uploadProgress,
 });
