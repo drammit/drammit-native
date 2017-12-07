@@ -46,7 +46,15 @@ function sendFormData(url, data) {
     });
 }
 
-export function post(url, data): Promise<any> {
+async function handleError(response) {
+  if (!response.ok) {
+    throw new Error(await response.text());
+  }
+
+  return response;
+}
+
+export function post(url: string, data: any): Promise<any> {
   if (containsFile(data)) {
     return sendFormData(url, data).then(resp => resp.json());
   }
@@ -61,5 +69,21 @@ export function post(url, data): Promise<any> {
       },
       body: JSON.stringify(data),
     },
-  ).then(resp => resp.json());
+  )
+    .then(handleError)
+    .then(resp => resp.json());
+}
+
+export function get(url: string): Promise<any> {
+  return fetch(
+    createUrl(url),
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    },
+  )
+    .then(handleError)
+    .then(resp => resp.json());
 }

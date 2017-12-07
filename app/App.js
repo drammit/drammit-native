@@ -48,7 +48,9 @@ const App = () => (
 );
 
 // ignore Remote Debugger warnings
+// $FlowExpectedError
 console.disableYellowBox = true;
+// $FlowExpectedError
 NativeModules.ExceptionsManager = null;
 
 export default App;

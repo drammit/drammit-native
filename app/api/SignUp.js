@@ -1,14 +1,11 @@
-import RNFetchBlob from 'react-native-fetch-blob';
-import Config from 'react-native-config';
-
-import { post } from '../core/fetch';
+import { post, get } from '../core/fetch';
 
 export function emailExists(email) {
-  return Promise.resolve(false);
+  return get(`/user/exists?email=${email}`);
 }
 
 export function userExists(username) {
-  return Promise.resolve(false);
+  return get(`/user/exists?username=${username}`);
 }
 
 export function registerUser(username, fullName, avatar) {

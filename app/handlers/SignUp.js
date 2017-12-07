@@ -19,6 +19,7 @@ async function handleSignUpStep1(dispatch, action) {
       dispatch(signupStep1Success());
     }
   } catch (e) {
+    console.error(e);
     dispatch(signupStep1Failed(e.message));
   }
 }
