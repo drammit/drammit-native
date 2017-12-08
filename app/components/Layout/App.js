@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import type { Element } from 'react';
 import { connect } from 'react-redux';
-import { View, StatusBar, Animated, Easing, Linking } from 'react-native';
+import { View, StatusBar, Animated, Easing } from 'react-native';
 import { withRouter } from 'react-router';
 
 import Header from './Header';
