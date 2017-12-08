@@ -6,6 +6,12 @@ declare var headerType: {
   title: string,
 };
 
+// Redux listeners
+declare var ReduxListener: {
+  addListener: Function,
+  addListeners: Function,
+};
+
 // React Router Annotations
 declare var matchType: {
   path: string,
