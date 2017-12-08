@@ -25,6 +25,10 @@ class Reset extends Component<ResetType> {
     this.toForgotPassword = () => {
       props.history.push('/forgot-password');
     };
+
+    this.toHomeScreen = () => {
+      props.history.push('/');
+    };
   }
 
   componentDidMount() {
@@ -76,6 +80,10 @@ class Reset extends Component<ResetType> {
                   <Submit
                     title="Try again"
                     onPress={this.toForgotPassword}
+                  />
+                  <Submit
+                    title="Back to home screen"
+                    onPress={this.toHomeScreen}
                   />
                 </View>
               )}
