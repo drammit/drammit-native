@@ -10,6 +10,7 @@
 		"dev": "ENVFILE=.env.local react-native run-ios"
 	},
 	"dependencies": {
+		"query-string": "^5.0.1",
 		"react": "16.0.0",
 		"react-native": "0.50.3",
 		"react-native-camera": "^0.12.0",
@@ -22,7 +23,8 @@
 		"redux": "^3.7.2",
 		"redux-form": "^7.2.0",
 		"redux-listeners": "^0.2.0",
-		"remote-redux-devtools": "^0.5.12"
+		"remote-redux-devtools": "^0.5.12",
+		"uri-js": "^3.0.2"
 	},
 	"devDependencies": {
 		"babel-eslint": "^8.0.2",

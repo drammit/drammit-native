@@ -9,9 +9,11 @@ import { withRouter } from 'react-router';
 
 import Header from './Header';
 
+import deepLinking from '../../core/deep-linking';
+
 import { style, styles } from './App.styles';
 
-type AppType = {
+type AppType = ReactRouter & {
   statusBar: boolean,
   header: headerType,
   children: Children,
@@ -21,27 +23,17 @@ class App extends Component<AppType> {
   constructor(props) {
     super(props);
 
+    deepLinking(props.history);
+
     this.state = {
       statusBarPosition: new Animated.Value(props.statusBar ? 1 : 0),
       headerPosition: new Animated.Value(props.header.visible ? 1 : 0),
     };
   }
 
-  componentDidMount() {
-    Linking.addEventListener('url', this.handleOpenURL);
-  }
-
   componentWillReceiveProps(nextProps) {
     this.animateStatusBar(this.props, nextProps);
     this.animateHeader(this.props, nextProps);
-  }
-
-  componentWillUnmount() {
-    Linking.removeEventListener('url', this.handleOpenURL);
-  }
-
-  handleOpenURL(event) {
-    console.log(event.url);
   }
 
   animateStatusBar(currentProps, nextProps) {
