@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import type { Element } from 'react';
 import { connect } from 'react-redux';
-import { View, StatusBar, Animated, Easing } from 'react-native';
+import { View, StatusBar, Animated, Easing, Linking } from 'react-native';
 import { withRouter } from 'react-router';
 
 import Header from './Header';
@@ -27,9 +27,21 @@ class App extends Component<AppType> {
     };
   }
 
+  componentDidMount() {
+    Linking.addEventListener('url', this.handleOpenURL);
+  }
+
   componentWillReceiveProps(nextProps) {
     this.animateStatusBar(this.props, nextProps);
     this.animateHeader(this.props, nextProps);
+  }
+
+  componentWillUnmount() {
+    Linking.removeEventListener('url', this.handleOpenURL);
+  }
+
+  handleOpenURL(event) {
+    console.log(event.url);
   }
 
   animateStatusBar(currentProps, nextProps) {
