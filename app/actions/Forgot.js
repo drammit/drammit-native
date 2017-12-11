@@ -15,3 +15,12 @@ export function validResetToken() {
 export function invalidResetToken() {
   return { type: 'INVALID_RESET_TOKEN' };
 }
+
+export function resetPassword(UserId, token, password) {
+  return {
+    type: 'RESET_PASSWORD',
+    UserId,
+    token,
+    password,
+  };
+}

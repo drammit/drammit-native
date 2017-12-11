@@ -9,3 +9,7 @@ export function requestForgotPassword(username: string) {
 export function validateResetToken(UserId: string, token: string) {
   return post('/user/validate-reset-token', { UserId, token });
 }
+
+export function resetPassword(UserId: string, token: string, password: string) {
+  return post('/user/reset-password', { UserId, token, password });
+}

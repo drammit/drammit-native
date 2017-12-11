@@ -8,7 +8,7 @@ import { View } from 'react-native';
 import { withRouter } from 'react-router';
 import { reduxForm } from 'redux-form';
 
-import { validateResetToken } from '../../actions/Forgot';
+import { validateResetToken, resetPassword } from '../../actions/Forgot';
 
 import Page from '../../components/Layout/Page';
 import Text from '../../components/Page/Text';
@@ -54,7 +54,9 @@ class Reset extends Component<ResetType> {
   }
 
   submitForm(values) {
-    console.log(values);
+    const { token, user } = this.props.location.state;
+
+    this.props.resetPassword(user, token, values.password_1);
   }
 
   render(): Element<any> {
@@ -180,6 +182,10 @@ function mapDispatchToProps(dispatch) {
   return {
     validateToken(user, token) {
       dispatch(validateResetToken(user, token));
+    },
+
+    resetPassword(UserId, token, password) {
+      dispatch(resetPassword(UserId, token, password));
     },
   };
 }

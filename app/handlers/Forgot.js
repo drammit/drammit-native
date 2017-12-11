@@ -1,6 +1,6 @@
 // @flow
 
-import { requestForgotPassword, validateResetToken } from '../api/Forgot';
+import { requestForgotPassword, validateResetToken, resetPassword } from '../api/Forgot';
 
 import { validResetToken, invalidResetToken } from '../actions/Forgot';
 
@@ -22,7 +22,12 @@ async function handleValidateToken(dispatch, action) {
   }
 }
 
+function handleResetPassword(dispatch, action) {
+  resetPassword(action.UserId, action.token, action.password);
+}
+
 export default function Forgot(middleware) {
   middleware.addListener('SUBMIT_FORGOT_PASSWORD', handleForgotPasswordSubmit);
   middleware.addListener('VALIDATE_RESET_TOKEN', handleValidateToken);
+  middleware.addListener('RESET_PASSWORD', handleResetPassword);
 }
