@@ -6,21 +6,32 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { withRouter } from 'react-router';
+import { reduxForm } from 'redux-form';
 
 import { validateResetToken } from '../../actions/Forgot';
 
 import Page from '../../components/Layout/Page';
 import Text from '../../components/Page/Text';
 import Container from '../../components/Page/Container';
+import Label from '../../components/Form/Label';
+import TextInput from '../../components/Form/TextInput';
 import Submit from '../../components/Form/Submit';
 
 type ResetType = {
+  loadingToken: boolean,
+  validToken: boolean,
   validateToken: Function,
 } & ReactRouterType;
 
 class Reset extends Component<ResetType> {
   constructor(props) {
     super(props);
+
+    this.focusPassword = () => this.passwordInput.focus();
+
+    this.setPasswordRef = (ref) => {
+      this.passwordInput = ref;
+    };
 
     this.toForgotPassword = () => {
       props.history.push('/forgot-password');
@@ -29,6 +40,8 @@ class Reset extends Component<ResetType> {
     this.toHomeScreen = () => {
       props.history.push('/');
     };
+
+    this.onSubmit = props.handleSubmit(this.submitForm.bind(this));
   }
 
   componentDidMount() {
@@ -40,8 +53,12 @@ class Reset extends Component<ResetType> {
     }
   }
 
+  submitForm(values) {
+    console.log(values);
+  }
+
   render(): Element<any> {
-    const { location, loading, valid } = this.props;
+    const { location, loadingToken, validToken } = this.props;
     const { token, user } = location.state;
 
     if (!token || !user) {
@@ -69,11 +86,39 @@ class Reset extends Component<ResetType> {
         }}
       >
         <Container>
-          {loading && <Text>Validating reset request.</Text>}
-          {!loading && (
+          {loadingToken && <Text>Validating reset request.</Text>}
+          {!loadingToken && (
             <View>
-              {valid ? (
-                <Text>Valid</Text>
+              {validToken ? (
+                <View>
+                  <Text>Enter you new desired password.</Text>
+
+                  <Label>New password:</Label>
+                  <TextInput
+                    name="password_1"
+                    placeholder="Enter a password"
+                    returnKeyType="next"
+                    secureTextEntry
+                    autofocus
+                    autoCorrect={false}
+                    blurOnSubmit={false}
+                    onSubmitEditing={this.focusPassword}
+                  />
+                  <Label>Repeat new password:</Label>
+                  <TextInput
+                    name="password_2"
+                    placeholder="Repeat the password"
+                    returnKeyType="go"
+                    secureTextEntry
+                    onRef={this.setPasswordRef}
+                    blurOnSubmit={false}
+                    onSubmitEditing={this.onSubmit}
+                  />
+                  <Submit
+                    title="Update password"
+                    onPress={this.onSubmit}
+                  />
+                </View>
               ) : (
                 <View>
                   <Text>The request to change your password has expired or is invalid.</Text>
@@ -95,10 +140,31 @@ class Reset extends Component<ResetType> {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.password_1) {
+    errors.password_1 = 'Enter a password';
+  }
+
+  if (!values.password_2) {
+    errors.password_2 = 'Repeat the password';
+  }
+
+  if (values.password_1 && values.password_2 && values.password_1 !== values.password_2) {
+    errors.password_2 = 'Passwords do not match';
+  }
+
+  return errors;
+}
+
 function mapStateToProps(state) {
   const { loading, valid } = state.reset;
 
-  return { loading, valid };
+  return {
+    loadingToken: loading,
+    validToken: valid,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -110,6 +176,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default compose(
-  withRouter,
   connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  reduxForm({
+    form: 'reset',
+    validate,
+  }),
 )(Reset);
