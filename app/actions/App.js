@@ -1,3 +1,5 @@
+// @flow
+
 export function showStatusBar() {
   return { type: 'SHOW_STATUSBAR' };
 }

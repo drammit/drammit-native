@@ -14,7 +14,7 @@ function getUserInfo() {
       null,
       (error, result) => {
         if (error) {
-          reject(error;
+          reject(error);
         }
 
         resolve(result);
@@ -30,12 +30,12 @@ export async function loginToFacebook() {
     const result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
 
     if (result.isCancelled) {
-      return;
+      return {};
     }
 
     const userInfo = await getUserInfo();
 
-    console.log(userInfo);
+    return userInfo;
   } catch (e) {
     throw new Error(e);
   }

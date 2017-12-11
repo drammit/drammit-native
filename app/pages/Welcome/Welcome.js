@@ -9,6 +9,7 @@ import { withRouter } from 'react-router';
 
 import { hideStatusBar as hideStatusBarAction, updateHeader as updateHeaderAction }
   from '../../actions/App';
+import { facebookLogin } from '../../actions/Login';
 
 import ImageContainer from '../../components/Layout/ImageContainer';
 import Logo from '../../components/Logo/Logo';
@@ -270,8 +271,12 @@ class Welcome extends Component<WelcomeType> {
 
 function mapDispatchToProps(dispatch, props) {
   return {
-    continueWithFacebook() {
-      loginToFacebook();
+    async continueWithFacebook() {
+      const { id, email } = await loginToFacebook();
+
+      if (id && email) {
+        dispatch(facebookLogin(id, email));
+      }
     },
 
     signUp() {
