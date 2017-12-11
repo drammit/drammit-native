@@ -21,12 +21,15 @@ export function signupStep1Failed(message) {
   };
 }
 
-export function signupStep2(username, fullName, avatar) {
+export function signupStep2(email, password, username, fullName, avatar, facebookId) {
   return {
     type: 'SIGNUP_STEP_2',
+    email,
+    password,
     username,
     fullName,
     avatar,
+    facebookId,
   };
 }
 

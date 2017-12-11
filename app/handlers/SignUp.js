@@ -19,7 +19,6 @@ async function handleSignUpStep1(dispatch, action) {
       dispatch(signupStep1Success());
     }
   } catch (e) {
-    console.error(e);
     dispatch(signupStep1Failed(e.message));
   }
 }
@@ -33,7 +32,14 @@ async function handleSignUpStep2(dispatch, action) {
       return;
     }
 
-    const user = await registerUser(action.username, action.fullName, action.avatar);
+    const {
+      email, password, username, fullName, avatar, facebookId,
+    } = action;
+
+    const user = await registerUser({
+      email, password, username, fullName, avatar, facebookId,
+    });
+
     dispatch(signupStep2Success(user));
   } catch (e) {
     dispatch(signupStep2Failed(e.message));

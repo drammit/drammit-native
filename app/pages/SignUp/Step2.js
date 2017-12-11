@@ -59,7 +59,16 @@ class Step2 extends Component<SignUpType> {
   }
 
   handleSubmit(values) {
-    this.props.onSubmitForm(values.username, values.fullName, values.avatar);
+    const { email, password, facebookId } = this.props.initialValues;
+
+    this.props.onSubmitForm(
+      email,
+      password,
+      values.username,
+      values.fullName,
+      values.avatar,
+      facebookId,
+    );
   }
 
   render(): Element<any> {
@@ -167,28 +176,39 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-  const { step2Loading, step2Error } = state.signup;
+  const { step2Loading, step2Error, data } = state.signup;
 
   return {
     loading: step2Loading,
     errorMessage: step2Error,
+    initialValues: {
+      ...data,
+    },
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm(username, fullName, avatar) {
-      dispatch(signupStep2(username, fullName, avatar));
+    onSubmitForm(email, password, username, fullName, avatar, facebookId) {
+      dispatch(signupStep2(
+        email,
+        password,
+        username,
+        fullName,
+        avatar,
+        facebookId,
+      ));
     },
   };
 }
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
   withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
   reduxForm({
     form: 'sign-up-2',
     validate,
     touchOnBlur: false,
+    enableReinitialize: true,
   }),
 )(Step2);

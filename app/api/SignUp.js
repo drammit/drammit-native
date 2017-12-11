@@ -8,6 +8,10 @@ export function userExists(username) {
   return get(`/user/exists?username=${username}`);
 }
 
-export function registerUser(username, fullName, avatar) {
-  return post('/user/register', { username, fullName, avatar });
+export function registerUser({
+  email, password, username, fullName, avatar, facebookId,
+}) {
+  return post('/user/register', {
+    email, password, username, fullName, avatar, facebookId,
+  });
 }

@@ -14,7 +14,7 @@ async function handleFacebookLogin(dispatch, action) {
       dispatch(facebookLoginSuccess(result));
     } else {
       // redirect to sign up
-      push('/sign-up/step-1', {
+      push('/sign-up/step-2', {
         email: action.email,
         facebookId: action.id,
         fullName: action.name,

@@ -45,7 +45,7 @@ class Step1 extends Component<SignUpType> {
   }
 
   render(): Element<any> {
-    const { loading, errorMessage, nextStep } = this.props;
+    const { loading, errorMessage, nextStep, initialValues } = this.props;
 
     if (nextStep) {
       return <Redirect to="/sign-up/step-2" push />;
@@ -73,7 +73,7 @@ class Step1 extends Component<SignUpType> {
               placeholder="Enter your email address"
               returnKeyType="next"
               keyboardType="email-address"
-              autofocus
+              autofocus={initialValues.email === ''}
               autoCorrect={false}
               blurOnSubmit={false}
               onSubmitEditing={this.focusPassword}
@@ -84,6 +84,7 @@ class Step1 extends Component<SignUpType> {
               placeholder="Choose a password"
               returnKeyType="go"
               secureTextEntry
+              autofocus={initialValues.email !== ''}
               onRef={this.setPasswordRef}
               blurOnSubmit={false}
               onSubmitEditing={this.onSubmit}
@@ -117,7 +118,9 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-  const { step1Loading, step1Error, step1Continue, data } = state.signup;
+  const {
+    step1Loading, step1Error, step1Continue, data,
+  } = state.signup;
 
   return {
     loading: step1Loading,

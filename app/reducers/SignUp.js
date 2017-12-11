@@ -65,6 +65,13 @@ function step2Error(state: string = '', action): string {
 
 function data(state: {} = {}, action): {} {
   switch (action.type) {
+    case 'FACEBOOK_LOGIN':
+      return {
+        ...state,
+        email: action.email,
+        fullName: action.name,
+        facebookId: action.id,
+      };
     case 'SIGNUP_STEP_1':
       return {
         ...state,
