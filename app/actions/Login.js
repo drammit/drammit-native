@@ -7,10 +7,19 @@ export function submitForgotPassword(username) {
   };
 }
 
-export function facebookLogin(id, email) {
+export function facebookLogin(id, email, name) {
   return {
     type: 'FACEBOOK_LOGIN',
     id,
     email,
+    name,
   };
+}
+
+export function facebookLoginSuccess(token) {
+  return { type: 'FACEBOOK_LOGIN_SUCCESS', token };
+}
+
+export function facebookLoginFailed(message) {
+  return { type: 'FACEBOOK_LOGIN_FAILED', message };
 }

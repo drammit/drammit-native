@@ -272,10 +272,10 @@ class Welcome extends Component<WelcomeType> {
 function mapDispatchToProps(dispatch, props) {
   return {
     async continueWithFacebook() {
-      const { id, email } = await loginToFacebook();
+      const { id, email, name } = await loginToFacebook();
 
       if (id && email) {
-        dispatch(facebookLogin(id, email));
+        dispatch(facebookLogin(id, email, name));
       }
     },
 

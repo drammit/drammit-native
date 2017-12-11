@@ -10,6 +10,7 @@ import { withRouter } from 'react-router';
 import Header from './Header';
 
 import deepLinking from '../../core/deep-linking';
+import { setHistory } from '../../core/push';
 
 import { style, styles } from './App.styles';
 
@@ -24,6 +25,7 @@ class App extends Component<AppType> {
     super(props);
 
     deepLinking(props.history);
+    setHistory(props.history);
 
     this.state = {
       statusBarPosition: new Animated.Value(props.statusBar ? 1 : 0),

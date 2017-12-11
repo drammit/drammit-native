@@ -33,9 +33,7 @@ export async function loginToFacebook() {
       return {};
     }
 
-    const userInfo = await getUserInfo();
-
-    return userInfo;
+    return getUserInfo();
   } catch (e) {
     throw new Error(e);
   }
