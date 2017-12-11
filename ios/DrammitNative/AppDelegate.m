@@ -16,12 +16,16 @@
 
 @implementation AppDelegate
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [FBSDKAppEvents activateApp];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  NSURL *jsCodeLocation;
-  
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
+  
+  NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
@@ -43,12 +47,13 @@
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
 {
   BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
-      openURL:url
-      sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
-  ];
+                                                                openURL:url
+                                                      sourceApplication:sourceApplication
+                                                             annotation:annotation];
   
   BOOL handledIncoming = [RCTLinkingManager application:application openURL:url options:options];
   

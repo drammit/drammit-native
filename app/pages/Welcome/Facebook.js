@@ -1,7 +1,42 @@
 // @flow
 
-import { LoginManager } from 'react-native-fbsdk';
+import {
+  LoginManager,
+  GraphRequest,
+  GraphRequestManager,
+} from 'react-native-fbsdk';
 
-export function loginToFacebook() {
-  LoginManager.logInWithReadPermissions(['public_profile']);
+function getUserInfo() {
+  return new Promise((resolve, reject) => {
+    // Create a graph request asking for user information with a callback to handle the response.
+    const infoRequest = new GraphRequest(
+      '/me?fields=email,name',
+      null,
+      (error, result) => {
+        if (error) {
+          reject(error;
+        }
+
+        resolve(result);
+      },
+    );
+    // Start the graph request.
+    new GraphRequestManager().addRequest(infoRequest).start();
+  });
+}
+
+export async function loginToFacebook() {
+  try {
+    const result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
+
+    if (result.isCancelled) {
+      return;
+    }
+
+    const userInfo = await getUserInfo();
+
+    console.log(userInfo);
+  } catch (e) {
+    throw new Error(e);
+  }
 }
