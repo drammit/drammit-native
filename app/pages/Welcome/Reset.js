@@ -21,7 +21,7 @@ type ResetType = {
   loadingToken: boolean,
   validToken: boolean,
   validateToken: Function,
-} & ReactRouterType;
+} & ReactRouterType & ReduxFormType;
 
 class Reset extends Component<ResetType> {
   constructor(props) {
@@ -58,7 +58,7 @@ class Reset extends Component<ResetType> {
   }
 
   render(): Element<any> {
-    const { location, loadingToken, validToken } = this.props;
+    const { location, loadingToken, validToken, submitSucceeded } = this.props;
     const { token, user } = location.state;
 
     if (!token || !user) {
@@ -87,7 +87,7 @@ class Reset extends Component<ResetType> {
       >
         <Container>
           {loadingToken && <Text>Validating reset request.</Text>}
-          {!loadingToken && (
+          {!loadingToken && !submitSucceeded && (
             <View>
               {validToken ? (
                 <View>
@@ -132,6 +132,15 @@ class Reset extends Component<ResetType> {
                   />
                 </View>
               )}
+            </View>
+          )}
+          {submitSucceeded && (
+            <View>
+              <Text>Your password has been successfully reset.</Text>
+              <Submit
+                title="Log in now"
+                onPress={this.toHomeScreen}
+              />
             </View>
           )}
         </Container>

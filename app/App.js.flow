@@ -36,6 +36,7 @@ declare var ReactRouterType: {
 // Redux form
 declare var ReduxFormType: {
   handleSubmit: Function,
+  submitSucceeded: boolean,
 };
 
 declare var ReduxFormFieldType: {
