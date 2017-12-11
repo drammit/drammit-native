@@ -36,6 +36,10 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* DrammitNativeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* DrammitNativeTests.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		660C58E81FDEB0EE0065AA62 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660C58E41FDEB0EE0065AA62 /* FBSDKLoginKit.framework */; };
+		660C58E91FDEB0EE0065AA62 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660C58E51FDEB0EE0065AA62 /* FBSDKCoreKit.framework */; };
+		660C58EA1FDEB0EE0065AA62 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660C58E61FDEB0EE0065AA62 /* FBSDKShareKit.framework */; };
+		660C58EB1FDEB0EE0065AA62 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660C58E71FDEB0EE0065AA62 /* Bolts.framework */; };
 		6643B54B1FD57E4400463F9E /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643B5491FD57DF700463F9E /* libRCTCameraRoll.a */; };
 		6643B54C1FD57E5B00463F9E /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643B5431FD57B6500463F9E /* libRCTCamera.a */; };
 		666271321FDA915500DB4893 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6662712F1FDA912B00DB4893 /* libRCTLinking.a */; };
@@ -382,6 +386,10 @@
 		42CFE77ACDD54A1B95D41B14 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
 		4E7AF84A35A648D38CA64386 /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		660C58E41FDEB0EE0065AA62 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../libraries/FacebookSDKs-iOS/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		660C58E51FDEB0EE0065AA62 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../libraries/FacebookSDKs-iOS/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		660C58E61FDEB0EE0065AA62 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../libraries/FacebookSDKs-iOS/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		660C58E71FDEB0EE0065AA62 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../libraries/FacebookSDKs-iOS/Bolts.framework"; sourceTree = "<group>"; };
 		6643B5441FD57DF600463F9E /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		666271291FDA912B00DB4893 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		66BFB25D1FDAD5CF00914C33 /* DrammitNative.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = DrammitNative.entitlements; path = DrammitNative/DrammitNative.entitlements; sourceTree = "<group>"; };
@@ -412,15 +420,19 @@
 				666271321FDA915500DB4893 /* libRCTLinking.a in Frameworks */,
 				6643B54C1FD57E5B00463F9E /* libRCTCamera.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
+				660C58E91FDEB0EE0065AA62 /* FBSDKCoreKit.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
+				660C58EA1FDEB0EE0065AA62 /* FBSDKShareKit.framework in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
+				660C58E81FDEB0EE0065AA62 /* FBSDKLoginKit.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
+				660C58EB1FDEB0EE0065AA62 /* Bolts.framework in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
@@ -619,6 +631,10 @@
 		6643B54A1FD57E4400463F9E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				660C58E71FDEB0EE0065AA62 /* Bolts.framework */,
+				660C58E51FDEB0EE0065AA62 /* FBSDKCoreKit.framework */,
+				660C58E41FDEB0EE0065AA62 /* FBSDKLoginKit.framework */,
+				660C58E61FDEB0EE0065AA62 /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1426,6 +1442,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 4689UFR5QY;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../libraries/FacebookSDKs-iOS";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
@@ -1453,6 +1470,7 @@
 				CODE_SIGN_ENTITLEMENTS = DrammitNative/DrammitNative.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4689UFR5QY;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../libraries/FacebookSDKs-iOS";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",

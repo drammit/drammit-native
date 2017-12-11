@@ -66,5 +66,18 @@
       </array>
     </dict>
   </array>
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>fb1571415626444431</string>
+    </array>
+    </dict>
+  </array>
+  <key>FacebookAppID</key>
+  <string>1571415626444431</string>
+  <key>FacebookDisplayName</key>
+  <string>Drammit</string>
 </dict>
 </plist>

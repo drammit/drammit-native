@@ -12,12 +12,16 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <React/RCTLinkingManager.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
+  
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                           didFinishLaunchingWithOptions:launchOptions];
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
@@ -32,6 +36,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
   return YES;
 }
 
@@ -39,7 +44,15 @@
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
-  return [RCTLinkingManager application:application openURL:url options:options];
+  BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+      openURL:url
+      sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+  ];
+  
+  BOOL handledIncoming = [RCTLinkingManager application:application openURL:url options:options];
+  
+  return handled || handledIncoming;
 }
 
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity

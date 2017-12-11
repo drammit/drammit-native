@@ -15,6 +15,7 @@ import Logo from '../../components/Logo/Logo';
 
 import { colors } from '../../Config.styles';
 
+import { loginToFacebook } from './Facebook';
 import Login from './Login';
 
 import Scotland from './Scotland.jpg';
@@ -270,7 +271,7 @@ class Welcome extends Component<WelcomeType> {
 function mapDispatchToProps(dispatch, props) {
   return {
     continueWithFacebook() {
-      console.log('Facebook');
+      loginToFacebook();
     },
 
     signUp() {
