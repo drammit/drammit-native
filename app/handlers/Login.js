@@ -1,8 +1,13 @@
 // @flow
 
-import { facebookLogin } from '../api/Login';
+import { facebookLogin, authenticate } from '../api/Login';
 
-import { facebookLoginSuccess, facebookLoginFailed } from '../actions/Login';
+import {
+  loginUserSuccess,
+  loginUserFailed,
+  facebookLoginSuccess,
+  facebookLoginFailed,
+} from '../actions/Login';
 
 import { push } from '../core/push';
 
@@ -25,6 +30,21 @@ async function handleFacebookLogin(dispatch, action) {
   }
 }
 
+async function handleLoginUser(dispatch, action) {
+  if (!action.username || !action.password) {
+    dispatch(loginUserFailed('Fill in your credentials'));
+    return;
+  }
+
+  try {
+    const result = await authenticate(action.username, action.password);
+    dispatch(loginUserSuccess(result));
+  } catch (e) {
+    dispatch(loginUserFailed(e.message));
+  }
+}
+
 export default function Login(middleware) {
   middleware.addListener('FACEBOOK_LOGIN', handleFacebookLogin);
+  middleware.addListener('LOGIN_USER', handleLoginUser);
 }

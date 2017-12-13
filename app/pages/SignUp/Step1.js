@@ -45,7 +45,9 @@ class Step1 extends Component<SignUpType> {
   }
 
   render(): Element<any> {
-    const { loading, errorMessage, nextStep, initialValues } = this.props;
+    const {
+      loading, errorMessage, nextStep, initialValues,
+    } = this.props;
 
     if (nextStep) {
       return <Redirect to="/sign-up/step-2" push />;

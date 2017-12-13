@@ -3,19 +3,26 @@
 import React, { Component } from 'react';
 import type { Element } from 'react';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { View, Button } from 'react-native';
 import { reduxForm } from 'redux-form';
 import { withRouter } from 'react-router';
 
+import { loginUser } from '../../actions/Login';
+
 import TextInput from '../../components/Form/TextInput';
+import Error from '../../components/Form/Error';
 
 import { colors } from '../../Config.styles';
 import styles from './Login.styles';
 
 type LoginType = {
   ...ReduxFormType,
+  loadingLogin: boolean,
+  errorLogin: string,
   onBack: Function,
   goToForgotPassword: Function,
+  loginUser: Function,
 };
 
 class Login extends Component<LoginType> {
@@ -32,8 +39,9 @@ class Login extends Component<LoginType> {
     this.focusPassword = () => this.passwordInput.focus();
 
     this.onSubmit = props.handleSubmit((values) => {
-      console.log(values);
+      props.loginUser(values.username, values.password);
     });
+
     this.onBack = () => {
       this.userInput.blur();
       this.passwordInput.blur();
@@ -59,8 +67,12 @@ class Login extends Component<LoginType> {
   }
 
   render(): Element {
+    const { loadingLogin, errorLogin } = this.props;
+
     return (
       <View>
+        {errorLogin !== '' && <Error message={errorLogin} />}
+
         <TextInput
           style={{
             paddingLeft: 6,
@@ -95,6 +107,7 @@ class Login extends Component<LoginType> {
           />
 
           <Button
+            disabled={loadingLogin}
             onPress={this.onSubmit}
             title="Login →"
           />
@@ -117,8 +130,26 @@ class Login extends Component<LoginType> {
   }
 }
 
+function mapStateToProps(state) {
+  const { loading, error } = state.login;
+
+  return {
+    loadingLogin: loading,
+    errorLogin: error,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    loginUser(username, password) {
+      dispatch(loginUser(username, password));
+    },
+  };
+}
+
 export default compose(
   withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
   reduxForm({
     form: 'login',
   }),
