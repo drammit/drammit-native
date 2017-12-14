@@ -8,8 +8,8 @@ export function loginUser(username, password) {
   };
 }
 
-export function loginUserSuccess(token) {
-  return { type: 'LOGIN_USER_SUCCESS', token };
+export function loginUserSuccess(user) {
+  return { type: 'LOGIN_USER_SUCCESS', user };
 }
 
 export function loginUserFailed(message) {
@@ -33,10 +33,6 @@ export function facebookLogin(id, email, name) {
     email,
     name,
   };
-}
-
-export function facebookLoginSuccess(token) {
-  return { type: 'FACEBOOK_LOGIN_SUCCESS', token };
 }
 
 export function facebookLoginFailed(message) {

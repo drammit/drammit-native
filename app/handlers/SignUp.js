@@ -5,9 +5,9 @@ import { emailExists, userExists, registerUser } from '../api/SignUp';
 import {
   signupStep1Success,
   signupStep1Failed,
-  signupStep2Success,
   signupStep2Failed,
 } from '../actions/SignUp';
+import { loginUserSuccess } from '../actions/Login';
 
 async function handleSignUpStep1(dispatch, action) {
   try {
@@ -40,7 +40,7 @@ async function handleSignUpStep2(dispatch, action) {
       email, password, username, fullName, avatar, facebookId,
     });
 
-    dispatch(signupStep2Success(user));
+    dispatch(loginUserSuccess(user));
   } catch (e) {
     dispatch(signupStep2Failed(e.message));
   }

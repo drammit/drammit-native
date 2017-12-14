@@ -5,7 +5,6 @@ import { facebookLogin, authenticate } from '../api/Login';
 import {
   loginUserSuccess,
   loginUserFailed,
-  facebookLoginSuccess,
   facebookLoginFailed,
 } from '../actions/Login';
 
@@ -13,10 +12,10 @@ import { push } from '../core/push';
 
 async function handleFacebookLogin(dispatch, action) {
   try {
-    const result = await facebookLogin(action.email, action.id);
+    const user = await facebookLogin(action.email, action.id);
 
-    if (result) {
-      dispatch(facebookLoginSuccess(result));
+    if (user) {
+      dispatch(loginUserSuccess(user));
     } else {
       // redirect to sign up
       push('/sign-up/step-2', {
@@ -37,8 +36,8 @@ async function handleLoginUser(dispatch, action) {
   }
 
   try {
-    const result = await authenticate(action.username, action.password);
-    dispatch(loginUserSuccess(result));
+    const user = await authenticate(action.username, action.password);
+    dispatch(loginUserSuccess(user));
   } catch (e) {
     dispatch(loginUserFailed(e.message));
   }

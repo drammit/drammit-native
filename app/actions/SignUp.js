@@ -33,13 +33,6 @@ export function signupStep2(email, password, username, fullName, avatar, faceboo
   };
 }
 
-export function signupStep2Success(user) {
-  return {
-    type: 'SIGNUP_STEP_2_SUCCESS',
-    user,
-  };
-}
-
 export function signupStep2Failed(message) {
   return {
     type: 'SIGNUP_STEP_2_FAILED',
