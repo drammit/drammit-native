@@ -9,3 +9,7 @@ export function authenticate(username: string, password: string) {
 export function facebookLogin(email: string, id: string) {
   return post('/user/facebook-login', { email, id });
 }
+
+export function tokenLogin(token: string, UserId: number) {
+  return post('/user/token-login', { token, UserId });
+}

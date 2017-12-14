@@ -2,7 +2,7 @@
 
 import { getItem, setItem } from './storage';
 
-export async function currentToken() {
+export async function currentToken(): null | { token: string, UserId: number } {
   const [token, UserId] =
     await Promise.all([getItem('logintoken:token'), getItem('logintoken:userid')]);
 

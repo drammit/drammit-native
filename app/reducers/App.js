@@ -5,6 +5,7 @@ import { combineReducers } from 'redux';
 function initialized(state: boolean = false, action): boolean {
   switch (action.type) {
     case 'INITIALIZED':
+    case 'LOGIN_USER_SUCCESS':
       return true;
     default:
       return state;
