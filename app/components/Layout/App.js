@@ -12,6 +12,8 @@ import Header from './Header';
 import deepLinking from '../../core/deep-linking';
 import { setHistory } from '../../core/push';
 
+import { initialize } from '../../actions/App';
+
 import Initializing from './Initializing';
 
 import { style, styles } from './App.styles';
@@ -34,6 +36,10 @@ class App extends Component<AppType> {
       statusBarPosition: new Animated.Value(props.statusBar ? 1 : 0),
       headerPosition: new Animated.Value(props.header.visible ? 1 : 0),
     };
+  }
+
+  componentDidMount() {
+    this.props.initialize();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -136,7 +142,15 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    initialize() {
+      dispatch(initialize());
+    },
+  };
+}
+
 export default compose(
   withRouter,
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
 )(App);

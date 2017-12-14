@@ -1,5 +1,13 @@
 // @flow
 
+export function initialize() {
+  return { type: 'INITIALIZE' };
+}
+
+export function initialized() {
+  return { type: 'INITIALIZED' };
+}
+
 export function showStatusBar() {
   return { type: 'SHOW_STATUSBAR' };
 }
