@@ -9,6 +9,7 @@ import {
 } from '../actions/Login';
 
 import { push } from '../core/push';
+import { saveToken } from '../core/login-token';
 
 async function handleFacebookLogin(dispatch, action) {
   try {
@@ -43,7 +44,12 @@ async function handleLoginUser(dispatch, action) {
   }
 }
 
+async function handleLoginSuccess(dispatch, action) {
+  saveToken(action.user.token, action.user.id);
+}
+
 export default function Login(middleware) {
   middleware.addListener('FACEBOOK_LOGIN', handleFacebookLogin);
   middleware.addListener('LOGIN_USER', handleLoginUser);
+  middleware.addListener('LOGIN_USER_SUCCESS', handleLoginSuccess);
 }

@@ -11,6 +11,7 @@ import Header from './Header';
 
 import deepLinking from '../../core/deep-linking';
 import { setHistory } from '../../core/push';
+import { currentToken } from '../../core/login-token';
 
 import { style, styles } from './App.styles';
 
