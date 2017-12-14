@@ -2,6 +2,15 @@
 
 import { combineReducers } from 'redux';
 
+function initialized(state: boolean = false, action): boolean {
+  switch (action.type) {
+    case 'INITIALIZED':
+      return true;
+    default:
+      return state;
+  }
+}
+
 function statusBar(state: boolean = false, action): boolean {
   switch (action.type) {
     case 'SHOW_STATUSBAR':
@@ -56,6 +65,7 @@ const header = combineReducers({
 });
 
 export default combineReducers({
+  initialized,
   statusBar,
   header,
   uploadProgress,

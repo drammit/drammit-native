@@ -6,12 +6,13 @@ import { Image } from 'react-native';
 
 import Drammit from './Drammit.png';
 
-function Logo(): Element<any> {
+function Logo({ style }: { style: any }): Element<any> {
   return (
     <Image
       style={{
         width: '80%',
         resizeMode: 'contain',
+        ...style,
       }}
       source={Drammit}
     />

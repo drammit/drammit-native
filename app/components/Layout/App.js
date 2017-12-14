@@ -11,11 +11,13 @@ import Header from './Header';
 
 import deepLinking from '../../core/deep-linking';
 import { setHistory } from '../../core/push';
-import { currentToken } from '../../core/login-token';
+
+import Initializing from './Initializing';
 
 import { style, styles } from './App.styles';
 
 type AppType = ReactRouter & {
+  initialized: boolean,
   statusBar: boolean,
   header: headerType,
   children: Children,
@@ -76,8 +78,17 @@ class App extends Component<AppType> {
   }
 
   render(): Element<any> {
-    const { statusBar, header, children } = this.props;
+    const {
+      initialized,
+      statusBar,
+      header,
+      children,
+    } = this.props;
     const { statusBarPosition, headerPosition } = this.state;
+
+    if (!initialized) {
+      return <Initializing />;
+    }
 
     return (
       <View style={styles.container}>
@@ -116,9 +127,10 @@ class App extends Component<AppType> {
 }
 
 function mapStateToProps(state) {
-  const { statusBar, header } = state.app;
+  const { statusBar, header, initialized } = state.app;
 
   return {
+    initialized,
     statusBar,
     header,
   };
