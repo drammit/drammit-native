@@ -18,6 +18,7 @@ import AppComponent from './components/Layout/App';
 
 import Welcome from './pages/Welcome';
 import SignUp from './pages/SignUp';
+import TimeLine from './pages/Timeline';
 
 const actionMiddleware = createMiddleware();
 
@@ -45,6 +46,7 @@ const App = () => (
       <AppComponent>
         <Route path="/" component={Welcome} />
         <Route path="/sign-up" component={SignUp} />
+        <Route path="/time-line" component={TimeLine} />
       </AppComponent>
     </NativeRouter>
   </Provider>

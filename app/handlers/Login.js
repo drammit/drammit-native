@@ -45,7 +45,11 @@ async function handleLoginUser(dispatch, action) {
 }
 
 async function handleLoginSuccess(dispatch, action) {
+  // save token
   saveToken(action.user.token, action.user.id);
+
+  // go to time line
+  push('/time-line');
 }
 
 export default function Login(middleware) {
