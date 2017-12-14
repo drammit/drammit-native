@@ -18,7 +18,7 @@ function error(state: string = '', action): string {
   switch (action.type) {
     case 'LOGIN_USER_FAILED':
       return action.message;
-    case 'LOGIN_USER':
+    case 'LOGIN_USER_SUCCESS':
       return '';
     default:
       return state;

@@ -75,7 +75,7 @@ class Step1 extends Component<SignUpType> {
               placeholder="Enter your email address"
               returnKeyType="next"
               keyboardType="email-address"
-              autofocus={initialValues.email === ''}
+              autofocus={initialValues.email === '' || !initialValues.email}
               autoCorrect={false}
               blurOnSubmit={false}
               onSubmitEditing={this.focusPassword}
@@ -86,7 +86,7 @@ class Step1 extends Component<SignUpType> {
               placeholder="Choose a password"
               returnKeyType="go"
               secureTextEntry
-              autofocus={initialValues.email !== ''}
+              autofocus={initialValues.email !== '' && !!initialValues.email}
               onRef={this.setPasswordRef}
               blurOnSubmit={false}
               onSubmitEditing={this.onSubmit}
