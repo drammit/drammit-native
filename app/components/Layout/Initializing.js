@@ -51,7 +51,7 @@ class Initializing extends Component {
           hidden
         />
         <Animated.View style={{ ...container, opacity: fadeLogo }}>
-          <Logo style={{ width: '40%', opacity: 0.4 }} />
+          <Logo style={{ width: 150, opacity: 0.4 }} />
         </Animated.View>
       </View>
     );
