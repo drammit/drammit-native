@@ -2,18 +2,19 @@
 
 import React from 'react';
 import type { Element } from 'react';
-import { Image } from 'react-native';
+import SvgUri from 'react-native-svg-uri';
 
-import Drammit from './Drammit.png';
+import Drammit from './drammit-logo.svg';
 
 function Logo({ style }: { style: any }): Element<any> {
   return (
-    <Image
+    <SvgUri
       style={{
         width: '80%',
-        resizeMode: 'contain',
         ...style,
       }}
+      width={300}
+      height={45}
       source={Drammit}
     />
   );
