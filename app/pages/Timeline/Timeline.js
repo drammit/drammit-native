@@ -7,12 +7,14 @@ import { connect } from 'react-redux';
 
 import { logoutUser } from '../../actions/Login';
 
+import Navigation from '../../components/Layout/Navigation';
+
 function Timeline({ dispatch }): Element<any> {
   return (
-    <View>
+    <Navigation>
       <Button onPress={() => dispatch(logoutUser())} title="Log out" />
       <Text>Bla</Text>
-    </View>
+    </Navigation>
   );
 }
 
