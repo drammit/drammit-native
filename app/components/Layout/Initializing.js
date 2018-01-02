@@ -2,14 +2,17 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { StatusBar, View, StyleSheet, Easing, Animated } from 'react-native';
+import { StatusBar, View, StyleSheet, Animated } from 'react-native';
 
 import Logo from '../Logo/Logo';
+
+import { colors } from '../../Config.styles';
 
 const container = {
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundColor: colors.light,
   width: '100%',
   height: '100%',
 };

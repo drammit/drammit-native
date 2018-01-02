@@ -4,6 +4,8 @@ import { combineReducers } from 'redux';
 
 function id(state: number | null = null, action): number | null {
   switch (action.type) {
+    case 'LOGOUT_USER':
+      return null;
     case 'LOGIN_USER_SUCCESS':
       return action.user.id;
     default:
@@ -13,6 +15,8 @@ function id(state: number | null = null, action): number | null {
 
 function email(state: string | null = null, action): string | null {
   switch (action.type) {
+    case 'LOGOUT_USER':
+      return null;
     case 'LOGIN_USER_SUCCESS':
       return action.user.email;
     default:
@@ -22,6 +26,8 @@ function email(state: string | null = null, action): string | null {
 
 function username(state: string | null = null, action): string | null {
   switch (action.type) {
+    case 'LOGOUT_USER':
+      return null;
     case 'LOGIN_USER_SUCCESS':
       return action.user.username;
     default:
@@ -31,6 +37,8 @@ function username(state: string | null = null, action): string | null {
 
 function name(state: string | null = null, action): string | null {
   switch (action.type) {
+    case 'LOGOUT_USER':
+      return null;
     case 'LOGIN_USER_SUCCESS':
       return action.user.name;
     default:
@@ -40,6 +48,8 @@ function name(state: string | null = null, action): string | null {
 
 function avatar(state: string | null = null, action): string | null {
   switch (action.type) {
+    case 'LOGOUT_USER':
+      return null;
     case 'LOGIN_USER_SUCCESS':
       return action.user.avatar;
     default:
@@ -49,6 +59,8 @@ function avatar(state: string | null = null, action): string | null {
 
 function subscription(state: boolean = false, action): boolean {
   switch (action.type) {
+    case 'LOGOUT_USER':
+      return false;
     case 'LOGIN_USER_SUCCESS':
       return !!action.user.subscription;
     default:

@@ -2,14 +2,18 @@
 
 import React from 'react';
 import type { Element } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { connect } from 'react-redux';
 
-function Timeline(): Element<any> {
+import { logoutUser } from '../../actions/Login';
+
+function Timeline({ dispatch }): Element<any> {
   return (
     <View>
+      <Button onPress={() => dispatch(logoutUser())} title="Log out" />
       <Text>Bla</Text>
     </View>
   );
 }
 
-export default Timeline;
+export default connect()(Timeline);

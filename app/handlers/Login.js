@@ -9,7 +9,7 @@ import {
 } from '../actions/Login';
 
 import { push } from '../core/push';
-import { saveToken } from '../core/login-token';
+import { saveToken, clearToken } from '../core/login-token';
 
 async function handleFacebookLogin(dispatch, action) {
   try {
@@ -44,7 +44,7 @@ async function handleLoginUser(dispatch, action) {
   }
 }
 
-async function handleLoginSuccess(dispatch, action) {
+function handleLoginSuccess(dispatch, action) {
   // save token
   saveToken(action.user.token, action.user.id);
 
@@ -52,8 +52,17 @@ async function handleLoginSuccess(dispatch, action) {
   push('/time-line');
 }
 
+function handleLogout() {
+  // remove token
+  clearToken();
+
+  // go to home
+  push('/');
+}
+
 export default function Login(middleware) {
   middleware.addListener('FACEBOOK_LOGIN', handleFacebookLogin);
   middleware.addListener('LOGIN_USER', handleLoginUser);
   middleware.addListener('LOGIN_USER_SUCCESS', handleLoginSuccess);
+  middleware.addListener('LOGOUT_USER', handleLogout);
 }
