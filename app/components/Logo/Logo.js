@@ -8,7 +8,7 @@ import Drammit from './drammit-logo.svg';
 
 function Logo({ style }: { style: any }): Element<any> {
   const ratio = 596.3 / 88.9;
-  const width = style.width ? style.width : 300;
+  const width = style && style.width ? style.width : 300;
 
   return (
     <SvgUri
