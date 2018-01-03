@@ -9,13 +9,14 @@ import { colors } from '../../../Config.styles';
 
 import Timeline from './timeline.svg';
 import Search from './search.svg';
+import Glass from './glass.svg';
 import Comment from './comment.svg';
 import Profile from './profile.svg';
 
 import styles from './Navigation.styles';
 
 type NavigationType = {
-  active: 'timeline' | 'search' | 'notifications' | 'profile',
+  active: 'timeline' | 'search' | 'dram' | 'notifications' | 'profile',
   children: Children,
 };
 
@@ -59,9 +60,21 @@ class Navigation extends Component<NavigationType> {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
+              fill={active === 'dram' ? colors.lightGreen : colors.grey3}
+              width={25 / (325 / 557)}
+              height={25}
+              source={Glass}
+            />
+          </View>
+          <View style={styles.button}>
+            <SvgUri
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
               fill={active === 'notifications' ? colors.lightGreen : colors.grey3}
-              width={20 / (367 / 475)}
-              height={20}
+              width={16 / (367 / 475)}
+              height={16}
               source={Comment}
             />
           </View>
