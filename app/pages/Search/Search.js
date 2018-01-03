@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import Page from '../../components/Layout/Page';
 import Navigation from '../../components/Layout/Navigation';
+import SearchBar from '../../components/Form/Search';
 
 class Timeline extends Component {
   render(): Element<any> {
@@ -15,6 +16,7 @@ class Timeline extends Component {
         statusBar
       >
         <Navigation active="search">
+          <SearchBar />
           <Text>Search</Text>
         </Navigation>
       </Page>
