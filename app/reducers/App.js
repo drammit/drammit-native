@@ -50,6 +50,15 @@ function visible(state: boolean = false, action): boolean {
   }
 }
 
+function logo(state: boolean = false, action): boolean {
+  switch (action.type) {
+    case 'UPDATE_HEADER':
+      return action.header.logo || false;
+    default:
+      return state;
+  }
+}
+
 function title(state: string = '', action): string {
   switch (action.type) {
     case 'UPDATE_HEADER':
@@ -62,6 +71,7 @@ function title(state: string = '', action): string {
 const header = combineReducers({
   back,
   visible,
+  logo,
   title,
 });
 

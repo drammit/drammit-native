@@ -15,7 +15,12 @@ class Timeline extends Component {
     const { dispatch } = this.props;
 
     return (
-      <Page statusBar>
+      <Page
+        statusBar
+        header={{
+          logo: true,
+        }}
+      >
         <Navigation active="timeline">
           <Button onPress={() => dispatch(logoutUser())} title="Log out" />
           <Text>Bla</Text>

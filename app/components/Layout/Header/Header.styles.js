@@ -22,6 +22,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  logoContainer: {
+    alignItems: 'center',
+    width: '100%',
+  },
   backText: {
     fontSize: sizes.base,
     color: colors.dark,

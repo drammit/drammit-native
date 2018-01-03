@@ -2,8 +2,10 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { View, Text, Button, Image, TouchableHighlight } from 'react-native';
+import { View, Text, Image, TouchableHighlight } from 'react-native';
 import { withRouter } from 'react-router';
+
+import Logo from '../../Logo/Logo';
 
 import styles from './Header.styles';
 
@@ -19,7 +21,7 @@ class Header extends Component<HeaderType> {
   }
 
   render(): Element<any> {
-    const { back, title } = this.props;
+    const { back, logo, title } = this.props;
 
     return (
       <View style={styles.container}>
@@ -35,6 +37,11 @@ class Header extends Component<HeaderType> {
               <Text style={styles.backText}>Back</Text>
             </View>
           </TouchableHighlight>
+        )}
+        {logo && (
+          <View style={styles.logoContainer}>
+            <Logo style={{ width: 120 }} />
+          </View>
         )}
         {title !== '' && <Text style={styles.title}>{title}</Text>}
       </View>

@@ -3,6 +3,7 @@
 // Drammit
 declare var headerType: {
   back?: boolean,
+  logo?: boolean,
   title: string,
 };
 
