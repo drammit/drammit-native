@@ -20,6 +20,10 @@ export function updateHeader(header) {
   return { type: 'UPDATE_HEADER', header };
 }
 
+export function updateLayout(header = {}, navigation = '') {
+  return { type: 'UPDATE_LAYOUT', header, navigation };
+}
+
 export function uploadProgress(progress) {
   return { type: 'UPLOAD_PROGRESS', progress };
 }

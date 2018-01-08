@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { Animated, Text, View, Button, Easing } from 'react-native';
 import { withRouter } from 'react-router';
 
-import { hideStatusBar as hideStatusBarAction, updateHeader as updateHeaderAction }
+import { hideStatusBar as hideStatusBarAction, updateLayout as updateLayoutAction }
   from '../../actions/App';
 import { facebookLogin } from '../../actions/Login';
 
@@ -27,7 +27,7 @@ type WelcomeType = {
   continueWithFacebook: Function,
   signUp: Function,
   hideStatusBar: Function,
-  updateHeader: Function,
+  updateLayout: Function,
 };
 
 const openLogin = false;
@@ -95,10 +95,10 @@ class Welcome extends Component<WelcomeType> {
   }
 
   updateAppLayout() {
-    const { hideStatusBar, updateHeader } = this.props;
+    const { hideStatusBar, updateLayout } = this.props;
 
     hideStatusBar();
-    updateHeader();
+    updateLayout();
   }
 
   openEmailLogin() {
@@ -289,8 +289,8 @@ function mapDispatchToProps(dispatch, props) {
       dispatch(hideStatusBarAction());
     },
 
-    updateHeader() {
-      dispatch(updateHeaderAction({}));
+    updateLayout() {
+      dispatch(updateLayoutAction({}));
     },
   };
 }

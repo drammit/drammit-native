@@ -23,6 +23,7 @@ type AppType = ReactRouter & {
   initialized: boolean,
   statusBar: boolean,
   header: headerType,
+  navigation: string,
   children: Children,
 };
 
@@ -46,6 +47,8 @@ class App extends Component<AppType> {
   componentWillReceiveProps(nextProps) {
     this.animateStatusBar(this.props, nextProps);
     this.animateHeader(this.props, nextProps);
+
+    console.log(nextProps);
   }
 
   animateStatusBar(currentProps, nextProps) {
@@ -89,6 +92,7 @@ class App extends Component<AppType> {
       initialized,
       statusBar,
       header,
+      navigation,
       children,
     } = this.props;
     const { statusBarPosition, headerPosition } = this.state;
@@ -125,7 +129,7 @@ class App extends Component<AppType> {
         >
           <Header {...header} />
         </Animated.View>
-        <Navigation>
+        <Navigation active={navigation}>
           {children}
         </Navigation>
       </View>
@@ -134,12 +138,18 @@ class App extends Component<AppType> {
 }
 
 function mapStateToProps(state) {
-  const { statusBar, header, initialized } = state.app;
+  const {
+    statusBar,
+    header,
+    navigation,
+    initialized,
+  } = state.app;
 
   return {
     initialized,
     statusBar,
     header,
+    navigation,
   };
 }
 

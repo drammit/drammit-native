@@ -32,9 +32,20 @@ function uploadProgress(state: number = 0, action): number {
   }
 }
 
+function navigation(state: string = '', action): string {
+  switch (action.type) {
+    case 'UPDATE_NAVIGATION':
+    case 'UPDATE_LAYOUT':
+      return action.navigation;
+    default:
+      return state;
+  }
+}
+
 function back(state: boolean = false, action): boolean {
   switch (action.type) {
     case 'UPDATE_HEADER':
+    case 'UPDATE_LAYOUT':
       return action.header.back || false;
     default:
       return state;
@@ -44,6 +55,7 @@ function back(state: boolean = false, action): boolean {
 function visible(state: boolean = false, action): boolean {
   switch (action.type) {
     case 'UPDATE_HEADER':
+    case 'UPDATE_LAYOUT':
       return Object.keys(action.header).length > 0;
     default:
       return state;
@@ -53,6 +65,7 @@ function visible(state: boolean = false, action): boolean {
 function logo(state: boolean = false, action): boolean {
   switch (action.type) {
     case 'UPDATE_HEADER':
+    case 'UPDATE_LAYOUT':
       return action.header.logo || false;
     default:
       return state;
@@ -62,6 +75,7 @@ function logo(state: boolean = false, action): boolean {
 function title(state: string = '', action): string {
   switch (action.type) {
     case 'UPDATE_HEADER':
+    case 'UPDATE_LAYOUT':
       return action.header.title || '';
     default:
       return state;
@@ -78,6 +92,7 @@ const header = combineReducers({
 export default combineReducers({
   initialized,
   statusBar,
+  navigation,
   header,
   uploadProgress,
 });
