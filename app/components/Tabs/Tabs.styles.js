@@ -22,7 +22,7 @@ export default {
     borderBottomColor: colors.lightGreen,
   },
   text: {
-    fontSize: sizes.small,
+    fontSize: sizes.mini,
     letterSpacing: 0.5,
     color: colors.grey1,
   },
