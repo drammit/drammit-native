@@ -21,6 +21,7 @@ class Search extends Component {
         <Tabs
           options={['whisky', 'distillery', 'user']}
           active="whisky"
+          onChange={console.log}
         />
 
         <Text>Search</Text>

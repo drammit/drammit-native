@@ -8,29 +8,54 @@ import styles from './Tabs.styles';
 
 type TabsType = {
   options: Array<string>,
-  active: string,
+  active?: string,
+  onChange: Function,
 };
 
-class Tabs extends Component<TabsType> {
+type StateType = {
+  selected: string,
+};
+
+class Tabs extends Component<TabsType, StateType> {
+  constructor(props) {
+    super(props);
+
+    this.onChange = option => () => this.handlePress(option);
+
+    this.state = {
+      selected: props.active || props.options[0],
+    };
+  }
+
+  handlePress(option) {
+    this.setState({
+      selected: option,
+    }, () => {
+      this.props.onChange(option);
+    });
+
+  }
+
   render(): Element<any> {
-    const { options, active } = this.props;
+    const { options } = this.props;
+    const { selected } = this.state;
 
     return (
       <View style={styles.container}>
         {options.map(option => (
           <TouchableOpacity
+            key={option}
             style={{
               ...styles.tab,
-              ...option === active ? styles.active : {},
+              ...option === selected ? styles.active : {},
             }}
-            onPress={console.log}
+            onPress={this.onChange(option)}
           >
             <Text
               style={{
                 ...styles.text,
-                ...option === active ? styles.activeText : {},
+                ...option === selected ? styles.activeText : {},
               }}
-              key={option}
             >
               {option.toUpperCase()}
             </Text>

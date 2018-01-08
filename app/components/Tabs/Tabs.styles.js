@@ -11,7 +11,6 @@ export default {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '100%',
-    textAlign: 'center',
     display: 'flex',
     alignItems: 'center',
     paddingTop: sizes.padding,
