@@ -47,8 +47,6 @@ class App extends Component<AppType> {
   componentWillReceiveProps(nextProps) {
     this.animateStatusBar(this.props, nextProps);
     this.animateHeader(this.props, nextProps);
-
-    console.log(nextProps);
   }
 
   animateStatusBar(currentProps, nextProps) {

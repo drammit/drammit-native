@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import Page from '../../components/Layout/Page';
 import SearchBar from '../../components/Form/Search';
+import Tabs from '../../components/Tabs';
 
 class Search extends Component {
   render(): Element<any> {
@@ -16,6 +17,12 @@ class Search extends Component {
         navigation="search"
       >
         <SearchBar />
+
+        <Tabs
+          options={['whisky', 'distillery', 'user']}
+          active="whisky"
+        />
+
         <Text>Search</Text>
       </Page>
     );
