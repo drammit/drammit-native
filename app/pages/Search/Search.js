@@ -8,6 +8,7 @@ import Page from '../../components/Layout/Page';
 import SearchBar from '../../components/Form/Search';
 import Tabs from '../../components/Tabs';
 import Filters from '../../components/Form/Filters';
+import Range from '../../components/Form/Range';
 import PageContent from '../../components/Layout/PageContent';
 
 class Search extends Component {
@@ -36,6 +37,13 @@ class Search extends Component {
             title="Region"
             options={[
               'Speyside', 'Highlands', 'Islay', 'Islands', 'Lowlands', 'Campbeltown',
+            ]}
+          />
+          <Range
+            title="Age range"
+            items={[
+              ...Array(51).fill('').map((i, index) => index),
+              '50+',
             ]}
           />
         </PageContent>

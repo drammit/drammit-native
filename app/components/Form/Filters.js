@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import type { Element } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 
+import Title from './Title';
+
 import styles from './Filters.styles';
 
 type FiltersType = {
@@ -48,7 +50,7 @@ class Filters extends Component<FiltersType, FiltersState> {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{title.toUpperCase()}</Text>
+        <Title>{title}</Title>
         <ScrollView
           style={styles.filters}
           contentContainerStyle={styles.filterInside}

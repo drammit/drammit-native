@@ -7,12 +7,6 @@ export default {
     marginTop: sizes.padding * 0.5,
     marginBottom: sizes.padding * 0.5,
   },
-  title: {
-    color: colors.grey2,
-    textAlign: 'center',
-    fontSize: sizes.mini,
-    fontWeight: 'bold',
-  },
   filters: {
     display: 'flex',
     flexDirection: 'row',
