@@ -6,6 +6,8 @@ export default {
     backgroundColor: colors.light,
     display: 'flex',
     flexDirection: 'row',
+    borderBottomWidth: 0.5,
+    borderBottomColor: colors.grey3,
   },
   tab: {
     flexGrow: 1,

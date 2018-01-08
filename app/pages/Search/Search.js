@@ -2,12 +2,13 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import Page from '../../components/Layout/Page';
 import SearchBar from '../../components/Form/Search';
 import Tabs from '../../components/Tabs';
+import Filters from '../../components/Form/Filters';
+import PageContent from '../../components/Layout/PageContent';
 
 class Search extends Component {
   render(): Element<any> {
@@ -24,7 +25,20 @@ class Search extends Component {
           onChange={console.log}
         />
 
-        <Text>Search</Text>
+        <PageContent>
+          <Filters
+            title="Whisky type"
+            options={[
+              'Single Malt', 'Bourbon', 'Blend', 'Blended Malt', 'Single Grain', 'Rye', 'Spirit',
+            ]}
+          />
+          <Filters
+            title="Region"
+            options={[
+              'Speyside', 'Highlands', 'Islay', 'Islands', 'Lowlands', 'Campbeltown',
+            ]}
+          />
+        </PageContent>
       </Page>
     );
   }
