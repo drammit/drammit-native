@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/Login';
 
 import Page from '../../components/Layout/Page';
-import Navigation from '../../components/Layout/Navigation';
 
 class Timeline extends Component {
   render(): Element<any> {
@@ -20,11 +19,10 @@ class Timeline extends Component {
         header={{
           logo: true,
         }}
+        navigation="timeline"
       >
-        <Navigation active="timeline">
-          <Button onPress={() => dispatch(logoutUser())} title="Log out" />
-          <Text>Bla</Text>
-        </Navigation>
+        <Button onPress={() => dispatch(logoutUser())} title="Log out" />
+        <Text>Bla</Text>
       </Page>
     );
   }

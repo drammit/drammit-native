@@ -4,6 +4,7 @@ export default {
   container: {
     backgroundColor: colors.light,
     padding: sizes.padding * 1,
+    width: '100%',
   },
   input: {
     backgroundColor: colors.grey5,

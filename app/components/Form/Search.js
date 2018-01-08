@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { reduxForm } from 'redux-form';
 
 import TextInput from './TextInput';

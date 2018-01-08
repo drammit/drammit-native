@@ -15,6 +15,7 @@ import { setHistory } from '../../core/push';
 import { initialize } from '../../actions/App';
 
 import Initializing from './Initializing';
+import Navigation from './Navigation';
 
 import { style, styles } from './App.styles';
 
@@ -124,9 +125,9 @@ class App extends Component<AppType> {
         >
           <Header {...header} />
         </Animated.View>
-        <View style={styles.container}>
+        <Navigation>
           {children}
-        </View>
+        </Navigation>
       </View>
     );
   }

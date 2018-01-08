@@ -6,22 +6,20 @@ import { Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import Page from '../../components/Layout/Page';
-import Navigation from '../../components/Layout/Navigation';
 import SearchBar from '../../components/Form/Search';
 
-class Timeline extends Component {
+class Search extends Component {
   render(): Element<any> {
     return (
       <Page
         statusBar
+        navigation="search"
       >
-        <Navigation active="search">
-          <SearchBar />
-          <Text>Search</Text>
-        </Navigation>
+        <SearchBar />
+        <Text>Search</Text>
       </Page>
     );
   }
 }
 
-export default connect()(Timeline);
+export default connect()(Search);
