@@ -10,7 +10,7 @@ export default StyleSheet.create({
   navigation: {
     height: 50,
     borderTopColor: colors.grey3,
-    borderTopWidth: 1,
+    borderTopWidth: 0.5,
     backgroundColor: colors.light,
     flexShrink: 0,
     flexGrow: 0,

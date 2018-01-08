@@ -5,8 +5,6 @@ import { colors, sizes } from '../../../Config.styles';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    borderBottomWidth: 0.5,
-    borderBottomColor: colors.grey3,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
