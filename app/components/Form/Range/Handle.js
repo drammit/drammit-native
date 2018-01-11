@@ -27,6 +27,18 @@ class Handle extends Component<HandleType, HandleStateType> {
   }
 
   componentWillMount() {
+    function posx(min, max, newPos) {
+      if (newPos < min) {
+        return min;
+      }
+
+      if (newPos > max) {
+        return max;
+      }
+
+      return newPos;
+    }
+
     this.panResponder = PanResponder.create({
       // Ask to be the responder:
       onStartShouldSetPanResponder: () => true,
@@ -37,8 +49,6 @@ class Handle extends Component<HandleType, HandleStateType> {
       onPanResponderMove: (evt, gestureState) => {
         const { posX } = this.state;
         const { min, max, size } = this.props;
-
-        console.log(min, max - size, posX + gestureState.dx);
 
         if (posX + gestureState.dx < min) {
           return this.setState({
@@ -58,12 +68,12 @@ class Handle extends Component<HandleType, HandleStateType> {
       },
       onPanResponderTerminationRequest: () => true,
       onPanResponderRelease: (evt, gestureState) => {
-        const { min } = this.props;
+        const { min, max, size } = this.props;
         const newPos = this.state.posX + gestureState.dx;
 
         this.setState({
           moveX: 0,
-          posX: newPos < min ? min : newPos,
+          posX: posx(min, (max - size), newPos),
         });
       },
     });
