@@ -33,7 +33,9 @@ class Range extends Component<RangeType, RangeStateType> {
   }
 
   updateValues(values) {
-    console.log(values);
+    this.setState({
+      values,
+    });
   }
 
   render(): Element<any> {

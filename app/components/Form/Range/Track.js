@@ -9,7 +9,7 @@ import Handle from './Handle';
 import { colors, sizes } from '../../../Config.styles';
 
 function calcValue(position, max, width) {
-  return Math.floor(position / (width / max));
+  return Math.floor(position / (width / (max - 1)));
 }
 
 function calcValues(positions, max, width) {
