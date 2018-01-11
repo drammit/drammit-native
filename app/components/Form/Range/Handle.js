@@ -52,20 +52,20 @@ class Handle extends Component<HandleType, HandleStateType> {
         const { posX } = this.state;
         const { min, max, size } = this.props;
 
+        let moveX = gestureState.dx;
+
         if (posX + gestureState.dx < min) {
-          return this.setState({
-            moveX: (posX * -1) + min,
-          });
+          moveX = (posX * -1) + min;
         }
 
         if (posX + gestureState.dx > max - size) {
-          return this.setState({
-            moveX: (max - size) - posX,
-          });
+          moveX = (max - size) - posX;
         }
 
+        this.updatePosition(posX + moveX);
+
         return this.setState({
-          moveX: gestureState.dx,
+          moveX,
         });
       },
       onPanResponderTerminationRequest: () => true,
@@ -74,14 +74,11 @@ class Handle extends Component<HandleType, HandleStateType> {
           min,
           max,
           size,
-          onUpdate,
         } = this.props;
         const newPos = this.state.posX + gestureState.dx;
         const posX = posx(min, (max - size), newPos);
 
-        if (typeof onUpdate === 'function') {
-          onUpdate(posX);
-        }
+        this.updatePosition(posX);
 
         this.setState({
           moveX: 0,
@@ -89,6 +86,14 @@ class Handle extends Component<HandleType, HandleStateType> {
         });
       },
     });
+  }
+
+  updatePosition(posX: number) {
+    const { onUpdate } = this.props;
+
+    if (typeof onUpdate === 'function') {
+      onUpdate(posX);
+    }
   }
 
   render(): Element<any> {

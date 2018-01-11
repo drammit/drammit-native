@@ -52,6 +52,15 @@ class Track extends Component<TrackType> {
           margin: sizes.padding * 2,
         }}
       >
+        <View
+          style={{
+            height: 4,
+            width: pos2 - pos1,
+            backgroundColor: colors.grey2,
+            position: 'absolute',
+            left: pos1,
+          }}
+        />
         <Handle
           size={size}
           start={pos1}
