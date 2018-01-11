@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 
 import { colors, sizes } from '../../../Config.styles';
 
@@ -24,6 +24,7 @@ class Indicator extends Component<IndicatorType> {
           fontWeight: '600',
           marginLeft: sizes.padding * 4,
           marginRight: sizes.padding * 4,
+          color: colors.dark,
           left: position === 'left' ? 0 : 'auto',
           right: position === 'right' ? 0 : 'auto',
         }}
