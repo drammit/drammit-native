@@ -25,9 +25,15 @@ class Range extends Component<RangeType, RangeStateType> {
   constructor(props) {
     super(props);
 
+    this.onUpdateValues = this.updateValues.bind(this);
+
     this.state = {
       values: [...props.initial],
     };
+  }
+
+  updateValues(values) {
+    console.log(values);
   }
 
   render(): Element<any> {
@@ -49,7 +55,7 @@ class Range extends Component<RangeType, RangeStateType> {
             width: 'auto',
           }}
         >
-          <Track totalItems={items.length} values={values} />
+          <Track onUpdate={this.onUpdateValues} totalItems={items.length} values={values} />
         </View>
       </View>
     );

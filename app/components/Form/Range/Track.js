@@ -8,21 +8,35 @@ import Handle from './Handle';
 
 import { colors, sizes } from '../../../Config.styles';
 
+function calcValue(position, max, width) {
+  return Math.floor(position / (width / max));
+}
+
+function calcValues(positions, max, width) {
+  return positions.map(position => calcValue(position, max, width));
+}
+
 function calcPosition(value, max, width) {
   return (width / (max - 1)) * value;
 }
 
 function calcPositions(values, max, width) {
-  return [...values.map(value => calcPosition(value, max, width))];
+  return values.map(value => calcPosition(value, max, width));
 }
 
 type TrackType = {
   totalItems: number,
   values: Array<number>,
   size: number,
+  onUpdate: Function,
 };
 
-class Track extends Component<TrackType> {
+type TrackStateType = {
+  trackWidth: number,
+  positions: Array<number>,
+};
+
+class Track extends Component<TrackType, TrackStateType> {
   constructor(props) {
     super(props);
 
@@ -39,15 +53,22 @@ class Track extends Component<TrackType> {
 
   updateTrackWidth(event) {
     const newWidth = event.nativeEvent.layout.width;
-    const { totalItems } = this.props;
+    const { totalItems, size } = this.props;
 
     this.setState({
       trackWidth: newWidth,
-      positions: calcPositions(this.props.values, totalItems, newWidth),
+      positions: calcPositions(this.props.values, totalItems, newWidth - size),
     });
   }
 
   updatePositions(pos1, pos2) {
+    const { onUpdate, totalItems, size } = this.props;
+    const { trackWidth } = this.state;
+
+    if (typeof onUpdate === 'function') {
+      onUpdate(calcValues([pos1, pos2], totalItems, trackWidth - size));
+    }
+
     this.setState({
       positions: [pos1, pos2],
     });
