@@ -8,6 +8,14 @@ import Handle from './Handle';
 
 import { colors, sizes } from '../../../Config.styles';
 
+function calcPosition(value, max, width) {
+  return (width / (max - 1)) * value;
+}
+
+function calcPositions(values, max, width) {
+  return [...values.map(value => calcPosition(value, max, width))];
+}
+
 type TrackType = {
   totalItems: number,
   values: Array<number>,
@@ -29,16 +37,13 @@ class Track extends Component<TrackType> {
     };
   }
 
-  calcPositions(values) {
-    console.log(values);
-
-    return [...values];
-  }
-
   updateTrackWidth(event) {
+    const newWidth = event.nativeEvent.layout.width;
+    const { totalItems } = this.props;
+
     this.setState({
-      trackWidth: event.nativeEvent.layout.width,
-      positions: this.calcPositions(this.props.values),
+      trackWidth: newWidth,
+      positions: calcPositions(this.props.values, totalItems, newWidth),
     });
   }
 
