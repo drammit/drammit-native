@@ -42,7 +42,8 @@ class Search extends Component {
           <Range
             title="Age range"
             items={[
-              ...Array(51).fill('').map((i, index) => index),
+              'All',
+              ...Array(50).fill('').map((i, index) => index + 1),
               '50+',
             ]}
           />

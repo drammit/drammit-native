@@ -8,7 +8,9 @@ import Handle from './Handle';
 
 import { colors, sizes } from '../../../Config.styles';
 
-type TrackType = {};
+type TrackType = {
+  size: number,
+};
 
 class Track extends Component<TrackType> {
   constructor(props) {
@@ -38,9 +40,9 @@ class Track extends Component<TrackType> {
   }
 
   render(): Element<any> {
+    const { size } = this.props;
     const { trackWidth, positions } = this.state;
     const [pos1, pos2] = positions;
-    const size = 25;
 
     return (
       <View
@@ -50,6 +52,8 @@ class Track extends Component<TrackType> {
           backgroundColor: colors.grey4,
           width: 'auto',
           margin: sizes.padding * 2,
+          marginLeft: 0,
+          marginRight: 0,
         }}
       >
         <View
@@ -79,5 +83,9 @@ class Track extends Component<TrackType> {
     );
   }
 }
+
+Track.defaultProps = {
+  size: 25,
+};
 
 export default Track;
