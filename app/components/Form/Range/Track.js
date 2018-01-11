@@ -9,6 +9,8 @@ import Handle from './Handle';
 import { colors, sizes } from '../../../Config.styles';
 
 type TrackType = {
+  totalItems: number,
+  values: Array<number>,
   size: number,
 };
 
@@ -23,13 +25,20 @@ class Track extends Component<TrackType> {
 
     this.state = {
       trackWidth: 0,
-      positions: [0, 100],
+      positions: [0, 0],
     };
+  }
+
+  calcPositions(values) {
+    console.log(values);
+
+    return [...values];
   }
 
   updateTrackWidth(event) {
     this.setState({
       trackWidth: event.nativeEvent.layout.width,
+      positions: this.calcPositions(this.props.values),
     });
   }
 
@@ -67,14 +76,14 @@ class Track extends Component<TrackType> {
         />
         <Handle
           size={size}
-          start={pos1}
+          position={pos1}
           min={0}
           max={pos2}
           onUpdate={this.onUpdatePositions(1)}
         />
         <Handle
           size={size}
-          start={pos2}
+          position={pos2}
           min={pos1 + size}
           max={trackWidth}
           onUpdate={this.onUpdatePositions(2)}

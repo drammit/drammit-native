@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
 import { sizes } from '../../../Config.styles';
 
@@ -13,18 +13,32 @@ import Indicator from './Indicator';
 
 type RangeType = {
   title: string,
+  initial: Array<number>,
   items: Array<string | number>,
 };
 
-class Range extends Component<RangeType> {
+type RangeStateType = {
+  values: Array<number>,
+};
+
+class Range extends Component<RangeType, RangeStateType> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      values: [...props.initial],
+    };
+  }
+
   render(): Element<any> {
     const { title, items } = this.props;
+    const { values } = this.state;
 
     return (
       <View>
         <Title>{title}</Title>
-        <Indicator position="left" text="All" />
-        <Indicator position="right" text="25" />
+        <Indicator position="left" text={items[values[0]]} />
+        <Indicator position="right" text={items[values[1]]} />
         <View
           style={{
             height: 25,
@@ -35,7 +49,7 @@ class Range extends Component<RangeType> {
             width: 'auto',
           }}
         >
-          <Track />
+          <Track totalItems={items.length} values={values} />
         </View>
       </View>
     );
