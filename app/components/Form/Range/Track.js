@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
 import Handle from './Handle';
 
@@ -14,8 +14,14 @@ class Track extends Component<TrackType> {
   constructor(props) {
     super(props);
 
+    this.onUpdatePositions = handle => (pos) => {
+      const [pos1, pos2] = this.state.positions;
+      this.updatePositions(handle === 1 ? pos : pos1, handle === 2 ? pos : pos2);
+    };
+
     this.state = {
       trackWidth: 0,
+      positions: [0, 100],
     };
   }
 
@@ -25,8 +31,16 @@ class Track extends Component<TrackType> {
     });
   }
 
+  updatePositions(pos1, pos2) {
+    this.setState({
+      positions: [pos1, pos2],
+    });
+  }
+
   render(): Element<any> {
-    const { trackWidth } = this.state;
+    const { trackWidth, positions } = this.state;
+    const [pos1, pos2] = positions;
+    const size = 25;
 
     return (
       <View
@@ -38,7 +52,20 @@ class Track extends Component<TrackType> {
           margin: sizes.padding * 2,
         }}
       >
-        <Handle min={0} max={trackWidth} />
+        <Handle
+          size={size}
+          start={pos1}
+          min={0}
+          max={pos2}
+          onUpdate={this.onUpdatePositions(1)}
+        />
+        <Handle
+          size={size}
+          start={pos2}
+          min={pos1 + size}
+          max={trackWidth}
+          onUpdate={this.onUpdatePositions(2)}
+        />
       </View>
     );
   }

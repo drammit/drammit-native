@@ -7,9 +7,11 @@ import { View, PanResponder } from 'react-native';
 import { colors } from '../../../Config.styles';
 
 type HandleType = {
-  size?: number,
+  start?: number,
+  size: number,
   min: number,
   max: number,
+  onUpdate?: Function,
 };
 
 type HandleStateType = {
@@ -22,7 +24,7 @@ class Handle extends Component<HandleType, HandleStateType> {
 
     this.state = {
       moveX: 0,
-      posX: 0,
+      posX: props.start || 0,
     };
   }
 
@@ -52,7 +54,7 @@ class Handle extends Component<HandleType, HandleStateType> {
 
         if (posX + gestureState.dx < min) {
           return this.setState({
-            moveX: posX * -1,
+            moveX: (posX * -1) + min,
           });
         }
 
@@ -68,8 +70,18 @@ class Handle extends Component<HandleType, HandleStateType> {
       },
       onPanResponderTerminationRequest: () => true,
       onPanResponderRelease: (evt, gestureState) => {
-        const { min, max, size } = this.props;
+        const {
+          min,
+          max,
+          size,
+          onUpdate,
+        } = this.props;
         const newPos = this.state.posX + gestureState.dx;
+        const posX = posx(min, (max - size), newPos);
+
+        if (typeof onUpdate === 'function') {
+          onUpdate(posX);
+        }
 
         this.setState({
           moveX: 0,
@@ -99,9 +111,5 @@ class Handle extends Component<HandleType, HandleStateType> {
     );
   }
 }
-
-Handle.defaultProps = {
-  size: 25,
-};
 
 export default Handle;
