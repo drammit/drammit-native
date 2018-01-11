@@ -19,7 +19,6 @@ async function onInit(dispatch) {
     const user = await tokenLogin(loginToken.token, loginToken.UserId);
     dispatch(loginUserSuccess(user));
   } catch (e) {
-
     dispatch(initialized());
   }
 }

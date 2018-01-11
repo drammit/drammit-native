@@ -12,6 +12,15 @@ function initialized(state: boolean = false, action): boolean {
   }
 }
 
+function fetchError(state: boolean = false, action): boolean {
+  switch (action.type) {
+    case 'FETCH_ERROR':
+      return true;
+    default:
+      return state;
+  }
+}
+
 function statusBar(state: boolean = false, action): boolean {
   switch (action.type) {
     case 'SHOW_STATUSBAR':
@@ -91,6 +100,7 @@ const header = combineReducers({
 
 export default combineReducers({
   initialized,
+  fetchError,
   statusBar,
   navigation,
   header,

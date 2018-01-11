@@ -27,3 +27,7 @@ export function updateLayout(header = {}, navigation = '') {
 export function uploadProgress(progress) {
   return { type: 'UPLOAD_PROGRESS', progress };
 }
+
+export function fetchError(message) {
+  return { type: 'FETCH_ERROR', message };
+}

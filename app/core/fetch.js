@@ -3,7 +3,7 @@
 import RNFetchBlob from 'react-native-fetch-blob';
 import Config from 'react-native-config';
 
-import { uploadProgress } from '../actions/App';
+import { uploadProgress, fetchError } from '../actions/App';
 
 let store = { dispatch() {} };
 
@@ -17,6 +17,18 @@ function createUrl(url) {
 
 function containsFile(data) {
   return Object.keys(data).some(key => data[key] && data[key].uri);
+}
+
+async function handleError(response) {
+  if (!response.ok) {
+    throw new Error(await response.text());
+  }
+
+  return response;
+}
+
+function handleFetchError(e) {
+  store.dispatch(fetchError(e.message || e));
 }
 
 function sendFormData(url, data) {
@@ -48,20 +60,13 @@ function sendFormData(url, data) {
         };
       }).filter(value => value !== null),
     )
+    .catch(handleFetchError)
     .uploadProgress((written, total) => {
       store.dispatch(uploadProgress(written / total));
     })
     .progress((received, total) => {
       store.dispatch(uploadProgress(received / total));
     });
-}
-
-async function handleError(response) {
-  if (!response.ok) {
-    throw new Error(await response.text());
-  }
-
-  return response;
 }
 
 export function post(url: string, data: any): Promise<any> {
@@ -81,7 +86,8 @@ export function post(url: string, data: any): Promise<any> {
     },
   )
     .then(handleError)
-    .then(resp => resp.json());
+    .then(resp => resp.json())
+    .catch(handleFetchError);
 }
 
 export function get(url: string): Promise<any> {
@@ -95,5 +101,6 @@ export function get(url: string): Promise<any> {
     },
   )
     .then(handleError)
-    .then(resp => resp.json());
+    .then(resp => resp.json())
+    .catch(handleFetchError);
 }

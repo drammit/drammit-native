@@ -22,6 +22,7 @@ import { style, styles } from './App.styles';
 type AppType = ReactRouter & {
   initialized: boolean,
   statusBar: boolean,
+  fetchError: boolean,
   header: headerType,
   navigation: string,
   children: Children,
@@ -88,6 +89,7 @@ class App extends Component<AppType> {
   render(): Element<any> {
     const {
       initialized,
+      fetchError,
       statusBar,
       header,
       navigation,
@@ -96,7 +98,7 @@ class App extends Component<AppType> {
     const { statusBarPosition, headerPosition } = this.state;
 
     if (!initialized) {
-      return <Initializing />;
+      return <Initializing fetchError={fetchError} />;
     }
 
     return (
@@ -138,6 +140,7 @@ class App extends Component<AppType> {
 function mapStateToProps(state) {
   const {
     statusBar,
+    fetchError,
     header,
     navigation,
     initialized,
@@ -145,6 +148,7 @@ function mapStateToProps(state) {
 
   return {
     initialized,
+    fetchError,
     statusBar,
     header,
     navigation,
