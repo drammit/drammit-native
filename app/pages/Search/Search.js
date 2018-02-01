@@ -1,12 +1,11 @@
 // @flow
 
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 import Page from '../../components/Layout/Page';
 import Text from '../../components/Page/Text';
-import PageContent from '../../components/Layout/PageContent';
 import SearchForm from '../../components/Search/SearchForm';
 import SearchResult from '../../components/Search/SearchResult';
 
@@ -43,22 +42,15 @@ class Search extends Component<null, SearchStateType> {
       >
         <SearchForm onSearch={this.onSearch} />
 
-        <View style={{ width: '100%' }}>
-          <SearchResult />
-          <SearchResult />
-          <SearchResult />
-          <SearchResult />
-          <SearchResult />
-          <SearchResult />
-          <SearchResult />
-          <SearchResult />
-          <SearchResult />
-        </View>
         {searching && (
-          <PageContent>
-            <Text>Searching...</Text>
-          </PageContent>
+          <Text>Searching...</Text>
         )}
+
+        <FlatList
+          style={{ width: '100%' }}
+          data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
+          renderItem={() => <SearchResult />}
+        />
       </Page>
     );
   }
