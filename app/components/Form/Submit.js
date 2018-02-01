@@ -9,11 +9,16 @@ import { colors, sizes } from '../../Config.styles';
 type SubmitType = {
   title: string,
   light?: boolean,
-  disabled: boolean,
-  onPress: Function,
+  disabled?: boolean,
+  onPress: () => void,
 };
 
-function Submit({ title, onPress, light = false, disabled = false }: SubmitType): Element<any> {
+function Submit({
+  title,
+  onPress,
+  light = false,
+  disabled = false,
+}: SubmitType): Element<any> {
   return (
     <View
       style={{
