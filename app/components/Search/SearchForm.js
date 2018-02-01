@@ -94,6 +94,12 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
   render() {
     const { tab, collapsed, collapseAnimation } = this.state;
 
+    const tabHeights = {
+      whisky: 362,
+      distillery: 236,
+      user: 162,
+    };
+
     return (
       <View style={{ width: '100%' }}>
         <Animated.View
@@ -102,7 +108,7 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
             overflow: 'hidden',
             height: collapseAnimation.interpolate({
               inputRange: [0, 1],
-              outputRange: [362, 44],
+              outputRange: [tabHeights[tab], 44],
             }),
           }}
         >

@@ -1,15 +1,20 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import Page from '../../components/Layout/Page';
 import Text from '../../components/Page/Text';
-import SearchForm from '../../components/Search/SearchForm';
 import PageContent from '../../components/Layout/PageContent';
+import SearchForm from '../../components/Search/SearchForm';
+import SearchResult from '../../components/Search/SearchResult';
 
-class Search extends Component {
+type SearchStateType = {
+  searching: boolean,
+};
+
+class Search extends Component<null, SearchStateType> {
   constructor(props) {
     super(props);
 
@@ -20,13 +25,15 @@ class Search extends Component {
     };
   }
 
+  onSearch: () => void;
+
   startSearch() {
     this.setState({
       searching: true,
     });
   }
 
-  render(): Element<any> {
+  render() {
     const { searching } = this.state;
 
     return (
@@ -35,6 +42,18 @@ class Search extends Component {
         navigation="search"
       >
         <SearchForm onSearch={this.onSearch} />
+
+        <View style={{ width: '100%' }}>
+          <SearchResult />
+          <SearchResult />
+          <SearchResult />
+          <SearchResult />
+          <SearchResult />
+          <SearchResult />
+          <SearchResult />
+          <SearchResult />
+          <SearchResult />
+        </View>
         {searching && (
           <PageContent>
             <Text>Searching...</Text>
