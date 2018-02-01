@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import { View, Text } from 'react-native';
+import { View, Button } from 'react-native';
 
 import Tabs from '../Tabs';
 import SearchBar from '../Form/Search';
@@ -12,6 +12,7 @@ import PageContent from '../Layout/PageContent';
 import Submit from '../Form/Submit';
 
 import styles from './SearchForm.styles';
+import { colors } from '../../Config.styles';
 
 type tabType = 'whisky' | 'distillery' | 'user';
 
@@ -43,6 +44,7 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
 
     this.onChangeTab = this.changeTab.bind(this);
     this.onSearch = this.triggerSearch.bind(this);
+    this.onOpenFilters = this.openFilters.bind(this);
 
     this.state = {
       tab: 'whisky',
@@ -52,18 +54,31 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
 
   onChangeTab: (tab: tabType) => void;
   onSearch: () => void;
+  onOpenFilters: () => void;
 
   changeTab(tab: tabType) {
     this.setState({ tab });
   }
 
-  triggerSearch() {
+  openFilters() {
+    this.setState({
+      collapsed: false,
+    });
+  }
 
+  triggerSearch() {
+    const { onSearch } = this.props;
+
+    onSearch();
+
+    // collapse search
+    this.setState({
+      collapsed: true,
+    });
   }
 
   render(): Element<any> {
     const { tab, collapsed } = this.state;
-    const { onSearch } = this.props;
 
     return (
       <View style={styles.formContainer}>
@@ -108,11 +123,17 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
             <Submit
               light
               title={buttonText(tab)}
-              onPress={onSearch}
+              onPress={this.onSearch}
             />
           </View>
 
-          {collapsed && <Text>Show filters</Text>}
+          {collapsed && (
+            <Button
+              title="Show filters"
+              disabled={!collapsed}
+              onPress={this.onOpenFilters}
+            />
+          )}
         </PageContent>
       </View>
     );
