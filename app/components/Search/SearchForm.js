@@ -95,68 +95,71 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
     const { tab, collapsed, collapseAnimation } = this.state;
 
     const tabHeights = {
-      whisky: 362,
-      distillery: 236,
-      user: 162,
+      whisky: 318,
+      distillery: 192,
+      user: 118,
     };
 
     return (
       <View style={{ width: '100%' }}>
+        <SearchBar />
+
         <Animated.View
           style={{
             width: '100%',
             overflow: 'hidden',
+            justifyContent: 'flex-end',
             height: collapseAnimation.interpolate({
               inputRange: [0, 1],
-              outputRange: [tabHeights[tab], 44],
+              outputRange: [tabHeights[tab], 0],
             }),
           }}
         >
-          <SearchBar />
+          <View style={{ height: tabHeights[tab] }}>
+            <Tabs
+              options={['whisky', 'distillery', 'user']}
+              active={tab}
+              onChange={this.onChangeTab}
+            />
 
-          <Tabs
-            options={['whisky', 'distillery', 'user']}
-            active={tab}
-            onChange={this.onChangeTab}
-          />
+            <PageContent>
+              {tab === 'whisky' && (
+                <Filters
+                  title="Whisky type"
+                  options={[
+                    'Single Malt', 'Bourbon', 'Blend', 'Blended Malt', 'Single Grain', 'Rye', 'Spirit',
+                  ]}
+                />
+              )}
+              {(tab === 'whisky' || tab === 'distillery') && (
+                <Filters
+                  title="Region"
+                  options={[
+                    'Speyside', 'Highlands', 'Islay', 'Islands', 'Lowlands', 'Campbeltown',
+                  ]}
+                />
+              )}
+              {tab === 'whisky' && (
+                <Range
+                  title="Age range"
+                  initial={[0, 30]}
+                  items={[
+                    'All',
+                    ...Array(50).fill('').map((i, index) => index + 1),
+                    '50+',
+                  ]}
+                />
+              )}
 
-          <PageContent>
-            {tab === 'whisky' && (
-              <Filters
-                title="Whisky type"
-                options={[
-                  'Single Malt', 'Bourbon', 'Blend', 'Blended Malt', 'Single Grain', 'Rye', 'Spirit',
-                ]}
-              />
-            )}
-            {(tab === 'whisky' || tab === 'distillery') && (
-              <Filters
-                title="Region"
-                options={[
-                  'Speyside', 'Highlands', 'Islay', 'Islands', 'Lowlands', 'Campbeltown',
-                ]}
-              />
-            )}
-            {tab === 'whisky' && (
-              <Range
-                title="Age range"
-                initial={[0, 30]}
-                items={[
-                  'All',
-                  ...Array(50).fill('').map((i, index) => index + 1),
-                  '50+',
-                ]}
-              />
-            )}
-
-            <View style={styles.submitContainer}>
-              <Submit
-                light
-                title={buttonText(tab)}
-                onPress={this.onSearch}
-              />
-            </View>
-          </PageContent>
+              <View style={styles.submitContainer}>
+                <Submit
+                  light
+                  title={buttonText(tab)}
+                  onPress={this.onSearch}
+                />
+              </View>
+            </PageContent>
+          </View>
         </Animated.View>
         {collapsed && (
           <View style={styles.filterSwitch}>
