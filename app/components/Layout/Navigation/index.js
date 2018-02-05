@@ -19,7 +19,7 @@ import styles from './Navigation.styles';
 
 type NavigationType = {
   active: 'timeline' | 'search' | 'dram' | 'notifications' | 'profile' | '',
-  children: Children,
+  children: any,
 } & ReactRouterType;
 
 class Navigation extends Component<NavigationType> {

@@ -1,10 +1,17 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
-import { Keyboard, ScrollView, View } from 'react-native';
+import { Keyboard, ScrollView } from 'react-native';
 
-class KeyboardScrollView extends Component {
+type KeyboardScrollViewType = {
+  children: any,
+};
+
+type KeyboardScrollViewStateType = {
+  keyboardHeight: number,
+};
+
+class KeyboardScrollView extends Component<KeyboardScrollViewType, KeyboardScrollViewStateType> {
   state = {
     keyboardHeight: 0,
   };
@@ -21,7 +28,10 @@ class KeyboardScrollView extends Component {
     this.keyboardDidHideListener.remove();
   }
 
-  keyboardDidShow(e) {
+  keyboardDidShowListener: any;
+  keyboardDidHideListener: any;
+
+  keyboardDidShow(e: any) {
     const keyboardHeight = e.endCoordinates.height;
 
     this.setState({
@@ -35,7 +45,7 @@ class KeyboardScrollView extends Component {
     });
   }
 
-  render(): Element<any> {
+  render() {
     const { children } = this.props;
     const { keyboardHeight } = this.state;
 

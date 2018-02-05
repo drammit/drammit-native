@@ -56,7 +56,7 @@ const App = () => (
 
 // ignore Remote Debugger warnings
 // $FlowExpectedError
-console.disableYellowBox = true;
+console.disableYellowBox = true; // eslint-disable-line no-console
 // $FlowExpectedError
 NativeModules.ExceptionsManager = null;
 

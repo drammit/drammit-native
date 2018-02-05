@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 import Title from './Title';
@@ -26,7 +25,7 @@ function newSelectedState(selected, option) {
 }
 
 class Filters extends Component<FiltersType, FiltersState> {
-  constructor(props) {
+  constructor(props: FiltersType) {
     super(props);
 
     this.onToggle = option => () => this.toggleFilter(option);
@@ -36,7 +35,9 @@ class Filters extends Component<FiltersType, FiltersState> {
     };
   }
 
-  toggleFilter(option) {
+  onToggle: (option: string) => () => void;
+
+  toggleFilter(option: string) {
     const { selected } = this.state;
 
     this.setState({
@@ -44,7 +45,7 @@ class Filters extends Component<FiltersType, FiltersState> {
     });
   }
 
-  render(): Element<any> {
+  render() {
     const { title, options } = this.props;
     const { selected } = this.state;
 

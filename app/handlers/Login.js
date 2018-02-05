@@ -60,7 +60,7 @@ function handleLogout() {
   push('/');
 }
 
-export default function Login(middleware) {
+export default function Login(middleware: ReduxListener) {
   middleware.addListener('FACEBOOK_LOGIN', handleFacebookLogin);
   middleware.addListener('LOGIN_USER', handleLoginUser);
   middleware.addListener('LOGIN_USER_SUCCESS', handleLoginSuccess);

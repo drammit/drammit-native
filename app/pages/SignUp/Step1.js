@@ -24,7 +24,10 @@ import Error from '../../components/Form/Error';
 type SignUpType = ReduxFormType & ReactRouterType & {
   loading: boolean,
   error: string,
+  errorMessage: string,
   nextStep: boolean,
+  initialValues: { email: string, password: string },
+  onSubmitForm: (email: string, password: string) => void,
 };
 
 class Step1 extends Component<SignUpType> {
@@ -37,8 +40,13 @@ class Step1 extends Component<SignUpType> {
       this.passwordInput = ref;
     };
 
-    this.focusPassword = () => this.passwordInput.focus();
+    this.focusPassword = () => this.passwordInput.focus && this.passwordInput.focus();
   }
+
+  onSubmit: () => void;
+  setPasswordRef: (ref: TextInput) => void;
+  passwordInput: TextInput;
+  focusPassword: () => void;
 
   handleSubmit(values) {
     this.props.onSubmitForm(values.email, values.password);

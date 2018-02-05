@@ -20,14 +20,14 @@ export function updateHeader(header) {
   return { type: 'UPDATE_HEADER', header };
 }
 
-export function updateLayout(header = {}, navigation = '') {
+export function updateLayout(header: headerType = {}, navigation: string = '') {
   return { type: 'UPDATE_LAYOUT', header, navigation };
 }
 
-export function uploadProgress(progress) {
+export function uploadProgress(progress: number) {
   return { type: 'UPLOAD_PROGRESS', progress };
 }
 
-export function fetchError(message) {
+export function fetchError(message: string) {
   return { type: 'FETCH_ERROR', message };
 }

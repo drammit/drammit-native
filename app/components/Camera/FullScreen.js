@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Camera from 'react-native-camera';
 
@@ -17,8 +16,10 @@ const styles = StyleSheet.create({
   },
 });
 
-class FullScreen extends Component {
-  render(): Element<any> {
+class FullScreen extends Component<null> {
+  camera: any;
+
+  render() {
     return (
       <View style={styles.container}>
         <Camera

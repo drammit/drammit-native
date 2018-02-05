@@ -1,15 +1,14 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
 import { View, Image } from 'react-native';
 
 type ImageContainerType = {
   source: string,
-  children: Children,
+  children: any,
 };
 
-function ImageContainer({ source, children }: ImageContainerType): Element<any> {
+function ImageContainer({ source, children }: ImageContainerType) {
   return (
     <View
       style={{

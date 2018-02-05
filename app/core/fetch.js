@@ -7,7 +7,7 @@ import { uploadProgress, fetchError } from '../actions/App';
 
 let store = { dispatch() {} };
 
-export function setStore(newStore) {
+export function setStore(newStore: any) {
   store = newStore;
 }
 

@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { connect } from 'react-redux';
 import { Animated } from 'react-native';
 
@@ -17,7 +16,12 @@ type UploadType = {
   uploadProgress: number,
 };
 
-class Upload extends Component<UploadType> {
+type UploadStateType = {
+  barWidth: Animated.Value,
+  showHeight: Animated.Value,
+};
+
+class Upload extends Component<UploadType, UploadStateType> {
   constructor(props) {
     super(props);
 
@@ -56,7 +60,7 @@ class Upload extends Component<UploadType> {
     }
   }
 
-  render(): Element {
+  render() {
     const { barWidth, showHeight } = this.state;
 
     return (

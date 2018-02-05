@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -10,7 +9,7 @@ import { logoutUser } from '../../actions/Login';
 import Page from '../../components/Layout/Page';
 
 class Timeline extends Component {
-  render(): Element<any> {
+  render() {
     const { dispatch } = this.props;
 
     return (

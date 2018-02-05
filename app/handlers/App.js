@@ -23,6 +23,6 @@ async function onInit(dispatch) {
   }
 }
 
-export default function App(middleware) {
+export default function App(middleware: ReduxListener) {
   middleware.addListener('INITIALIZE', onInit);
 }

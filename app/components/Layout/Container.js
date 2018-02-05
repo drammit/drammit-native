@@ -6,7 +6,7 @@ import { View } from 'react-native';
 
 type ContainerType = {
   style: any,
-  children: Children,
+  children: any,
 };
 
 function Container({ style, children }: ContainerType): Element<any> {

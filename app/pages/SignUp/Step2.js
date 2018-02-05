@@ -30,9 +30,21 @@ import styles from './Step2.styles';
 type SignUpType = ReduxFormType & ReactRouterType & {
   loading: boolean,
   error: string,
+  errorMessage: string,
+  onSubmitForm: (email: string, password: string, username: string, fullName: string,
+    avatar: string, facebookId: string) => void,
+  initialValues: {
+    email: string,
+    password: string,
+    facebookId: string,
+  }
 };
 
-class Step2 extends Component<SignUpType> {
+type SignUpStateType = {
+  showTerms: boolean,
+};
+
+class Step2 extends Component<SignUpType, SignUpStateType> {
   constructor(props) {
     super(props);
 
@@ -42,7 +54,7 @@ class Step2 extends Component<SignUpType> {
       this.nameInput = ref;
     };
 
-    this.focusName = () => this.nameInput.focus();
+    this.focusName = () => this.nameInput.focus && this.nameInput.focus();
 
     this.showTerms = () => { this.toggleTerms(true); };
     this.hideTerms = () => { this.toggleTerms(false); };
@@ -51,6 +63,13 @@ class Step2 extends Component<SignUpType> {
       showTerms: false,
     };
   }
+
+  onSubmit: () => void;
+  setNameRef: (ref: TextInput) => void;
+  nameInput: TextInput;
+  focusName: () => void;
+  showTerms: () => void;
+  hideTerms: () => void;
 
   toggleTerms(showTerms) {
     this.setState({

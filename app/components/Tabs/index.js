@@ -17,7 +17,7 @@ type StateType = {
 };
 
 class Tabs extends Component<TabsType, StateType> {
-  constructor(props) {
+  constructor(props: TabsType) {
     super(props);
 
     this.onChange = option => () => this.handlePress(option);
@@ -27,13 +27,14 @@ class Tabs extends Component<TabsType, StateType> {
     };
   }
 
-  handlePress(option) {
+  onChange: (option: string) => () => void;
+
+  handlePress(option: string) {
     this.setState({
       selected: option,
     }, () => {
       this.props.onChange(option);
     });
-
   }
 
   render(): Element<any> {

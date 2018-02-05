@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
 import CameraRollPicker from 'react-native-camera-roll-picker';
 
@@ -40,7 +39,7 @@ type RollType = {
   onChange: Function,
 };
 
-function Roll({ onDone, onChange }: RollType): Element<any> {
+function Roll({ onDone, onChange }: RollType) {
   return (
     <View style={styles.container}>
       <View style={styles.title}>

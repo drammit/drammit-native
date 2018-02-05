@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { TextInput, View, Text } from 'react-native';
 import { Field } from 'redux-form';
 
@@ -44,7 +43,10 @@ class FormTextInput extends Component<TextInputType> {
     }
   }
 
-  render(): Element {
+  setRef: (ref: TextInput) => void;
+  inputRef: TextInput;
+
+  render() {
     const { input, style, meta } = this.props;
     const { touched, error } = meta;
 

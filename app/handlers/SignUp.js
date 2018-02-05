@@ -46,7 +46,7 @@ async function handleSignUpStep2(dispatch, action) {
   }
 }
 
-export default function SignUp(middleware) {
+export default function SignUp(middleware: ReduxListener) {
   middleware.addListener('SIGNUP_STEP_1', handleSignUpStep1);
   middleware.addListener('SIGNUP_STEP_2', handleSignUpStep2);
 }

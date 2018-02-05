@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import { sizes } from '../../Config.styles';
@@ -17,33 +16,20 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Terms = (): Element => (
+const Terms = () => (
   <View>
     <Text style={styles.header}>Terms of Service</Text>
     <Text style={styles.text}>
-      These Terms of Service ("Terms") govern your access to and use of the services, including our
-      various websites, APIs, email notifications, applications, (the "Services" or Drammit”), and
-      any information, text, graphics, photos or other materials uploaded, downloaded or appearing
-      on the Services (collectively referred to as "Content"). Your access to and use of the
-      Services are conditioned on your acceptance of and compliance with these Terms. By accessing
-      or using the Services you agree to be bound by these Terms.
+      {'These Terms of Service ("Terms") govern your access to and use of the services, including our various websites, APIs, email notifications, applications, (the "Services" or Drammit”), and any information, text, graphics, photos or other materials uploaded, downloaded or appearing on the Services (collectively referred to as "Content"). Your access to and use of the Services are conditioned on your acceptance of and compliance with these Terms. By accessing or using the Services you agree to be bound by these Terms.'}
     </Text>
 
     <Text style={styles.header}>1. Basic Terms</Text>
     <Text style={styles.text}>
-      You are responsible for your use of the Services, for any Content you post to the Services,
-      and for any consequences thereof. The Content you submit, post, or display will be able to be
-      viewed by other users of the Services and through third party services and websites. You
-      should only provide Content that you are comfortable sharing with others under these Terms.
+      {'You are responsible for your use of the Services, for any Content you post to the Services, and for any consequences thereof. The Content you submit, post, or display will be able to be viewed by other users of the Services and through third party services and websites. You should only provide Content that you are comfortable sharing with others under these Terms.'}
     </Text>
 
     <Text style={styles.text}>
-      You may use the Services only if you can form a binding contract with Drammit and are not a
-      person barred from receiving services under the laws of the Netherlands or other applicable
-      jurisdiction. If you are accepting these Terms and using the Services on behalf of a company,
-      organization, government, or other legal entity, you represent and warrant that you are
-      authorized to do so. You may use the Services only in compliance with these Terms and all
-      applicable local, state, national, and international laws, rules and regulations.
+      {'You may use the Services only if you can form a binding contract with Drammit and are not a person barred from receiving services under the laws of the Netherlands or other applicable jurisdiction. If you are accepting these Terms and using the Services on behalf of a company, organization, government, or other legal entity, you represent and warrant that you are authorized to do so. You may use the Services only in compliance with these Terms and all applicable local, state, national, and international laws, rules and regulations.'}
     </Text>
 
     <Text style={styles.text}>
@@ -78,11 +64,7 @@ export default Terms = (): Element => (
 
     <Text style={styles.header}>3. Passwords</Text>
     <Text style={styles.text}>
-      You are responsible for safeguarding the password that you use to access the Services and for
-      any activities or actions under your password. We encourage you to use "strong" passwords with
-      your account. Drammit cannot and will not be liable for any loss or damage arising from your
-      failure to comply with the above. Drammit hashes passwords prior to saving them, which means
-      Drammit nor any other party will ever know your password.
+      {'You are responsible for safeguarding the password that you use to access the Services and for any activities or actions under your password. We encourage you to use "strong" passwords with your account. Drammit cannot and will not be liable for any loss or damage arising from your failure to comply with the above. Drammit hashes passwords prior to saving them, which means Drammit nor any other party will ever know your password.'}
     </Text>
 
     <Text style={styles.header}>4. Content on the Services</Text>
@@ -271,13 +253,9 @@ export default Terms = (): Element => (
       limited.
     </Text>
 
-    <Text style={styles.text}>A. The Services are Available "AS-IS"</Text>
+    <Text style={styles.text}>A. The Services are Available {'"AS-IS"'}</Text>
     <Text style={styles.text}>
-      Your access to and use of the Services or any Content are at your own risk. You understand and
-      agree that the Services are provided to you on an "AS IS" and "AS AVAILABLE" basis. Without
-      limiting the foregoing, to the maximum extent permitted under applicable law, THE DRAMMIT
-      ENTITIES DISCLAIM ALL WARRANTIES AND CONDITIONS, WHETHER EXPRESS OR IMPLIED, OF
-      MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+      {'Your access to and use of the Services or any Content are at your own risk. You understand and agree that the Services are provided to you on an "AS IS" and "AS AVAILABLE" basis. Without limiting the foregoing, to the maximum extent permitted under applicable law, THE DRAMMIT ENTITIES DISCLAIM ALL WARRANTIES AND CONDITIONS, WHETHER EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.'}
     </Text>
 
     <Text style={styles.text}>
@@ -364,3 +342,5 @@ export default Terms = (): Element => (
     </Text>
   </View>
 );
+
+export default Terms;

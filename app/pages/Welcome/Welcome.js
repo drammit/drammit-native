@@ -30,9 +30,18 @@ type WelcomeType = {
   updateLayout: Function,
 };
 
+type WelcomeStateType = {
+  fadeHeader: Animated.Value,
+  fadeFacebook: Animated.Value,
+  fadeEmail: Animated.Value,
+  fadeSignup: Animated.Value,
+  buttonsSlide: Animated.Value,
+  renderLogin: boolean,
+};
+
 const openLogin = false;
 
-class Welcome extends Component<WelcomeType> {
+class Welcome extends Component<WelcomeType, WelcomeStateType> {
   constructor(props) {
     super(props);
 
@@ -93,6 +102,9 @@ class Welcome extends Component<WelcomeType> {
       },
     ).start();
   }
+  onCloseEmailLogin: () => void;
+
+  onOpenEmailLogin: () => void;
 
   updateAppLayout() {
     const { hideStatusBar, updateLayout } = this.props;

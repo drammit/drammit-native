@@ -6,7 +6,7 @@ import { View } from 'react-native';
 
 import styles from './Container.styles';
 
-function Container({ children }: { children: Children }): Element<any> {
+function Container({ children }: { children: any }): Element<any> {
   return (
     <View style={styles.container}>
       { children }

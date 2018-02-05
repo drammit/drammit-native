@@ -16,9 +16,15 @@ import Label from '../../components/Form/Label';
 import TextInput from '../../components/Form/TextInput';
 import Submit from '../../components/Form/Submit';
 
-type ForgotType = ReduxFormType & ReactRouterType;
+type ForgotType = ReduxFormType & ReactRouterType & {
+  submitRequest: (username: string) => void,
+};
 
-class Forgot extends Component<ForgotType> {
+type ForgotStateType = {
+  requestSent: boolean,
+};
+
+class Forgot extends Component<ForgotType, ForgotStateType> {
   constructor(props) {
     super(props);
 
@@ -29,6 +35,9 @@ class Forgot extends Component<ForgotType> {
       requestSent: false,
     };
   }
+
+  onSubmit: () => void;
+  onBackToHome: () => void;
 
   handleSubmit(values) {
     this.props.submitRequest(values.username);

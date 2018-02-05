@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
@@ -20,14 +19,15 @@ import Submit from '../../components/Form/Submit';
 type ResetType = {
   loadingToken: boolean,
   validToken: boolean,
-  validateToken: Function,
+  resetPassword: (uesr: string, token: string, password: string) => void,
+  validateToken: (user: string, token: string) => boolean,
 } & ReactRouterType & ReduxFormType;
 
 class Reset extends Component<ResetType> {
   constructor(props) {
     super(props);
 
-    this.focusPassword = () => this.passwordInput.focus();
+    this.focusPassword = () => this.passwordInput.focus && this.passwordInput.focus();
 
     this.setPasswordRef = (ref) => {
       this.passwordInput = ref;
@@ -46,37 +46,60 @@ class Reset extends Component<ResetType> {
 
   componentDidMount() {
     const { validateToken, location } = this.props;
-    const { token, user } = location.state;
 
-    if (token && user) {
-      validateToken(user, token);
+    if (location.state) {
+      const { token, user } = location.state;
+
+      if (token && user) {
+        validateToken(user, token);
+      }
     }
   }
 
+  onSubmit: () => void;
+  setPasswordRef: (ref: TextInput) => void;
+  focusPassword: () => void;
+  passwordInput: TextInput;
+  toForgotPassword: () => void;
+
+  toHomeScreen: () => void;
+
   submitForm(values) {
+    if (!this.props.location.state) {
+      return;
+    }
+
     const { token, user } = this.props.location.state;
 
     this.props.resetPassword(user, token, values.password_1);
   }
 
-  render(): Element<any> {
-    const { location, loadingToken, validToken, submitSucceeded } = this.props;
-    const { token, user } = location.state;
+  render() {
+    const {
+      location,
+      loadingToken,
+      validToken,
+      submitSucceeded,
+    } = this.props;
 
-    if (!token || !user) {
-      return (
-        <Page
-          statusBar
-          header={{
-            back: false,
-            title: 'Forgot password',
-          }}
-        >
-          <Container>
-            <Text>The request is invalid.</Text>
-          </Container>
-        </Page>
-      );
+    if (location.state) {
+      const { token, user } = location.state;
+
+      if (!token || !user) {
+        return (
+          <Page
+            statusBar
+            header={{
+              back: false,
+              title: 'Forgot password',
+            }}
+          >
+            <Container>
+              <Text>The request is invalid.</Text>
+            </Container>
+          </Page>
+        );
+      }
     }
 
     return (

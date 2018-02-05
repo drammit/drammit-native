@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import { compose } from 'redux';
-import type { Element } from 'react';
 import { connect } from 'react-redux';
 import { View, StatusBar, Animated, Easing } from 'react-native';
 import { withRouter } from 'react-router';
@@ -19,16 +18,22 @@ import Navigation from './Navigation';
 
 import { style, styles } from './App.styles';
 
-type AppType = ReactRouter & {
+type AppType = ReactRouterType & {
   initialized: boolean,
   statusBar: boolean,
   fetchError: boolean,
   header: headerType,
   navigation: string,
-  children: Children,
+  children: any,
+  initialize: () => void;
 };
 
-class App extends Component<AppType> {
+type AppStateType = {
+  statusBarPosition: Animated.Value,
+  headerPosition: Animated.Value,
+};
+
+class App extends Component<AppType, AppStateType> {
   constructor(props) {
     super(props);
 
@@ -86,7 +91,7 @@ class App extends Component<AppType> {
     }
   }
 
-  render(): Element<any> {
+  render() {
     const {
       initialized,
       fetchError,

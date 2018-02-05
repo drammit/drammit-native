@@ -20,6 +20,8 @@ class Header extends Component<HeaderType> {
     this.goBack = () => props.history.goBack();
   }
 
+  goBack: () => void;
+
   render(): Element<any> {
     const { back, logo, title } = this.props;
 

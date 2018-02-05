@@ -1,17 +1,16 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { View } from 'react-native';
 
 import { colors, sizes } from '../../Config.styles';
 
 type PageContentType = {
-  children: Children,
+  children: any,
 };
 
 class PageContent extends Component<PageContentType> {
-  render(): Element<any> {
+  render() {
     return (
       <View
         style={{

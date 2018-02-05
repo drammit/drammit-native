@@ -1,15 +1,21 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { Animated, Easing } from 'react-native';
 import { withRouter } from 'react-router';
 
 type AnimatedChildRoutesType = ReactRouterType & {
-  children: Children,
+  children: any,
 };
 
-class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
+type AnimatedChildRoutesStateType = {
+  currentPath: string,
+  previousChildren: null | any,
+  navUp: boolean,
+  slideAnimation: Animated.Value,
+};
+
+class AnimatedChildRoutes extends Component<AnimatedChildRoutesType, AnimatedChildRoutesStateType> {
   constructor(props) {
     super(props);
 
@@ -49,6 +55,10 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
               previousChildren: null,
             }, () => next({ finished: true }));
           },
+          stop: () => {},
+          reset: () => {},
+          _isUsingNativeDriver: () => false,
+          _startNativeLoop: () => {},
         },
         Animated.timing(
           this.state.slideAnimation,
@@ -61,7 +71,7 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType> {
     }
   }
 
-  render(): Element<any> {
+  render() {
     const { children } = this.props;
     const { previousChildren, slideAnimation, navUp } = this.state;
 

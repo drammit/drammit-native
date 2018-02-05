@@ -14,7 +14,7 @@ type PageType = {
   header?: headerType,
   navigation?: string,
   currentStatusBar: boolean,
-  children: Children,
+  children: any,
   dispatch: Function,
 };
 

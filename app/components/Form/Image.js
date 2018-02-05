@@ -8,13 +8,20 @@ import { Field } from 'redux-form';
 import Camera from '../Camera/FullScreen';
 import Roll from '../Camera/Roll';
 
+type imageFile = { uri: string };
+
 type ImageType = {
   text: string,
   replaceText: string,
-  input: ReduxFormFieldType,
+} & ReduxFormFieldType;
+
+type ImageStateType = {
+  cameraOpened: boolean,
+  rollOpened: boolean,
+  image: imageFile | null,
 };
 
-class Imagefield extends Component<ImageType> {
+class Imagefield extends Component<ImageType, ImageStateType> {
   constructor(props) {
     super(props);
 
@@ -28,6 +35,10 @@ class Imagefield extends Component<ImageType> {
     rollOpened: false,
     image: null,
   };
+
+  onOpenMenu: () => void;
+  onCloseModal: () => void;
+  onChangeImage: (images: Array<imageFile>) => void;
 
   openMenu() {
     const { text, replaceText } = this.props;
@@ -68,7 +79,7 @@ class Imagefield extends Component<ImageType> {
     });
   }
 
-  changeImage([image]) {
+  changeImage([image]: Array<imageFile>) {
     this.props.input.onChange(image);
 
     this.setState({

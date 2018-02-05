@@ -26,7 +26,7 @@ function handleResetPassword(dispatch, action) {
   resetPassword(action.UserId, action.token, action.password);
 }
 
-export default function Forgot(middleware) {
+export default function Forgot(middleware: ReduxListener) {
   middleware.addListener('SUBMIT_FORGOT_PASSWORD', handleForgotPasswordSubmit);
   middleware.addListener('VALIDATE_RESET_TOKEN', handleValidateToken);
   middleware.addListener('RESET_PASSWORD', handleResetPassword);

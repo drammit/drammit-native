@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { View } from 'react-native';
 
 import Handle from './Handle';
@@ -37,7 +36,11 @@ type TrackStateType = {
 };
 
 class Track extends Component<TrackType, TrackStateType> {
-  constructor(props) {
+  static defaultProps = {
+    size: 25,
+  };
+
+  constructor(props: TrackType) {
     super(props);
 
     this.onUpdatePositions = handle => (pos) => {
@@ -51,7 +54,9 @@ class Track extends Component<TrackType, TrackStateType> {
     };
   }
 
-  updateTrackWidth(event) {
+  onUpdatePositions: (handle: number) => (pos: number) => void;
+
+  updateTrackWidth(event: any) {
     const newWidth = event.nativeEvent.layout.width;
     const { totalItems, size } = this.props;
 
@@ -61,7 +66,7 @@ class Track extends Component<TrackType, TrackStateType> {
     });
   }
 
-  updatePositions(pos1, pos2) {
+  updatePositions(pos1: number, pos2: number) {
     const { onUpdate, totalItems, size } = this.props;
     const { trackWidth } = this.state;
 
@@ -74,7 +79,7 @@ class Track extends Component<TrackType, TrackStateType> {
     });
   }
 
-  render(): Element<any> {
+  render() {
     const { size } = this.props;
     const { trackWidth, positions } = this.state;
     const [pos1, pos2] = positions;
@@ -118,9 +123,5 @@ class Track extends Component<TrackType, TrackStateType> {
     );
   }
 }
-
-Track.defaultProps = {
-  size: 25,
-};
 
 export default Track;

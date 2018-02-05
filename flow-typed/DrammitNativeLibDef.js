@@ -1,46 +1,52 @@
+/* eslint-disable no-undef */
 // @flow
 
 // Drammit
-declare var headerType: {
+declare type headerType = {
   back?: boolean,
   logo?: boolean,
-  title: string,
+  title?: string,
 };
 
 // Redux listeners
-declare var ReduxListener: {
+declare type ReduxListener = {
   addListener: Function,
   addListeners: Function,
 };
 
 // React Router Annotations
-declare var matchType: {
+declare type matchType = {
   path: string,
   url: string,
   isExact: boolean,
   params: {},
 };
 
-declare var locationType: {
+declare type locationType = {
   hash: string,
   key: string,
   pathname: string,
   search: string,
-  state?: {},
+  state?: any,
 };
 
-declare var ReactRouterType: {
+declare type historyType = {
+  push: (path: string) => void,
+};
+
+declare type ReactRouterType = {
   match: matchType,
   location: locationType,
+  history: historyType,
 };
 
 // Redux form
-declare var ReduxFormType: {
+declare type ReduxFormType = {
   handleSubmit: Function,
   submitSucceeded: boolean,
 };
 
-declare var ReduxFormFieldType: {
+declare type ReduxFormFieldType = {
   input: {
     name: string,
     onChange: Function,

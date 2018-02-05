@@ -6,7 +6,7 @@ import { Text } from 'react-native';
 
 import styles from './Label.styles';
 
-function Label({ children }: { children: Children }): Element<any> {
+function Label({ children }: { children: any }): Element<any> {
   return (
     <Text style={styles.label}>{children}</Text>
   );
