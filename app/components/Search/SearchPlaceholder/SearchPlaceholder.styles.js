@@ -1,14 +1,10 @@
-import { Image, StyleSheet } from 'react-native';
-
 import { sizes, colors } from '../../../Config.styles';
 
-export default StyleSheet.create({
+export default {
   container: {
     marginTop: sizes.padding,
     padding: sizes.padding * 2,
     backgroundColor: colors.light,
-    display: 'flex',
-    flexDirection: 'row',
     borderBottomWidth: 1,
     borderColor: colors.grey4,
   },
@@ -20,14 +16,16 @@ export default StyleSheet.create({
     backgroundColor: colors.grey5,
   },
   name: {
+    marginTop: 4,
     marginBottom: sizes.padding,
-    height: 19.5,
+    height: 14.5,
     width: 150,
     backgroundColor: colors.grey5,
   },
   description: {
+    marginTop: 2,
     backgroundColor: colors.grey5,
-    height: 16.5,
+    height: 12.5,
     width: 190,
   },
-});
+};

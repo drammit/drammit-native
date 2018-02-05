@@ -25,7 +25,11 @@ type InitializingType = {
   fetchError: boolean,
 };
 
-class Initializing extends Component<InitializingType> {
+type InitializingStateType = {
+  fadeLogo: Animated.Value,
+};
+
+class Initializing extends Component<InitializingType, InitializingStateType> {
   state = {
     fadeLogo: new Animated.Value(0),
   };

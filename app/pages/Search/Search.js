@@ -44,17 +44,16 @@ class Search extends Component<null, SearchStateType> {
 
         {searching && (
           <View style={{ width: '100%' }}>
-            <SearchPlaceholder />
-            <SearchPlaceholder />
-            <SearchPlaceholder />
+            {/* eslint-disable-next-line */}
+            {Array(5).fill().map((item, index) => <SearchPlaceholder key={index} />)}
           </View>
         )}
 
-        <FlatList
-          style={{ width: '100%' }}
-          data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
-          renderItem={() => <SearchResult />}
-        />
+        {/*<FlatList*/}
+          {/*style={{ width: '100%' }}*/}
+          {/*data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}*/}
+          {/*renderItem={() => <SearchResult />}*/}
+        {/*/>*/}
       </Page>
     );
   }
