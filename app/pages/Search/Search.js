@@ -5,9 +5,9 @@ import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 import Page from '../../components/Layout/Page';
-import Text from '../../components/Page/Text';
 import SearchForm from '../../components/Search/SearchForm';
 import SearchResult from '../../components/Search/SearchResult';
+import SearchPlaceholder from '../../components/Search/SearchPlaceholder';
 
 type SearchStateType = {
   searching: boolean,
@@ -43,7 +43,11 @@ class Search extends Component<null, SearchStateType> {
         <SearchForm onSearch={this.onSearch} />
 
         {searching && (
-          <Text>Searching...</Text>
+          <View style={{ width: '100%' }}>
+            <SearchPlaceholder />
+            <SearchPlaceholder />
+            <SearchPlaceholder />
+          </View>
         )}
 
         <FlatList
