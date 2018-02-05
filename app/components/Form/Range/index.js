@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { View } from 'react-native';
 
 import { sizes } from '../../../Config.styles';
@@ -38,7 +37,7 @@ class Range extends Component<RangeType, RangeStateType> {
     });
   }
 
-  render(): Element<any> {
+  render() {
     const { title, items } = this.props;
     const { values } = this.state;
 

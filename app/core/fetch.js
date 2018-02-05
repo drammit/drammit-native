@@ -5,7 +5,11 @@ import Config from 'react-native-config';
 
 import { uploadProgress, fetchError } from '../actions/App';
 
-let store = { dispatch() {} };
+let store = {
+  dispatch(action: any) {
+    console.info(action);
+  },
+};
 
 export function setStore(newStore: any) {
   store = newStore;
@@ -28,7 +32,7 @@ async function handleError(response) {
 }
 
 function handleFetchError(e) {
-  store.dispatch(fetchError(e.message || e));
+  store.dispatch(fetchError(e.message ? e.message : e));
 }
 
 function sendFormData(url, data) {

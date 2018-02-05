@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { View, PanResponder } from 'react-native';
 
 import { colors } from '../../../Config.styles';
@@ -21,7 +20,7 @@ type HandleStateType = {
 };
 
 class Handle extends Component<HandleType, HandleStateType> {
-  constructor(props) {
+  constructor(props: HandleType) {
     super(props);
 
     this.state = {
@@ -98,7 +97,7 @@ class Handle extends Component<HandleType, HandleStateType> {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: HandleType) {
     const { posX, moving } = this.state;
 
     if (!moving && nextProps.position !== posX) {
@@ -108,6 +107,8 @@ class Handle extends Component<HandleType, HandleStateType> {
     }
   }
 
+  panResponder: any;
+
   updatePosition(posX: number) {
     const { onUpdate } = this.props;
 
@@ -116,7 +117,7 @@ class Handle extends Component<HandleType, HandleStateType> {
     }
   }
 
-  render(): Element<any> {
+  render() {
     const { size } = this.props;
     const { posX, moveX } = this.state;
 

@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
 import { View } from 'react-native';
 
 type ContainerType = {
@@ -9,7 +8,7 @@ type ContainerType = {
   children: any,
 };
 
-function Container({ style, children }: ContainerType): Element<any> {
+function Container({ style, children }: ContainerType) {
   return (
     <View
       style={Object.assign({}, {

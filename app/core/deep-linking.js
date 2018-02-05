@@ -42,7 +42,7 @@ export default async function setupDeepLinking(history: { push: Function }) {
 
   // handle initial url
   const url = await Linking.getInitialURL();
-  if (url !== null) {
+  if (typeof url === 'string') {
     handleNavigation(history, url);
   }
 }

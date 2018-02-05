@@ -8,7 +8,11 @@ import { logoutUser } from '../../actions/Login';
 
 import Page from '../../components/Layout/Page';
 
-class Timeline extends Component {
+type TimelineType = {
+  dispatch: (action: any) => void;
+};
+
+class Timeline extends Component<TimelineType> {
   render() {
     const { dispatch } = this.props;
 

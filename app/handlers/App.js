@@ -10,17 +10,15 @@ import { loginUserSuccess } from '../actions/Login';
 async function onInit(dispatch) {
   const loginToken = await currentToken();
 
-  if (!loginToken) {
-    dispatch(initialized());
-    return;
+  if (loginToken !== null) {
+    try {
+      const user = await tokenLogin(loginToken.token, loginToken.UserId);
+      dispatch(loginUserSuccess(user));
+      return;
+    } catch (e) { }
   }
 
-  try {
-    const user = await tokenLogin(loginToken.token, loginToken.UserId);
-    dispatch(loginUserSuccess(user));
-  } catch (e) {
-    dispatch(initialized());
-  }
+  dispatch(initialized());
 }
 
 export default function App(middleware: ReduxListener) {

@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { StatusBar, View, StyleSheet, Animated, Text } from 'react-native';
 
 import Logo from '../Logo/Logo';
@@ -49,7 +48,7 @@ class Initializing extends Component<InitializingType, InitializingStateType> {
     ])).start();
   }
 
-  render(): Element<any> {
+  render() {
     const { fadeLogo } = this.state;
     const { fetchError } = this.props;
 

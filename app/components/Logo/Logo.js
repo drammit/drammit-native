@@ -1,12 +1,11 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
 import SvgUri from 'react-native-svg-uri';
 
 import Drammit from './drammit-logo.svg';
 
-function Logo({ style }: { style: any }): Element<any> {
+function Logo({ style }: { style?: any }) {
   const ratio = 596.3 / 88.9;
   const width = style && style.width ? style.width : 300;
 

@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
 import { Route, Switch, Redirect } from 'react-router-native';
 
 import AnimatedRoutes from '../../components/Router/AnimatedRoutes';
@@ -9,7 +8,7 @@ import AnimatedRoutes from '../../components/Router/AnimatedRoutes';
 import Step1 from './Step1';
 import Step2 from './Step2';
 
-function Routes({ match, location }: ReactRouterType): Element<any> {
+function Routes({ match, location }: ReactRouterType) {
   return (
     <AnimatedRoutes>
       <Switch location={location}>

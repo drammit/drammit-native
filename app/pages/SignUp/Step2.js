@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -90,7 +89,7 @@ class Step2 extends Component<SignUpType, SignUpStateType> {
     );
   }
 
-  render(): Element<any> {
+  render() {
     const { loading, errorMessage } = this.props;
     const { showTerms } = this.state;
 

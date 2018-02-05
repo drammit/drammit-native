@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
 import { withRouter } from 'react-router';
 
@@ -22,7 +21,7 @@ class Header extends Component<HeaderType> {
 
   goBack: () => void;
 
-  render(): Element<any> {
+  render() {
     const { back, logo, title } = this.props;
 
     return (

@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Animated, Text, View, Button, Easing } from 'react-native';
@@ -144,11 +143,15 @@ class Welcome extends Component<WelcomeType, WelcomeStateType> {
             renderLogin: false,
           });
         },
+        stop: () => {},
+        reset: () => {},
+        _isUsingNativeDriver: () => false,
+        _startNativeLoop: () => {},
       },
     ]).start();
   }
 
-  render(): Element {
+  render() {
     const { continueWithFacebook, signUp } = this.props;
     const {
       fadeHeader, fadeFacebook, fadeEmail, fadeSignup, buttonsSlide, renderLogin,
@@ -284,10 +287,14 @@ class Welcome extends Component<WelcomeType, WelcomeStateType> {
 function mapDispatchToProps(dispatch, props) {
   return {
     async continueWithFacebook() {
-      const { id, email, name } = await loginToFacebook();
+      const loginResult = await loginToFacebook();
 
-      if (id && email) {
-        dispatch(facebookLogin(id, email, name));
+      if (loginResult !== null) {
+        const { id, email, name } = loginResult;
+
+        if (id && email) {
+          dispatch(facebookLogin(id, email, name));
+        }
       }
     },
 

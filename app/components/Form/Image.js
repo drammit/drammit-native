@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { View, Image, Button, ActionSheetIOS, Modal, TouchableOpacity } from 'react-native';
 import { Field } from 'redux-form';
 
@@ -87,7 +86,7 @@ class Imagefield extends Component<ImageType, ImageStateType> {
     });
   }
 
-  render(): Element<any> {
+  render() {
     const { text } = this.props;
     const { cameraOpened, rollOpened, image } = this.state;
 

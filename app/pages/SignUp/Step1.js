@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -52,7 +51,7 @@ class Step1 extends Component<SignUpType> {
     this.props.onSubmitForm(values.email, values.password);
   }
 
-  render(): Element<any> {
+  render() {
     const {
       loading, errorMessage, nextStep, initialValues,
     } = this.props;

@@ -4,7 +4,7 @@ import React from 'react';
 import { View, Image } from 'react-native';
 
 type ImageContainerType = {
-  source: string,
+  source: string | number,
   children: any,
 };
 

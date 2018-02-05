@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { Text } from 'react-native';
 
 import { colors, sizes } from '../../Config.styles';
@@ -11,7 +10,7 @@ type TitleType = {
 };
 
 class Title extends Component<TitleType> {
-  render(): Element<any> {
+  render() {
     return (
       <Text
         style={{

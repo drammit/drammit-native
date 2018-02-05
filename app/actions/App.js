@@ -16,7 +16,7 @@ export function hideStatusBar() {
   return { type: 'HIDE_STATUSBAR' };
 }
 
-export function updateHeader(header) {
+export function updateHeader(header: any) {
   return { type: 'UPDATE_HEADER', header };
 }
 

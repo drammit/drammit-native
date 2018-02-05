@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -51,7 +50,7 @@ class Forgot extends Component<ForgotType, ForgotStateType> {
     this.props.history.push('/');
   }
 
-  render(): Element<any> {
+  render() {
     const { requestSent } = this.state;
 
     return (

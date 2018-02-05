@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import type { Element } from 'react';
 import { View } from 'react-native';
 
 import { showStatusBar, hideStatusBar, updateLayout } from '../../actions/App';
@@ -35,7 +34,7 @@ class Page extends Component<PageType> {
     dispatch(updateLayout(header || {}, navigation || ''));
   }
 
-  render(): Element<any> {
+  render() {
     const { children } = this.props;
 
     return (

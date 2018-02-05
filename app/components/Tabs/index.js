@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import styles from './Tabs.styles';
@@ -37,7 +36,7 @@ class Tabs extends Component<TabsType, StateType> {
     });
   }
 
-  render(): Element<any> {
+  render() {
     const { options } = this.props;
     const { selected } = this.state;
 

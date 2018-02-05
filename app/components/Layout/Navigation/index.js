@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { compose } from 'redux';
 import { View, TouchableOpacity } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
@@ -30,7 +29,10 @@ class Navigation extends Component<NavigationType> {
     this.goToSearch = () => props.history.push('/search');
   }
 
-  render(): Element<any> {
+  goToTimeline: () => void;
+  goToSearch: () => void;
+
+  render() {
     const { active, children } = this.props;
 
     const activeColor = colors.lightGreen;

@@ -5,9 +5,12 @@ import { getItem, setItem, removeItem } from './storage';
 const tokenKey = 'logintoken:token';
 const useridKey = 'logintoken:userid';
 
-export async function currentToken(): null | { token: string, UserId: number } {
+export async function currentToken(): Promise<null | { token: string, UserId: string }> {
   const [token, UserId] =
-    await Promise.all([getItem(tokenKey), getItem(useridKey)]);
+    await Promise.all([
+      getItem(tokenKey),
+      getItem(useridKey),
+    ]);
 
   if (!token || !UserId) {
     return null;

@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
 import { View, Button } from 'react-native';
 
 import { colors, sizes } from '../../Config.styles';
@@ -18,7 +17,7 @@ function Submit({
   onPress,
   light = false,
   disabled = false,
-}: SubmitType): Element<any> {
+}: SubmitType) {
   return (
     <View
       style={{

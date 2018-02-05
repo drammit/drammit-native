@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { reduxForm } from 'redux-form';
 import SvgUri from 'react-native-svg-uri';
@@ -18,7 +17,7 @@ const styles = StyleSheet.create(rawStyles);
 type SearchType = {};
 
 class Search extends Component<SearchType> {
-  render(): Element<any> {
+  render() {
     return (
       <View style={styles.container}>
         <SvgUri
