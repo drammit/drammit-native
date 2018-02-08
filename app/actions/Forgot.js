@@ -1,6 +1,6 @@
 // @flow
 
-export function validateResetToken(UserId, token) {
+export function validateResetToken(UserId: string, token: string) {
   return {
     type: 'VALIDATE_RESET_TOKEN',
     token,
@@ -16,7 +16,7 @@ export function invalidResetToken() {
   return { type: 'INVALID_RESET_TOKEN' };
 }
 
-export function resetPassword(UserId, token, password) {
+export function resetPassword(UserId: string, token: string, password: string) {
   return {
     type: 'RESET_PASSWORD',
     UserId,

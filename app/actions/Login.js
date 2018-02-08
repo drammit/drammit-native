@@ -1,6 +1,6 @@
 // @flow
 
-export function loginUser(username, password) {
+export function loginUser(username: string, password: string) {
   return {
     type: 'LOGIN_USER',
     username,
@@ -8,11 +8,20 @@ export function loginUser(username, password) {
   };
 }
 
-export function loginUserSuccess(user) {
+type userResponseType = {
+  id: string,
+  email: string,
+  username: string,
+  name: string,
+  avatar: string,
+  name: boolean,
+};
+
+export function loginUserSuccess(user: userResponseType) {
   return { type: 'LOGIN_USER_SUCCESS', user };
 }
 
-export function loginUserFailed(message) {
+export function loginUserFailed(message: string) {
   return {
     type: 'LOGIN_USER_FAILED',
     message,
@@ -23,14 +32,14 @@ export function logoutUser() {
   return { type: 'LOGOUT_USER' };
 }
 
-export function submitForgotPassword(username) {
+export function submitForgotPassword(username: string) {
   return {
     type: 'SUBMIT_FORGOT_PASSWORD',
     username,
   };
 }
 
-export function facebookLogin(id, email, name) {
+export function facebookLogin(id: string, email: string, name: string) {
   return {
     type: 'FACEBOOK_LOGIN',
     id,
@@ -39,6 +48,6 @@ export function facebookLogin(id, email, name) {
   };
 }
 
-export function facebookLoginFailed(message) {
+export function facebookLoginFailed(message: string) {
   return { type: 'FACEBOOK_LOGIN_FAILED', message };
 }
