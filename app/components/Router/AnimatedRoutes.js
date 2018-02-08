@@ -53,7 +53,7 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType, AnimatedChi
           start: (next) => {
             this.setState({
               previousChildren: null,
-            }, () => next({ finished: true }));
+            }, () => next && next({ finished: true }));
           },
           stop: () => {},
           reset: () => {},
