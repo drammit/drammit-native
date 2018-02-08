@@ -8,7 +8,7 @@ import { colors, sizes } from '../../../Config.styles';
 
 type IndicatorType = {
   position: 'left' | 'right',
-  text: string,
+  text: string | number,
 };
 
 class Indicator extends Component<IndicatorType> {

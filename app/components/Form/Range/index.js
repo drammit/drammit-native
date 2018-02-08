@@ -21,7 +21,7 @@ type RangeStateType = {
 };
 
 class Range extends Component<RangeType, RangeStateType> {
-  constructor(props) {
+  constructor(props: RangeType) {
     super(props);
 
     this.onUpdateValues = this.updateValues.bind(this);
@@ -31,7 +31,9 @@ class Range extends Component<RangeType, RangeStateType> {
     };
   }
 
-  updateValues(values) {
+  onUpdateValues: (values: Array<number>) => void;
+
+  updateValues(values: Array<number>) {
     this.setState({
       values,
     });
