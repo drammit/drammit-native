@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class FullScreen extends Component<null> {
+class FullScreen extends Component<*> {
   camera: any;
 
   render() {
