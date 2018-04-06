@@ -20,10 +20,20 @@ type HandleStateType = {
 };
 
 class Handle extends Component<HandleType, HandleStateType> {
+  static getDerivedStateFromProps(nextProps: HandleType, prevState: HandleStateType) {
+    const { posX, moving } = prevState;
+
+    if (!moving && nextProps.position !== posX) {
+      return {
+        posX: nextProps.position,
+      };
+    }
+
+    return null;
+  }
+
   constructor(props: HandleType) {
     super(props);
-
-    this.initializePanhandler();
 
     this.state = {
       moveX: 0,
@@ -32,14 +42,8 @@ class Handle extends Component<HandleType, HandleStateType> {
     };
   }
 
-  componentWillReceiveProps(nextProps: HandleType) {
-    const { posX, moving } = this.state;
-
-    if (!moving && nextProps.position !== posX) {
-      this.setState({
-        posX: nextProps.position,
-      });
-    }
+  componentDidMount() {
+    this.initializePanhandler();
   }
 
   initializePanhandler() {
@@ -109,7 +113,7 @@ class Handle extends Component<HandleType, HandleStateType> {
     });
   }
 
-  panResponder: any;
+  panResponder: any = {};
 
   updatePosition(posX: number) {
     const { onUpdate } = this.props;
