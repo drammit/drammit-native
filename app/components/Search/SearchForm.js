@@ -33,6 +33,7 @@ type SearchFormType = {
 
 type SearchFormStateType = {
   tab: tabType,
+  animating: boolean,
   collapsed: boolean,
   collapseAnimation: any,
 };
@@ -47,6 +48,7 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
 
     this.state = {
       tab: 'whisky',
+      animating: false,
       collapsed: false,
       collapseAnimation: new Animated.Value(0),
     };
@@ -55,6 +57,7 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
   onChangeTab: (tab: tabType) => void;
   onSearch: () => void;
   onOpenFilters: () => void;
+  collapseDuration: number = 500;
 
   changeTab(tab: tabType) {
     this.setState({ tab });
@@ -65,12 +68,20 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
       this.state.collapseAnimation,
       {
         toValue: 0,
+        duration: this.collapseDuration,
       },
     ).start();
 
     this.setState({
       collapsed: false,
+      animating: true,
     });
+
+    setTimeout(() => {
+      this.setState({
+        animating: false,
+      });
+    }, this.collapseDuration);
   }
 
   triggerSearch() {
@@ -82,17 +93,25 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
       this.state.collapseAnimation,
       {
         toValue: 1,
+        duration: this.collapseDuration,
       },
     ).start();
 
     // collapse search
     this.setState({
       collapsed: true,
+      animating: true,
     });
+
+    setTimeout(() => {
+      this.setState({
+        animating: false,
+      });
+    }, this.collapseDuration);
   }
 
   render() {
-    const { tab, collapsed, collapseAnimation } = this.state;
+    const { tab, collapsed, collapseAnimation, animating } = this.state;
 
     const tabHeights = {
       whisky: 318,
@@ -115,7 +134,7 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
             }),
           }}
         >
-          <View style={{ height: tabHeights[tab] }}>
+          <View style={{ height: animating ? tabHeights[tab] : 'auto' }}>
             <Tabs
               options={['whisky', 'distillery', 'user']}
               active={tab}
