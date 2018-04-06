@@ -29,7 +29,6 @@
 		"redux": "^3.7.2",
 		"redux-form": "^7.3.0",
 		"redux-listeners": "^0.2.1",
-		"remote-redux-devtools": "^0.5.12",
 		"uri-js": "^3.0.2",
 		"xcode": "^1.0.0"
 	},

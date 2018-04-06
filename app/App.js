@@ -1,12 +1,11 @@
 // @flow
 
 import React from 'react';
-import { Platform, NativeModules } from 'react-native';
+import { NativeModules } from 'react-native';
 import { Route, NativeRouter } from 'react-router-native';
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer as formReducer } from 'redux-form';
-import devTools from 'remote-redux-devtools';
 import { createMiddleware } from 'redux-listeners';
 
 import { setStore } from './core/fetch';
@@ -30,11 +29,8 @@ const store = createStore(
   }),
   compose(
     applyMiddleware(actionMiddleware),
-    devTools({
-      name: Platform.OS,
-      hostname: 'localhost',
-      port: 5678,
-    }),
+    // eslint-disable-next-line no-underscore-dangle
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),
 );
 
