@@ -23,6 +23,8 @@ class Handle extends Component<HandleType, HandleStateType> {
   constructor(props: HandleType) {
     super(props);
 
+    this.initializePanhandler();
+
     this.state = {
       moveX: 0,
       posX: props.position || 0,
@@ -30,7 +32,17 @@ class Handle extends Component<HandleType, HandleStateType> {
     };
   }
 
-  componentWillMount() {
+  componentWillReceiveProps(nextProps: HandleType) {
+    const { posX, moving } = this.state;
+
+    if (!moving && nextProps.position !== posX) {
+      this.setState({
+        posX: nextProps.position,
+      });
+    }
+  }
+
+  initializePanhandler() {
     function posx(min, max, newPos) {
       if (newPos < min) {
         return min;
@@ -95,16 +107,6 @@ class Handle extends Component<HandleType, HandleStateType> {
         });
       },
     });
-  }
-
-  componentWillReceiveProps(nextProps: HandleType) {
-    const { posX, moving } = this.state;
-
-    if (!moving && nextProps.position !== posX) {
-      this.setState({
-        posX: nextProps.position,
-      });
-    }
   }
 
   panResponder: any;
