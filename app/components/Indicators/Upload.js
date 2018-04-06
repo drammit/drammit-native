@@ -31,16 +31,16 @@ class Upload extends Component<UploadType, UploadStateType> {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate() {
     Animated.timing(
       this.state.barWidth,
       {
-        toValue: nextProps.uploadProgress,
+        toValue: this.props.uploadProgress,
         duration: 300,
       },
     ).start();
 
-    if (nextProps.show === true) {
+    if (this.props.show === true) {
       Animated.timing(
         this.state.showHeight,
         {

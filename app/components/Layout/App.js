@@ -50,9 +50,9 @@ class App extends Component<AppType, AppStateType> {
     this.props.initialize();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.animateStatusBar(this.props, nextProps);
-    this.animateHeader(this.props, nextProps);
+  componentDidUpdate(prevProps: AppType) {
+    this.animateStatusBar(prevProps, this.props);
+    this.animateHeader(prevProps, this.props);
   }
 
   animateStatusBar(currentProps, nextProps) {

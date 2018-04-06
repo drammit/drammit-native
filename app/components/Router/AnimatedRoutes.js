@@ -27,14 +27,14 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType, AnimatedChi
     };
   }
 
-  componentWillReceiveProps({ location }) {
+  componentDidUpdate() {
     const { currentPath } = this.state;
-    const { children } = this.props;
+    const { children, location } = this.props;
 
     const newPath = location.pathname;
 
     if (currentPath !== newPath) {
-      this.setState({
+      this.update({
         previousChildren: children,
         currentPath: newPath,
         navUp: currentPath.indexOf(newPath) === 0,
@@ -69,6 +69,10 @@ class AnimatedChildRoutes extends Component<AnimatedChildRoutesType, AnimatedChi
         ),
       ]).start();
     }
+  }
+
+  update(newState) {
+    this.setState(newState);
   }
 
   render() {
