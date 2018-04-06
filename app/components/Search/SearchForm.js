@@ -111,7 +111,12 @@ class SearchForm extends Component<SearchFormType, SearchFormStateType> {
   }
 
   render() {
-    const { tab, collapsed, collapseAnimation, animating } = this.state;
+    const {
+      tab,
+      collapsed,
+      collapseAnimation,
+      animating,
+    } = this.state;
 
     const tabHeights = {
       whisky: 318,
