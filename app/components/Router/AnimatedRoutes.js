@@ -2,109 +2,59 @@
 
 import React, { Component } from 'react';
 import { Animated, Easing } from 'react-native';
-import { withRouter } from 'react-router';
+import { compose } from 'redux';
+import { withRouter } from 'react-router-native';
 
-type AnimatedChildRoutesType = ReactRouterType & {
+type AnimatedRoutesType = {
   children: any,
-};
+} & ReactRouterType;
 
-type AnimatedChildRoutesStateType = {
+type AnimatedRoutesState = {
   currentPath: string,
   previousChildren: null | any,
-  navUp: boolean,
-  slideAnimation: Animated.Value,
+  currentChildren: any,
 };
 
-class AnimatedChildRoutes extends Component<AnimatedChildRoutesType, AnimatedChildRoutesStateType> {
-  constructor(props) {
-    super(props);
+class AnimatedRoutes extends Component<AnimatedRoutesType, AnimatedRoutesState> {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const newPath = nextProps.location.pathname;
+
+    if (newPath !== prevState.currentPath) {
+      return {
+        currentPath: newPath,
+        previousChildren: prevState.currentChildren,
+        currentChildren: nextProps.children,
+      };
+    }
+
+    return null;
+  }
+
+  constructor(props: AnimatedRoutesType) {
+    super();
 
     this.state = {
-      previousChildren: null,
       currentPath: props.location.pathname,
-      slideAnimation: new Animated.Value(0),
-      navUp: false,
+      previousChildren: null,
+      currentChildren: props.children,
     };
   }
 
-  componentDidUpdate() {
-    const { currentPath } = this.state;
-    const { children, location } = this.props;
-
-    const newPath = location.pathname;
-
-    if (currentPath !== newPath) {
-      this.update({
-        previousChildren: children,
-        currentPath: newPath,
-        navUp: currentPath.indexOf(newPath) === 0,
-      });
-
-      Animated.sequence([
-        Animated.timing(
-          this.state.slideAnimation,
-          {
-            toValue: 1,
-            duration: 200,
-            easing: Easing.in(Easing.ease),
-          },
-        ),
-        {
-          start: (next) => {
-            this.setState({
-              previousChildren: null,
-            }, () => next && next({ finished: true }));
-          },
-          stop: () => {},
-          reset: () => {},
-          _isUsingNativeDriver: () => false,
-          _startNativeLoop: () => {},
-        },
-        Animated.timing(
-          this.state.slideAnimation,
-          {
-            toValue: 0,
-            duration: 300,
-          },
-        ),
-      ]).start();
+  shouldComponentUpdate(nextProps: AnimatedRoutesType, nextState: AnimatedRoutesState) {
+    if (this.state.currentPath !== nextState.currentPath) {
+      console.log('path change');
     }
-  }
 
-  update(newState) {
-    this.setState(newState);
+    return this.props !== nextProps || this.state !== nextState;
   }
 
   render() {
-    const { children } = this.props;
-    const { previousChildren, slideAnimation, navUp } = this.state;
+    const { currentChildren, previousChildren } = this.state;
 
     return (
-      <Animated.View
-        style={{
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          width: '100%',
-          height: '100%',
-          transform: [{
-            translateX: previousChildren ? (
-              slideAnimation.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, navUp ? 100 : -100],
-              })
-            ) : 0,
-          }],
-          opacity: slideAnimation.interpolate({
-            inputRange: [0, 0.9],
-            outputRange: [1, 0],
-          }),
-        }}
-      >
-        {previousChildren || children}
-      </Animated.View>
+      previousChildren || currentChildren
     );
   }
 }
 
-export default withRouter(AnimatedChildRoutes);
+export default compose(withRouter)(AnimatedRoutes);
