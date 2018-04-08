@@ -14,6 +14,7 @@ import reducers from './reducers';
 import handlers from './handlers';
 
 import AppComponent from './components/Layout/App';
+import AnimatedRoutes from './components/Router/AnimatedRoutes';
 
 import Welcome from './pages/Welcome';
 import SignUp from './pages/SignUp';
@@ -42,11 +43,13 @@ const App = () => (
   <Provider store={store}>
     <NativeRouter>
       <AppComponent>
-        <Route path="/" component={Welcome} />
-        <Route path="/sign-up" component={SignUp} />
-        <Route path="/time-line" component={TimeLine} />
-        <Route path="/search" component={Search} />
-        <Route path="/whisky" component={Whisky} />
+        <AnimatedRoutes>
+          <Route path="/" component={Welcome} />
+          <Route path="/sign-up" component={SignUp} />
+          <Route path="/time-line" component={TimeLine} />
+          <Route path="/search" component={Search} />
+          <Route path="/whisky" component={Whisky} />
+        </AnimatedRoutes>
       </AppComponent>
     </NativeRouter>
   </Provider>
