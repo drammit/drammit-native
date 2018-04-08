@@ -315,6 +315,6 @@ function mapDispatchToProps(dispatch, props) {
 }
 
 export default compose(
-  connect(null, mapDispatchToProps),
   withRouter,
+  connect(null, mapDispatchToProps),
 )(Welcome);

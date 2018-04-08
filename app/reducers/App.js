@@ -45,7 +45,7 @@ function navigation(state: string = '', action): string {
   switch (action.type) {
     case 'UPDATE_NAVIGATION':
     case 'UPDATE_LAYOUT':
-      return action.navigation;
+      return action.navigation === 'keep' ? state : action.navigation;
     default:
       return state;
   }

@@ -1,12 +1,13 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Text, Button } from 'react-native';
+import { Text, Button, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 import { logoutUser } from '../../actions/Login';
 
 import Page from '../../components/Layout/Page';
+import SearchResult from '../../components/Search/SearchResult';
 
 type TimelineType = {
   dispatch: (action: any) => void;
@@ -26,6 +27,12 @@ class Timeline extends Component<TimelineType> {
       >
         <Button onPress={() => dispatch(logoutUser())} title="Log out" />
         <Text>Bla</Text>
+
+        <FlatList
+          style={{ width: '100%' }}
+          data={[{}, {}]}
+          renderItem={() => <SearchResult />}
+        />
       </Page>
     );
   }

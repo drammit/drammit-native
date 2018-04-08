@@ -1,20 +1,30 @@
 // @flow
 
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
+import { withRouter } from 'react-router-native';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 import bottle from './bottle.png';
 import arrow from './arrow.svg';
 
 import styles from './SearchResult.styles';
 
-type SearchResultType = {};
+type SearchResultType = {
+  goToWhisky: () => void,
+} & ReactRouterType;
 
 class SearchResult extends Component<SearchResultType> {
   render() {
+    const { goToWhisky } = this.props;
+
     return (
-      <View style={styles.container}>
+      <TouchableOpacity
+        onPress={goToWhisky}
+        style={styles.container}
+      >
         <View style={styles.imageContainer}>
           <Image style={styles.image} source={bottle} />
         </View>
@@ -25,9 +35,20 @@ class SearchResult extends Component<SearchResultType> {
         <View style={styles.arrowContainer}>
           <SvgUri width={10} height={20} source={arrow} />
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
 
-export default SearchResult;
+const mapDispatchToProps = (dispatch, props: SearchResultType) => ({
+  goToWhisky() {
+    const { history } = props;
+
+    history.push('/whisky');
+  },
+});
+
+export default compose(
+  withRouter,
+  connect(null, mapDispatchToProps),
+)(SearchResult);

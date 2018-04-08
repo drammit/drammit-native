@@ -19,6 +19,7 @@ import Welcome from './pages/Welcome';
 import SignUp from './pages/SignUp';
 import TimeLine from './pages/Timeline';
 import Search from './pages/Search';
+import Whisky from './pages/Whisky';
 
 const actionMiddleware = createMiddleware();
 
@@ -45,6 +46,7 @@ const App = () => (
         <Route path="/sign-up" component={SignUp} />
         <Route path="/time-line" component={TimeLine} />
         <Route path="/search" component={Search} />
+        <Route path="/whisky" component={Whisky} />
       </AppComponent>
     </NativeRouter>
   </Provider>
